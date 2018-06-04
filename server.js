@@ -4,6 +4,24 @@ const fs = require('fs')
 const mm = require('musicmetadata')
 const request = require('request')
 const bodyParser = require('body-parser')
+const SpotifyWebApi = require('spotify-web-api-node')
+
+const spotifyApi = new SpotifyWebApi({
+  clientId: 'd773cbd567e4473394863ffacc1a7409',
+  clientSecret: '6fb8f632cb444cafaf1fc49ca99c6bd3',
+  redirectUri: 'http://localhost:3000'
+})
+
+app.get('/search',(req,res)=>{
+    spotifyApi.searchArtists('Love')
+    .then((data)=> {
+        res.JSON(data)
+    console.log('Search artists by "Love"', data.body);
+  }, (err) => {
+    console.error(err);
+})
+})
+
 
 app.use(bodyParser.json())
 
