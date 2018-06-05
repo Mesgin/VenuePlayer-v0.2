@@ -5,7 +5,7 @@ import './App.css'
 import MapContainer from '../MapContainer'
 import AudioPlayer from '../AudioPlayer/AudioPlayer.jsx'
 import Navbar from '../Navbar/Navbar'
-import SpotifyWebApi from 'spotify-web-api-js';
+import SpotifyWebApi from 'spotify-web-api-js'
 
 const spotifyApi = new SpotifyWebApi();
 
@@ -13,10 +13,10 @@ class App extends Component {
   constructor() {
     super()
 
-    const params = this.getHashParams();
-    const token = params.access_token;
+    const params = this.getHashParams()
+    const token = params.access_token
     if (token) {
-      spotifyApi.setAccessToken(token);
+      spotifyApi.setAccessToken(token)
     }
 
     this.state = {
@@ -28,48 +28,50 @@ class App extends Component {
   }
 
   getHashParams() {
-    let hashParams = {};
+    let hashParams = {}
     let e, r = /([^&;=]+)=?([^&;]*)/g,
-      q = window.location.hash.substring(1);
+      q = window.location.hash.substring(1)
     e = r.exec(q)
     while (e) {
-      hashParams[e[1]] = decodeURIComponent(e[2]);
-      e = r.exec(q);
+      hashParams[e[1]] = decodeURIComponent(e[2])
+      e = r.exec(q)
     }
-    return hashParams;
+    return hashParams
   }
 
   getNowPlaying() {
-    spotifyApi.getMyCurrentPlaybackState()
+    spotifyApi.getMyCurrentPlaybackState({})
       .then((response) => {
-        this.setState({
-          nowPlaying: {
-            name: response.item.name,
-            albumArt: response.item.album.images[0].url
-          }
-        });
+        console.log(response);
+        
+        // this.setState({
+        //   nowPlaying: {
+        //     name: response.item.name,
+        //     albumArt: response.item.album.images[0].url
+        //   }
+        // })
       })
   }
 
   updateSong = (id) => {
-    axios.post('http://localhost:8080/', { artist: this.state.songs[id].artist })
-      .then((response) => {
-        let venues = response.data.map((item) => {
-          return item
-        })
-        this.setState({
-          venues
-        })
-      })
+    // axios.post('http://localhost:8888/', { artist: this.state.songs[id].artist })
+    //   .then((response) => {
+    //     let venues = response.data.map((item) => {
+    //       return item
+    //     })
+    //     this.setState({
+    //       venues
+    //     })
+    //   })
   }
 
   componentDidMount() {
-    axios.get('http://localhost:8080/')
-      .then((response) => {
-        this.setState({
-          songs: response.data,
-        })
-      })
+    // axios.get('http://localhost:8888/')
+    //   .then((response) => {
+    //     this.setState({
+    //       songs: response.data,
+    //     })
+    //   })
   }
 
   render() {
@@ -89,6 +91,9 @@ class App extends Component {
           </button>
               }
             </div>
+            <div>
+          <img src={this.state.nowPlaying.albumArt} style={{ height: 150 }} alt='hi'/>
+        </div>
           </header>
           <AudioPlayer updateSong={this.updateSong} songs={this.state.songs} />
           <div className="row">
