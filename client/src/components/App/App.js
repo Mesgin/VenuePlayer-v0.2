@@ -4,14 +4,51 @@ import axios from 'axios'
 import './App.css'
 import MapContainer from '../MapContainer'
 import AudioPlayer from '../AudioPlayer/AudioPlayer.jsx'
+import Navbar from '../Navbar/Navbar'
+import SpotifyWebApi from 'spotify-web-api-js';
+
+const spotifyApi = new SpotifyWebApi();
 
 class App extends Component {
   constructor() {
     super()
+
+    const params = this.getHashParams();
+    const token = params.access_token;
+    if (token) {
+      spotifyApi.setAccessToken(token);
+    }
+
     this.state = {
       songs: [{}],
-      venues: []
+      venues: [],
+      loggedIn: token ? true : false,
+      nowPlaying: { name: 'Not Checked', albumArt: '' }
     }
+  }
+
+  getHashParams() {
+    let hashParams = {};
+    let e, r = /([^&;=]+)=?([^&;]*)/g,
+      q = window.location.hash.substring(1);
+    e = r.exec(q)
+    while (e) {
+      hashParams[e[1]] = decodeURIComponent(e[2]);
+      e = r.exec(q);
+    }
+    return hashParams;
+  }
+
+  getNowPlaying() {
+    spotifyApi.getMyCurrentPlaybackState()
+      .then((response) => {
+        this.setState({
+          nowPlaying: {
+            name: response.item.name,
+            albumArt: response.item.album.images[0].url
+          }
+        });
+      })
   }
 
   updateSong = (id) => {
@@ -39,12 +76,18 @@ class App extends Component {
     return (
       <Router>
         <div className="container text-center">
-        <Navbar />
+          <Navbar />
           <header className="jumbotron">
             <h1 className="display-4">VenuePlayer</h1>
             <div className="mt-4">
               <input type="text" className="mr-2" />
               <button className="btn btn-danger">Search</button>
+              <a href='http://localhost:8888/login' > Login to Spotify </a>
+              {this.state.loggedIn &&
+                <button onClick={() => this.getNowPlaying()}>
+                  Check Now Playing
+          </button>
+              }
             </div>
           </header>
           <AudioPlayer updateSong={this.updateSong} songs={this.state.songs} />
