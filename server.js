@@ -3,7 +3,7 @@ const app = express()
 const fs = require('fs')
 const mm = require('musicmetadata')
 const request = require('request')
-// const bodyParser = require('body-parser')
+const bodyParser = require('body-parser')
 const SpotifyWebApi = require('spotify-web-api-node')
 const cors = require('cors')
 const querystring = require('querystring')
@@ -171,7 +171,7 @@ app.get('/refresh_token', function(req, res) {
 // })
 
 
-// app.use(bodyParser.json())
+app.use(bodyParser.json())
 
 // function Song(source, title, artist, description, img, id) {
 //     this.source = source
@@ -201,14 +201,15 @@ app.get('/refresh_token', function(req, res) {
 //     res.json(songs)
 // })
 
-// app.post('/',(req,res)=>{
-//     const {artist} = req.body
-//     request(`https://rest.bandsintown.com/artists/${artist}/events?app_id=c74a852c1481cfb7e5cda8c42adc7ff0`, (err, response, data) => {
-//         const dataObject = JSON.parse(data)
-//         if (err) console.log(err)
-//         res.json(dataObject)
-//     })
-// })
+app.post('/',(req,res)=>{
+    const {artist} = req.body
+    request(`https://rest.bandsintown.com/artists/${artist}/events?app_id=c74a852c1481cfb7e5cda8c42adc7ff0`, (err, response, data) => {
+        console.log('res: ',response,'data: ')
+        const dataObject = JSON.parse(data)
+        if (err) console.log(err)
+        res.json(dataObject)
+    })
+})
 
 app.listen(8888,()=>{
     console.log(8888)

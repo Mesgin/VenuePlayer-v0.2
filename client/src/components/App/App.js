@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import axios from 'axios'
 import './App.css'
 import MapContainer from '../MapContainer'
-import AudioPlayer from '../AudioPlayer/AudioPlayer.jsx'
+// import AudioPlayer from '../AudioPlayer/AudioPlayer.jsx'
 import Navbar from '../Navbar/Navbar'
 import SpotifyWebApi from 'spotify-web-api-js'
 
@@ -25,7 +25,8 @@ class App extends Component {
       loggedIn: token ? true : false,
       nowPlaying: { name: 'Not Checked', albumArt: '' },
       artists: [],
-      textInput: ''
+      textInput: '',
+      artistClicked: ''
     }
   }
 
@@ -53,28 +54,44 @@ class App extends Component {
       })
   }
 
-  updateSong = (id) => {
-    // axios.post('http://localhost:8888/', { artist: this.state.songs[id].artist })
-    //   .then((response) => {
-    //     let venues = response.data.map((item) => {
-    //       return item
-    //     })
-    //     this.setState({
-    //       venues
-    //     })
-    //   })
+  updateSong = (artist) => {
+    axios.post('http://localhost:8888/', {artist})
+      .then((response) => {    
+        let venues = response.data.map((item) => {
+          return item
+        })
+        this.setState({
+          venues,
+          artistClicked: artist
+        })
+        axios.get('http://localhost:8888/')
+        .then((response) => {
+          this.setState({
+            songs: response.data,
+          })
+        })
+      })
   }
 
-  componentDidMount() {
-    // axios.get('http://localhost:8888/')
-    //   .then((response) => {
-    //     this.setState({
-    //       songs: response.data,
-    //     })
-    //   })
-  }
+  // componentDidMount() {
+  //   axios.get('http://localhost:8888/')
+  //     .then((response) => {
+  //       this.setState({
+  //         songs: response.data,
+  //       })
+  //     })
+  // }
 
   textHandler = (e) => {
+    spotifyApi.searchArtists(e.target.value)
+    .then((data) => {
+      // console.log(data.artists.items);
+      this.setState({
+        artists: data.artists.items
+      })
+    }, (err) => {
+      console.error(err);
+    })
     this.setState({
       textInput: e.target.value
     })
@@ -83,16 +100,15 @@ class App extends Component {
   searchHandler = () => {
     spotifyApi.searchArtists(this.state.textInput)
       .then((data) => {
-        console.log(data.artists.items[0].name);
       }, (err) => {
         console.error(err);
       })
   }
 
   render() {
-    if (this.state.artists.length > 0) {
-      let artistsContent = this.state.artists.map(artist => <h3>{artist.name}</h3>)
-    }
+    let artistsContent;
+    this.state.artists.length > 0 ?
+      artistsContent = this.state.artists.map(artist => <a key={artist.id} onClick={()=>this.updateSong(artist.name)}>{artist.name}</a>) : null
     return (
       <Router>
         <div className="container text-center">
@@ -119,10 +135,10 @@ class App extends Component {
               {artistsContent}
             </div>
           </header>
-          <AudioPlayer updateSong={this.updateSong} songs={this.state.songs} />
+          {/* <AudioPlayer updateSong={this.updateSong} songs={this.state.songs} /> */}
           <div className="row">
             <div className="col-12 col-sm-12 col-md-12 col-lg-12" id="map">
-              <MapContainer venues={this.state.venues} dateTime={this.state.dateTime} />
+              <MapContainer venues={this.state.venues} dateTime={this.state.dateTime} artist={this.state.artistClicked}/>
             </div>
           </div>
         </div>

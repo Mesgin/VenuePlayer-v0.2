@@ -37,7 +37,7 @@ export class MapContainer extends Component {
             return  <Marker 
                         key={i}
                         onClick={this.onMarkerClick}
-                        name={`${venue.venue.name}, ${venue.venue.city}, ${venue.venue.region} / ${venue.datetime}`}
+                        name={`${this.props.artist} :  ${venue.venue.name}, ${venue.venue.city}, ${venue.venue.region} / ${venue.datetime}`}
                         position={{
                             lat: venue.venue.latitude, 
                             lng: venue.venue.longitude}} />
