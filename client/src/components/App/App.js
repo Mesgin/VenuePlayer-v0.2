@@ -83,7 +83,7 @@ class App extends Component {
   // }
 
   textHandler = (e) => {
-    spotifyApi.searchArtists(e.target.value)
+    spotifyApi.searchArtists(e.target.value,{"limit" : 4})
       .then((data) => {
         console.log(data.artists.items);
         this.setState({
@@ -107,7 +107,7 @@ class App extends Component {
 
   render() {
     let artistsContent = this.state.artists.length > 0 ?
-     this.state.artists.filter((i,index)=>index<4).map(artist => {
+      this.state.artists.map(artist => {
         return (
           <div className="col-3 col-md-3 col-lg-3">
             <div className="card" key={artist.id}>
@@ -124,7 +124,7 @@ class App extends Component {
 
     return (
       <Router>
-          {/* <Navbar /> */}
+        {/* <Navbar /> */}
         <div className="container text-center">
           <header className="jumbotron">
             <h1 className="display-4">VenuePlayer</h1>
