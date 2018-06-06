@@ -4,7 +4,7 @@ import axios from 'axios'
 import './App.css'
 import MapContainer from '../MapContainer'
 // import AudioPlayer from '../AudioPlayer/AudioPlayer.jsx'
-import Navbar from '../Navbar/Navbar'
+// import Navbar from '../Navbar/Navbar'
 import SpotifyWebApi from 'spotify-web-api-js'
 
 const spotifyApi = new SpotifyWebApi();
@@ -42,7 +42,7 @@ class App extends Component {
     return hashParams
   }
 
-  getNowPlaying() {
+  getNowPlaying = () => {
     spotifyApi.getMyCurrentPlaybackState({})
       .then((response) => {
         this.setState({
@@ -55,8 +55,8 @@ class App extends Component {
   }
 
   updateSong = (artist) => {
-    axios.post('http://localhost:8888/', {artist})
-      .then((response) => {    
+    axios.post('http://localhost:8888/', { artist })
+      .then((response) => {
         let venues = response.data.map((item) => {
           return item
         })
@@ -65,11 +65,11 @@ class App extends Component {
           artistClicked: artist
         })
         axios.get('http://localhost:8888/')
-        .then((response) => {
-          this.setState({
-            songs: response.data,
+          .then((response) => {
+            this.setState({
+              songs: response.data,
+            })
           })
-        })
       })
   }
 
@@ -84,14 +84,14 @@ class App extends Component {
 
   textHandler = (e) => {
     spotifyApi.searchArtists(e.target.value)
-    .then((data) => {
-      // console.log(data.artists.items);
-      this.setState({
-        artists: data.artists.items
+      .then((data) => {
+        console.log(data.artists.items);
+        this.setState({
+          artists: data.artists.items
+        })
+      }, (err) => {
+        console.error(err);
       })
-    }, (err) => {
-      console.error(err);
-    })
     this.setState({
       textInput: e.target.value
     })
@@ -106,13 +106,26 @@ class App extends Component {
   }
 
   render() {
-    let artistsContent;
-    this.state.artists.length > 0 ?
-      artistsContent = this.state.artists.map(artist => <a key={artist.id} onClick={()=>this.updateSong(artist.name)}>{artist.name}</a>) : null
+    let artistsContent = this.state.artists.length > 0 ?
+     this.state.artists.filter((i,index)=>index<4).map(artist => {
+        return (
+          <div className="col-3 col-md-3 col-lg-3">
+            <div className="card" key={artist.id}>
+              <img className="card-img-top" src={artist.images.length > 0 && artist.images[2].url} style={{ width: 64, height: 64 }} alt={artist.name} />
+              <div className="card-body">
+                <h5 className="card-title">{artist.name}</h5>
+                {/* <p className="card-text">Folowers: {artist.followers.total}</p> */}
+                <a href="#" className="btn btn-danger" onClick={() => this.updateSong(artist.name)}><i className="fa fa-map-marker" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </div>
+        )
+      }) : null
+
     return (
       <Router>
+          {/* <Navbar /> */}
         <div className="container text-center">
-          <Navbar />
           <header className="jumbotron">
             <h1 className="display-4">VenuePlayer</h1>
             <div className="mt-4">
@@ -120,7 +133,7 @@ class App extends Component {
               <button className="btn btn-danger" onClick={this.searchHandler} >Search</button>
               {!this.state.loggedIn && <a href='http://localhost:8888/login' > Login to Spotify </a>}
               {this.state.loggedIn &&
-                <button className="btn btn-success" onClick={() => this.getNowPlaying()}>
+                <button className="btn btn-success" onClick={this.getNowPlaying}>
                   Check Now Playing
           </button>
               }
@@ -131,14 +144,14 @@ class App extends Component {
                 <img src={this.state.nowPlaying.albumArt} style={{ height: 150 }} alt='cover'
                 />}
             </div>
-            <div>
-              {artistsContent}
-            </div>
           </header>
+          <div className="row">
+            {artistsContent}
+          </div>
           {/* <AudioPlayer updateSong={this.updateSong} songs={this.state.songs} /> */}
           <div className="row">
             <div className="col-12 col-sm-12 col-md-12 col-lg-12" id="map">
-              <MapContainer venues={this.state.venues} dateTime={this.state.dateTime} artist={this.state.artistClicked}/>
+              <MapContainer venues={this.state.venues} dateTime={this.state.dateTime} artist={this.state.artistClicked} />
             </div>
           </div>
         </div>
