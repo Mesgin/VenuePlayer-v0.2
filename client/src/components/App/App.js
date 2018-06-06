@@ -92,7 +92,7 @@ class App extends Component {
               }
             </div>
             <div>
-              <img src={this.state.nowPlaying.albumArt} style={{ height: 150 }} alt='hi' />
+              {this.state.nowPlaying.albumArt.length> 0 && <img src={this.state.nowPlaying.albumArt} style={{ height: 150 }} alt='cover' />}
             </div>
           </header>
           <AudioPlayer updateSong={this.updateSong} songs={this.state.songs} />
