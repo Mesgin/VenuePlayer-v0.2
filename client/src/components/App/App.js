@@ -23,7 +23,12 @@ class App extends Component {
       songs: [{}],
       venues: [],
       loggedIn: token ? true : false,
-      nowPlaying: { name: 'Not Checked', albumArt: '' }
+      nowPlaying: { name: 'Not Checked', albumArt: '' },
+      artists: {
+        name: '',
+        img: ''
+      },
+      textInput: ''
     }
   }
 
@@ -42,8 +47,6 @@ class App extends Component {
   getNowPlaying() {
     spotifyApi.getMyCurrentPlaybackState({})
       .then((response) => {
-        console.log(response);
-
         this.setState({
           nowPlaying: {
             name: response.item.name,
@@ -74,6 +77,21 @@ class App extends Component {
     //   })
   }
 
+  textHandler = (e) => {
+    this.setState({
+      textInput: e.target.value
+    })
+  }
+
+  searchHandler = () => {
+    spotifyApi.searchArtists(this.state.textInput)
+    .then((data) => {
+      console.log(data.artists.items[0].name);
+    }, (err) => {
+      console.error(err);
+    })
+  }
+
   render() {
     return (
       <Router>
@@ -82,17 +100,20 @@ class App extends Component {
           <header className="jumbotron">
             <h1 className="display-4">VenuePlayer</h1>
             <div className="mt-4">
-              <input type="text" className="mr-2" />
-              <button className="btn btn-danger">Search</button>
+              <input type="text" className="mr-2" onChange={this.textHandler} />
+              <button className="btn btn-danger"  onClick={this.searchHandler} >Search</button>
               {!this.state.loggedIn && <a href='http://localhost:8888/login' > Login to Spotify </a>}
               {this.state.loggedIn &&
-                <button onClick={() => this.getNowPlaying()}>
+                <button className="btn btn-success" onClick={() => this.getNowPlaying()}>
                   Check Now Playing
           </button>
               }
             </div>
             <div>
-              {this.state.nowPlaying.albumArt.length> 0 && <img src={this.state.nowPlaying.albumArt} style={{ height: 150 }} alt='cover' />}
+              {this.state.nowPlaying.albumArt.length > 0
+                &&
+                <img src={this.state.nowPlaying.albumArt} style={{ height: 150 }} alt='cover'
+                />}
             </div>
           </header>
           <AudioPlayer updateSong={this.updateSong} songs={this.state.songs} />
