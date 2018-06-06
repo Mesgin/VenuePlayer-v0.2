@@ -24,10 +24,7 @@ class App extends Component {
       venues: [],
       loggedIn: token ? true : false,
       nowPlaying: { name: 'Not Checked', albumArt: '' },
-      artists: {
-        name: '',
-        img: ''
-      },
+      artists: [],
       textInput: ''
     }
   }
@@ -85,14 +82,17 @@ class App extends Component {
 
   searchHandler = () => {
     spotifyApi.searchArtists(this.state.textInput)
-    .then((data) => {
-      console.log(data.artists.items[0].name);
-    }, (err) => {
-      console.error(err);
-    })
+      .then((data) => {
+        console.log(data.artists.items[0].name);
+      }, (err) => {
+        console.error(err);
+      })
   }
 
   render() {
+    if (this.state.artists.length > 0) {
+      let artistsContent = this.state.artists.map(artist => <h3>{artist.name}</h3>)
+    }
     return (
       <Router>
         <div className="container text-center">
@@ -101,7 +101,7 @@ class App extends Component {
             <h1 className="display-4">VenuePlayer</h1>
             <div className="mt-4">
               <input type="text" className="mr-2" onChange={this.textHandler} />
-              <button className="btn btn-danger"  onClick={this.searchHandler} >Search</button>
+              <button className="btn btn-danger" onClick={this.searchHandler} >Search</button>
               {!this.state.loggedIn && <a href='http://localhost:8888/login' > Login to Spotify </a>}
               {this.state.loggedIn &&
                 <button className="btn btn-success" onClick={() => this.getNowPlaying()}>
@@ -114,6 +114,9 @@ class App extends Component {
                 &&
                 <img src={this.state.nowPlaying.albumArt} style={{ height: 150 }} alt='cover'
                 />}
+            </div>
+            <div>
+              {artistsContent}
             </div>
           </header>
           <AudioPlayer updateSong={this.updateSong} songs={this.state.songs} />
