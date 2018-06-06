@@ -43,13 +43,13 @@ class App extends Component {
     spotifyApi.getMyCurrentPlaybackState({})
       .then((response) => {
         console.log(response);
-        
-        // this.setState({
-        //   nowPlaying: {
-        //     name: response.item.name,
-        //     albumArt: response.item.album.images[0].url
-        //   }
-        // })
+
+        this.setState({
+          nowPlaying: {
+            name: response.item.name,
+            albumArt: response.item.album.images[0].url
+          }
+        })
       })
   }
 
@@ -84,7 +84,7 @@ class App extends Component {
             <div className="mt-4">
               <input type="text" className="mr-2" />
               <button className="btn btn-danger">Search</button>
-              <a href='http://localhost:8888/login' > Login to Spotify </a>
+              {!this.state.loggedIn && <a href='http://localhost:8888/login' > Login to Spotify </a>}
               {this.state.loggedIn &&
                 <button onClick={() => this.getNowPlaying()}>
                   Check Now Playing
@@ -92,8 +92,8 @@ class App extends Component {
               }
             </div>
             <div>
-          <img src={this.state.nowPlaying.albumArt} style={{ height: 150 }} alt='hi'/>
-        </div>
+              <img src={this.state.nowPlaying.albumArt} style={{ height: 150 }} alt='hi' />
+            </div>
           </header>
           <AudioPlayer updateSong={this.updateSong} songs={this.state.songs} />
           <div className="row">

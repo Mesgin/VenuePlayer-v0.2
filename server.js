@@ -10,7 +10,7 @@ const querystring = require('querystring')
 const cookieParser = require('cookie-parser')
 
 
-const scope = 'user-read-private user-read-email',
+const scope = 'user-read-private user-read-email user-read-playback-state',
   redirect_uri = 'http://localhost:8888/callback',
   client_id = 'd773cbd567e4473394863ffacc1a7409',
   state = 'some-state-of-my-choice',
