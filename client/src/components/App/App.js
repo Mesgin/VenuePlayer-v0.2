@@ -7,7 +7,7 @@ import MapContainer from '../MapContainer'
 // import Navbar from '../Navbar/Navbar'
 import SpotifyWebApi from 'spotify-web-api-js'
 
-const spotifyApi = new SpotifyWebApi();
+const spotifyApi = new SpotifyWebApi()
 
 class App extends Component {
   constructor() {
@@ -32,7 +32,7 @@ class App extends Component {
 
   getHashParams() {
     let hashParams = {}
-    let e, r = /([^&;=]+)=?([^&;]*)/g,
+    let e, r = /([^&=]+)=?([^&]*)/g,
       q = window.location.hash.substring(1)
     e = r.exec(q)
     while (e) {
@@ -85,12 +85,12 @@ class App extends Component {
   textHandler = (e) => {
     spotifyApi.searchArtists(e.target.value,{"limit" : 4})
       .then((data) => {
-        console.log(data.artists.items);
+        console.log(data.artists.items)
         this.setState({
           artists: data.artists.items
         })
       }, (err) => {
-        console.error(err);
+        console.error(err)
       })
     this.setState({
       textInput: e.target.value
@@ -101,7 +101,7 @@ class App extends Component {
     spotifyApi.searchArtists(this.state.textInput)
       .then((data) => {
       }, (err) => {
-        console.error(err);
+        console.error(err)
       })
   }
 
