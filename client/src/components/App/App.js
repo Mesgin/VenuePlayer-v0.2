@@ -10,13 +10,35 @@ import SpotifyWebApi from 'spotify-web-api-js'
 const styles = {
   main: {
     marginLeft: '260px',
-    height: '80%'
+    textAlign: 'center',
+    height: '60%'
+  },
+  sidebar: {
+    borderRightColor: 'green',
+    borderRightWidth: '2px',
   },
   map: {
     padding: 0,
     position: 'relative',
-    height: '315px',
     bottom: 0,
+    height: '400px',
+    marginLeft: '260px'
+  },
+  albumTable: {
+    borderCollapse: 'collapse',
+    borderSpace: 0,
+    width: '300px',
+    height: '300px',
+    overFlow: 'scroll',
+    backgroundColor: '#444',
+
+  },
+  albumRow: {
+    borderWidth: '1px',
+    borderColor: 'white',
+    textAlign: 'left',
+    width: '64px',
+    boxSizing: 'border-box'
   }
 }
 
@@ -39,7 +61,9 @@ class App extends Component {
       nowPlaying: { name: 'Not Checked', albumArt: '' },
       artists: [],
       textInput: '',
-      artistClicked: ''
+      artistClicked: '',
+      imgUrl: null,
+      albums: null
     }
   }
 
@@ -55,17 +79,17 @@ class App extends Component {
     return hashParams
   }
 
-  getNowPlaying = () => {
-    spotifyApi.getMyCurrentPlaybackState({})
-      .then((response) => {
-        this.setState({
-          nowPlaying: {
-            name: response.item.name,
-            albumArt: response.item.album.images[0].url
-          }
-        })
-      })
-  }
+  // getNowPlaying = () => {
+  //   spotifyApi.getMyCurrentPlaybackState({})
+  //     .then((response) => {
+  //       this.setState({
+  //         nowPlaying: {
+  //           name: response.item.name,
+  //           albumArt: response.item.album.images[0].url
+  //         }
+  //       })
+  //     })
+  // }
 
   updateSong = (artist) => {
     axios.post('http://localhost:8888/', { artist })
@@ -96,9 +120,9 @@ class App extends Component {
   // }
 
   textHandler = (e) => {
-    spotifyApi.searchArtists(e.target.value,{"limit" : 4})
+    spotifyApi.searchArtists(e.target.value, { "limit": 4 })
       .then((data) => {
-        console.log(data.artists.items)
+        console.log(data.artists)
         this.setState({
           artists: data.artists.items
         })
@@ -110,11 +134,41 @@ class App extends Component {
     })
   }
 
+  artistClick = (url) => {
+    this.setState({
+      imgUrl: url
+    })
+  }
+
+  albumClick = (id) => {
+    spotifyApi.getArtistAlbums(id).then((data) => {
+      console.log(data)
+      let artistAlbums = data.items.map(item => {
+        return { name: item.name, image: item.images[2].url }
+      }
+      )
+      this.setState({
+        albums: artistAlbums
+      })
+
+    },
+      (err) => {
+        console.error(err);
+      }
+    );
+  }
+
   searchHandler = () => {
-    spotifyApi.searchArtists(this.state.textInput)
+    // spotifyApi.searchArtists(this.state.textInput)
+    //   .then((data) => {
+    //   }, (err) => {
+    //     console.error(err)
+    //   })
+    spotifyApi.searchTracks('artist:enigma', { "limit": 50 })
       .then((data) => {
+        console.log('Search tracks by "Alright" in the track name and "Kendrick Lamar" in the artist name', data)
       }, (err) => {
-        console.error(err)
+        console.log('Something went wrong!', err)
       })
   }
 
@@ -122,36 +176,41 @@ class App extends Component {
     let artistsContent = this.state.artists.length > 0 ?
       this.state.artists.map(artist => {
         return (
-          <div className="col-3 col-md-3 col-lg-3">
-            <div className="card" key={artist.id}>
-              <img className="card-img-top" src={artist.images.length > 0 && artist.images[2].url} style={{ width: 64, height: 64 }} alt={artist.name} />
-              <div className="card-body">
-                <h5 className="card-title">{artist.name}</h5>
-                {/* <p className="card-text">Folowers: {artist.followers.total}</p> */}
-                <a href="#" className="btn btn-danger" onClick={() => this.updateSong(artist.name)}><i className="fa fa-map-marker" aria-hidden="true"></i></a>
-              </div>
+          <div key={artist.id}>
+            <a onClick={() => this.artistClick(artist.images[1].url)} href="#">
+              <img src={artist.images[2].url} style={{ width: 64, height: 64 }} alt={artist.name} />
+            </a>
+            <div >
+              <h5>{artist.name}</h5>
+              <button type="button" onClick={() => this.albumClick(artist.id)} >Albums</button>
+              {/* <p className="card-text">Folowers: {artist.followers.total}</p> */}
+              <a href="#" onClick={() => this.updateSong(artist.name)}><i className="fa fa-map-marker" aria-hidden="true"></i></a>
             </div>
           </div>
         )
       }) : null
 
+    let albums = this.state.albums ? this.state.albums.map(album => {
+      return (
+        <tr>
+          <td style={styles.albumRow}><img src={album.image} /></td>
+          <td style={styles.albumRow}>{album.name}</td>
+        </tr>
+      )
+    }) : null
+
     return (
-      <Router>
-        {/* <Navbar /> */}
-        <div >
-        <Sidebar />
+      // <Router>
+
+      <div >
+        <Sidebar style={styles.sidebar} imgUrl={this.state.imgUrl} />
         <div style={styles.main} >
           <header >
-            <h1 className="display-4">VenuePlayer</h1>
-            <div className="mt-4">
-              <input type="text" className="mr-2" onChange={this.textHandler} />
-              <button className="btn btn-danger" onClick={this.searchHandler} >Search</button>
+            <h1 >VenuePlayer</h1>
+            <div >
+              <input placeholder="Artist..." type="text" onChange={this.textHandler} />
+              <button onClick={this.searchHandler} >Search</button>
               {!this.state.loggedIn && <a href='http://localhost:8888/login' > Login to Spotify </a>}
-              {this.state.loggedIn &&
-                <button className="btn btn-success" onClick={this.getNowPlaying}>
-                  Check Now Playing
-          </button>
-              }
             </div>
             <div>
               {this.state.nowPlaying.albumArt.length > 0
@@ -164,14 +223,16 @@ class App extends Component {
             {artistsContent}
           </div>
           {/* <AudioPlayer updateSong={this.updateSong} songs={this.state.songs} /> */}
+          <table style={styles.albumTable}>
+            {this.state.albums && albums}
+          </table>
 
-
-          </div>
-            <div style={styles.map} id="map">
-              <MapContainer venues={this.state.venues} dateTime={this.state.dateTime} artist={this.state.artistClicked} />
-            </div>
         </div>
-      </Router >
+        <div style={styles.map} id="map">
+          <MapContainer venues={this.state.venues} dateTime={this.state.dateTime} artist={this.state.artistClicked} />
+        </div>
+      </div>
+      // </Router >
     )
   }
 }
