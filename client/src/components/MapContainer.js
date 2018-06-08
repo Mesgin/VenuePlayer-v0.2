@@ -14,7 +14,7 @@ export class MapContainer extends Component {
         this.onMapClicked = this.onMapClicked.bind(this)
     }
 
-    onMarkerClick= (props, marker, e)=> {
+    onMarkerClick = (props, marker, e) => {
         this.setState({
             selectedPlace: props,
             activeMarker: marker,
@@ -22,8 +22,8 @@ export class MapContainer extends Component {
         });
     }
 
-    onMapClicked= (props)=> {
-        if(this.state.showingInfoWindow) {
+    onMapClicked = (props) => {
+        if (this.state.showingInfoWindow) {
             this.setState({
                 showingInfoWindow: false,
                 activeMarker: null
@@ -32,40 +32,37 @@ export class MapContainer extends Component {
     }
 
     render() {
-        
-        let venuesJSX = this.props.venues.map((venue,i)=>{
-            return  <Marker 
-                        key={i}
-                        onClick={this.onMarkerClick}
-                        name={`${this.props.artist} :  ${venue.venue.name}, ${venue.venue.city}, ${venue.venue.region} / ${venue.datetime}`}
-                        position={{
-                            lat: venue.venue.latitude, 
-                            lng: venue.venue.longitude}} />
+
+        let venuesJSX = this.props.venues.map((venue, i) => {
+            return <Marker
+                key={i}
+                onClick={this.onMarkerClick}
+                name={`${this.props.artist} : ${venue.venue.name}, ${venue.venue.city}, ${venue.venue.region} / ${venue.datetime}`}
+                position={{
+                    lat: venue.venue.latitude,
+                    lng: venue.venue.longitude
+                }} />
         })
 
         return (
-            <div className="container">
-                <div className="row">
-                    <Map
-                        onClick={this.onMapClicked}
-                        google={this.props.google}
-                        initialCenter={{
-                            lat: 49.2193,
-                            lng: -122.5984
-                        }}
-                        zoom={2}
-                    >
-                        {venuesJSX}                       
-                        <InfoWindow
-                            marker={this.state.activeMarker}
-                            visible={this.state.showingInfoWindow}>
-                            <div>
-                                <h6>{this.state.selectedPlace.name}</h6>
-                            </div>
-                        </InfoWindow>                    
-                    </Map>
-                </div>
-            </div>
+            <Map
+                onClick={this.onMapClicked}
+                google={this.props.google}
+                initialCenter={{
+                    lat: 49.2193,
+                    lng: -122.5984
+                }}
+                zoom={2}
+            >
+                {venuesJSX}
+                <InfoWindow
+                    marker={this.state.activeMarker}
+                    visible={this.state.showingInfoWindow}>
+                    <div>
+                        <h6>{this.state.selectedPlace.name}</h6>
+                    </div>
+                </InfoWindow>
+            </Map>
         )
     }
 }

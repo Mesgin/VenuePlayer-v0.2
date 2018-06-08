@@ -5,7 +5,20 @@ import './App.css'
 import MapContainer from '../MapContainer'
 // import AudioPlayer from '../AudioPlayer/AudioPlayer.jsx'
 // import Navbar from '../Navbar/Navbar'
+import Sidebar from '../Sidebar/Sidebar'
 import SpotifyWebApi from 'spotify-web-api-js'
+const styles = {
+  main: {
+    marginLeft: '260px',
+    height: '80%'
+  },
+  map: {
+    padding: 0,
+    position: 'relative',
+    height: '315px',
+    bottom: 0,
+  }
+}
 
 const spotifyApi = new SpotifyWebApi()
 
@@ -125,8 +138,10 @@ class App extends Component {
     return (
       <Router>
         {/* <Navbar /> */}
-        <div className="container text-center">
-          <header className="jumbotron">
+        <div >
+        <Sidebar />
+        <div style={styles.main} >
+          <header >
             <h1 className="display-4">VenuePlayer</h1>
             <div className="mt-4">
               <input type="text" className="mr-2" onChange={this.textHandler} />
@@ -149,11 +164,12 @@ class App extends Component {
             {artistsContent}
           </div>
           {/* <AudioPlayer updateSong={this.updateSong} songs={this.state.songs} /> */}
-          <div className="row">
-            <div className="col-12 col-sm-12 col-md-12 col-lg-12" id="map">
+
+
+          </div>
+            <div style={styles.map} id="map">
               <MapContainer venues={this.state.venues} dateTime={this.state.dateTime} artist={this.state.artistClicked} />
             </div>
-          </div>
         </div>
       </Router >
     )
