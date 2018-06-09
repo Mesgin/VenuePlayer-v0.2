@@ -43,7 +43,7 @@ class App extends Component {
       songs: [{}],
       venues: [],
       loggedIn: token ? true : false,
-      nowPlaying: { name: 'Not Checked', albumArt: '' },
+      nowPlaying: '1t4hf9yHMQBoTz2CxTBJKj',
       artists: [],
       textInput: '',
       artistClicked: '',
@@ -64,18 +64,6 @@ class App extends Component {
     return hashParams
   }
 
-  // getNowPlaying = () => {
-  //   spotifyApi.getMyCurrentPlaybackState({})
-  //     .then((response) => {
-  //       this.setState({
-  //         nowPlaying: {
-  //           name: response.item.name,
-  //           albumArt: response.item.album.images[0].url
-  //         }
-  //       })
-  //     })
-  // }
-
   updateSong = (artist) => {
     axios.post('http://localhost:8888/', { artist })
       .then((response) => {
@@ -95,15 +83,6 @@ class App extends Component {
       })
   }
 
-  // componentDidMount() {
-  //   axios.get('http://localhost:8888/')
-  //     .then((response) => {
-  //       this.setState({
-  //         songs: response.data,
-  //       })
-  //     })
-  // }
-
   textHandler = (e) => {
     spotifyApi.searchArtists(e.target.value, { "limit": 4 })
       .then((data) => {
@@ -119,54 +98,62 @@ class App extends Component {
     })
   }
 
-  artistClick = (url) => {
-    this.setState({
-      imgUrl: url
+  artistClick = (img, id, artist) => {
+    console.log(img, id)
+    axios.post('http://localhost:8888/', { artist })
+    .then((response) => {
+      let venues = response.data.map((item) => {
+        return item
+      })
+      this.setState({
+        venues,
+        artistClicked: artist
+      })
+      axios.get('http://localhost:8888/')
+        .then((response) => {
+          this.setState({
+            songs: response.data,
+          })
+        })
     })
-  }
-
-  albumClick = (id) => {
     spotifyApi.getArtistAlbums(id).then((data) => {
-      console.log(data)
       let artistAlbums = data.items.map(item => {
-        return { name: item.name, image: item.images[2].url }
+        return {
+          name: item.name,
+          image: item.images[2].url,
+          id: item.id
+        }
       }
       )
       this.setState({
-        albums: artistAlbums
+        albums: artistAlbums,
+        imgUrl: img
       })
-
     },
       (err) => {
         console.error(err);
       }
-    );
+    )
   }
 
-  searchHandler = () => {
-    // spotifyApi.searchArtists(this.state.textInput)
-    //   .then((data) => {
-    //   }, (err) => {
-    //     console.error(err)
-    //   })
-    spotifyApi.searchTracks('artist:enigma', { "limit": 50 })
-      .then((data) => {
-        console.log('Search tracks by "Alright" in the track name and "Kendrick Lamar" in the artist name', data)
-      }, (err) => {
-        console.log('Something went wrong!', err)
-      })
+  albumPlay = (id) => {
+    this.setState({
+      nowPlaying: id
+    })
   }
 
   render() {
+    console.log(this.state.artistClicked);
+    
     let artistsContent = this.state.artists.length > 0 ?
       this.state.artists.map(artist => {
         return (
           <div key={artist.id} className="artist">
-            <a onClick={() => this.artistClick(artist.images[1].url)} href="#">
+            <a onClick={() => this.artistClick(artist.images[1].url, artist.id, artist.name)} href="#">
               <img src={artist.images[2].url} style={{ width: 64, height: 64 }} alt={artist.name} />
             </a>
             <h5>{artist.name}</h5>
-            <a><button type="button" onClick={() => this.albumClick(artist.id)} >Albums</button></a>
+            {/* <a><button type="button" onClick={() => this.albumClick(artist.id)} >Albums</button></a> */}
             <a href="#" onClick={() => this.updateSong(artist.name)}><i className="fa fa-map-marker" aria-hidden="true"></i></a>
           </div>
         )
@@ -174,8 +161,13 @@ class App extends Component {
 
     let albums = this.state.albums ? this.state.albums.map(album => {
       return (
-        <div className="album" key={Math.random()}>
-          <a href="#" onClick={this.albumPlay}><img src={album.image} /></a>
+        <div className="album" key={album.id}>
+          <div className="container">
+            <img src={album.image} className="image" />
+            <div className="middle" onClick={() => this.albumPlay(album.id)}>
+              <i className="play-icon fa fa-play-circle"></i>
+            </div>
+          </div>
           <h5>{album.name.length > 20 ? `${album.name.substring(0, 20).trim()}...` : album.name}</h5>
         </div>
       )
@@ -185,7 +177,11 @@ class App extends Component {
       // <Router>
 
       <div >
-        <Sidebar style={styles.sidebar} imgUrl={this.state.imgUrl} />
+        <Sidebar
+          style={styles.sidebar}
+          imgUrl={this.state.imgUrl}
+          nowPlaying={this.state.nowPlaying}
+        />
         <div style={styles.main} >
           <header >
             <h1 >VenuePlayer</h1>
@@ -193,12 +189,6 @@ class App extends Component {
               <input placeholder="Artist..." type="text" onChange={this.textHandler} />
               <button onClick={this.searchHandler} >Search</button>
               {!this.state.loggedIn && <a href='http://localhost:8888/login' > Login to Spotify </a>}
-            </div>
-            <div>
-              {this.state.nowPlaying.albumArt.length > 0
-                &&
-                <img src={this.state.nowPlaying.albumArt} style={{ height: 150 }} alt='cover'
-                />}
             </div>
           </header>
           <div className="artist-container">
@@ -211,7 +201,11 @@ class App extends Component {
 
         </div>
         <div style={styles.map} id="map">
-          <MapContainer venues={this.state.venues} dateTime={this.state.dateTime} artist={this.state.artistClicked} />
+          <MapContainer
+            venues={this.state.venues}
+            dateTime={this.state.dateTime}
+            artist={this.state.artistClicked}
+          />
         </div>
       </div>
       // </Router >

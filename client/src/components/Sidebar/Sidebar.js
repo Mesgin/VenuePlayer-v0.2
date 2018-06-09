@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import logo from '../../assets/0724383923625xl.jpg'
 const styles = {
   sidebar: {
     height: '100%',
@@ -34,14 +35,14 @@ export default class Sidebar extends Component {
     super(props)
 
     this.state = {
-      imgUrl: 'http://via.placeholder.com/320x260'
+      imgUrl: logo
     }
   }
   render() {
     return (
       <div style={styles.sidebar}>
         <img style={styles.img} alt="cover" src={this.props.imgUrl || this.state.imgUrl} />
-        <iframe style={styles.iframe} src={`https://open.spotify.com/embed?uri=spotify:album:1t4hf9yHMQBoTz2CxTBJKj`} width="100%" height="62%" allowTransparency="true" ></iframe>
+        <iframe style={styles.iframe} src={`https://open.spotify.com/embed?uri=spotify:album:${this.props.nowPlaying}`} width="100%" height="62%" allowTransparency="true" ></iframe>
       </div>
     )
   }
