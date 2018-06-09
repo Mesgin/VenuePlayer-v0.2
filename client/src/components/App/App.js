@@ -165,19 +165,18 @@ class App extends Component {
             <a onClick={() => this.artistClick(artist.images[1].url)} href="#">
               <img src={artist.images[2].url} style={{ width: 64, height: 64 }} alt={artist.name} />
             </a>
-              <h5>{artist.name}</h5>
-              <button type="button" onClick={() => this.albumClick(artist.id)} >Albums</button>
-              {/* <p className="card-text">Folowers: {artist.followers.total}</p> */}
-              <span onClick={() => this.updateSong(artist.name)}><i className="fa fa-map-marker" aria-hidden="true"></i></span>
+            <h5>{artist.name}</h5>
+            <a><button type="button" onClick={() => this.albumClick(artist.id)} >Albums</button></a>
+            <a href="#" onClick={() => this.updateSong(artist.name)}><i className="fa fa-map-marker" aria-hidden="true"></i></a>
           </div>
         )
       }) : null
 
     let albums = this.state.albums ? this.state.albums.map(album => {
       return (
-        <div className="album">
+        <div className="album" key={album.id}>
           <a href="#" onClick={this.albumPlay}><img src={album.image} /></a>
-          <p>{album.name.length > 20 ? `${album.name.substring(0,20).trim()}...` : album.name}</p>
+          <h5>{album.name.length > 20 ? `${album.name.substring(0, 20).trim()}...` : album.name}</h5>
         </div>
       )
     }) : null

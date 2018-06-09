@@ -7,17 +7,20 @@ const styles = {
     zIndex: 1,
     top: 0,
     left: 0,
-    backgroundColor: '#111',
+    backgroundColor: '#333',
     overflowX: 'hidden',
     // borderRightColor: 'green',
     // borderRightWidth: '2px',
 
   },
   img: {
-    margin: 0,
+    // margin: 0,
     display: 'block',
-    top: 0,
-    height:'30%'
+    // top: 0,
+    height:'37%',
+    // padding: '2px',
+    textAlign: 'center',
+    width: '100%'
   },
   iframe: {
     border: 0
@@ -38,7 +41,7 @@ export default class Sidebar extends Component {
     return (
       <div style={styles.sidebar}>
         <img style={styles.img} alt="cover" src={this.props.imgUrl || this.state.imgUrl} />
-        <iframe style={styles.iframe} src={`https://open.spotify.com/embed?uri=spotify:album:1t4hf9yHMQBoTz2CxTBJKj`} width="100%" height="69%" allowTransparency="true" ></iframe>
+        <iframe style={styles.iframe} src={`https://open.spotify.com/embed?uri=spotify:album:1t4hf9yHMQBoTz2CxTBJKj`} width="100%" height="62%" allowTransparency="true" ></iframe>
       </div>
     )
   }
