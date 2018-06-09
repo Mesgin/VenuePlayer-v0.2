@@ -3,7 +3,6 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import axios from 'axios'
 import './App.css'
 import MapContainer from '../MapContainer'
-// import AudioPlayer from '../AudioPlayer/AudioPlayer.jsx'
 // import Navbar from '../Navbar/Navbar'
 import Sidebar from '../Sidebar/Sidebar'
 import SpotifyWebApi from 'spotify-web-api-js'
@@ -24,7 +23,17 @@ const styles = {
     height: '400px',
     marginLeft: '260px'
   },
-
+  searchInput: {
+    padding: '10px',
+    color: 'white',
+    backgroundColor: '#000',
+    borderRadius: '5px',
+    width: '250px',
+    height: '20px',
+    border: 0,
+    fontSize: '16px',
+    margin: '5px'
+  }
 }
 
 const spotifyApi = new SpotifyWebApi()
@@ -194,15 +203,13 @@ class App extends Component {
           <header >
             <h1 >VenuePlayer</h1>
             <div >
-              <input placeholder="Artist..." type="text" onChange={this.textHandler} />
-              <button onClick={this.searchHandler} >Search</button>
-              {!this.state.loggedIn && <a href='http://localhost:8888/login' > Login to Spotify </a>}
+              <input placeholder="Artist..." type="text" onChange={this.textHandler} style={styles.searchInput}/>
             </div>
+              {!this.state.loggedIn && <a href='http://localhost:8888/login' > Login to Spotify </a>}
           </header>
           <div className="artist-container">
             {artistsContent}
           </div>
-          {/* <AudioPlayer updateSong={this.updateSong} songs={this.state.songs} /> */}
           <div className="album-container" >
             {this.state.albums && albums}
           </div>
