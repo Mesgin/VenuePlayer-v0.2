@@ -9,9 +9,6 @@ export class MapContainer extends Component {
       activeMarker: {},
       selectedPlace: {},
     }
-
-    this.onMarkerClick = this.onMarkerClick.bind(this)
-    this.onMapClicked = this.onMapClicked.bind(this)
   }
 
   shouldComponentUpdate(nextProps,nextState){
@@ -24,9 +21,6 @@ export class MapContainer extends Component {
       activeMarker: marker,
       showingInfoWindow: true
     })
-    // setTimeout(this.setState({
-    //   showingInfoWindow: false
-    // }),3000)
   }
 
   onMapClicked = (props) => {
@@ -39,7 +33,6 @@ export class MapContainer extends Component {
   }
 
   render() {
-    console.log(this.state)
     let venuesJSX = this.props.venues.map((venue, i) => {
       return <Marker
         key={i}

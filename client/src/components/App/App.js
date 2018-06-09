@@ -64,29 +64,30 @@ class App extends Component {
     return hashParams
   }
 
-  updateSong = (artist) => {
-    axios.post('http://localhost:8888/', { artist })
-      .then((response) => {
-        let venues = response.data.map((item) => {
-          return item
-        })
-        this.setState({
-          venues,
-          artistClicked: artist
-        })
-        axios.get('http://localhost:8888/')
-          .then((response) => {
-            this.setState({
-              songs: response.data,
-            })
-          })
-      })
-  }
+  // updateSong = (artist) => {
+  //   axios.post('http://localhost:8888/', { artist })
+  //     .then((response) => {
+  //       let venues = response.data.map((item) => {
+  //         return item
+  //       })
+  //       this.setState({
+  //         venues,
+  //         artistClicked: artist
+  //       })
+  //       axios.get('http://localhost:8888/')
+  //         .then((response) => {
+  //           this.setState({
+  //             songs: response.data,
+  //           })
+  //         })
+  //     })
+  // }
 
   textHandler = (e) => {
     spotifyApi.searchArtists(e.target.value, { "limit": 4 })
       .then((data) => {
-        console.log(data.artists)
+        console.log(data.artists.items);
+        
         this.setState({
           artists: data.artists.items
         })
@@ -118,10 +119,17 @@ class App extends Component {
     })
     spotifyApi.getArtistAlbums(id).then((data) => {
       let artistAlbums = data.items.map(item => {
-        return {
-          name: item.name,
-          image: item.images[2].url,
-          id: item.id
+        if(item.images.length > 0){
+          return {
+            name: item.name,
+            image: item.images[2].url,
+            id: item.id
+          }
+        } else {
+          return {
+            name: item.name,
+            id: item.id
+          }
         }
       }
       )
@@ -150,7 +158,7 @@ class App extends Component {
         return (
           <div key={artist.id} className="artist">
             <a onClick={() => this.artistClick(artist.images[1].url, artist.id, artist.name)} href="#">
-              <img src={artist.images[2].url} style={{ width: 64, height: 64 }} alt={artist.name} />
+              <img src={artist.images.length>0 && artist.images[2].url || 'http://via.placeholder.com/64x64'} style={{ width: 64, height: 64 }} alt={artist.name} />
             </a>
             <h5>{artist.name}</h5>
             {/* <a><button type="button" onClick={() => this.albumClick(artist.id)} >Albums</button></a> */}
