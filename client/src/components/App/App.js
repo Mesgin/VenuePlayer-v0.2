@@ -24,22 +24,7 @@ const styles = {
     height: '400px',
     marginLeft: '260px'
   },
-  albumTable: {
-    borderCollapse: 'collapse',
-    borderSpace: 0,
-    width: '300px',
-    height: '300px',
-    overFlow: 'scroll',
-    backgroundColor: '#444',
 
-  },
-  albumRow: {
-    borderWidth: '1px',
-    borderColor: 'white',
-    textAlign: 'left',
-    width: '64px',
-    boxSizing: 'border-box'
-  }
 }
 
 const spotifyApi = new SpotifyWebApi()
@@ -192,10 +177,10 @@ class App extends Component {
 
     let albums = this.state.albums ? this.state.albums.map(album => {
       return (
-        <tr>
-          <td style={styles.albumRow}><img src={album.image} /></td>
-          <td style={styles.albumRow}>{album.name}</td>
-        </tr>
+        <div className="album">
+          <a href="#" onClick={this.albumPlay}><img src={album.image} /></a>
+          <p>{album.name.length > 20 ? `${album.name.substring(0,20).trim()}...` : album.name}</p>
+        </div>
       )
     }) : null
 
@@ -223,9 +208,9 @@ class App extends Component {
             {artistsContent}
           </div>
           {/* <AudioPlayer updateSong={this.updateSong} songs={this.state.songs} /> */}
-          <table style={styles.albumTable}>
+          <div className="album-container" >
             {this.state.albums && albums}
-          </table>
+          </div>
 
         </div>
         <div style={styles.map} id="map">
