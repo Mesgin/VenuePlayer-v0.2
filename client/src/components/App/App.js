@@ -174,7 +174,7 @@ class App extends Component {
 
     let albums = this.state.albums ? this.state.albums.map(album => {
       return (
-        <div className="album" key={album.id}>
+        <div className="album" key={Math.random()}>
           <a href="#" onClick={this.albumPlay}><img src={album.image} /></a>
           <h5>{album.name.length > 20 ? `${album.name.substring(0, 20).trim()}...` : album.name}</h5>
         </div>
