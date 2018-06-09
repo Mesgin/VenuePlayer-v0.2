@@ -161,16 +161,14 @@ class App extends Component {
     let artistsContent = this.state.artists.length > 0 ?
       this.state.artists.map(artist => {
         return (
-          <div key={artist.id}>
+          <div key={artist.id} className="artist">
             <a onClick={() => this.artistClick(artist.images[1].url)} href="#">
               <img src={artist.images[2].url} style={{ width: 64, height: 64 }} alt={artist.name} />
             </a>
-            <div >
               <h5>{artist.name}</h5>
               <button type="button" onClick={() => this.albumClick(artist.id)} >Albums</button>
               {/* <p className="card-text">Folowers: {artist.followers.total}</p> */}
-              <a href="#" onClick={() => this.updateSong(artist.name)}><i className="fa fa-map-marker" aria-hidden="true"></i></a>
-            </div>
+              <span onClick={() => this.updateSong(artist.name)}><i className="fa fa-map-marker" aria-hidden="true"></i></span>
           </div>
         )
       }) : null
@@ -204,7 +202,7 @@ class App extends Component {
                 />}
             </div>
           </header>
-          <div className="row">
+          <div className="artist-container">
             {artistsContent}
           </div>
           {/* <AudioPlayer updateSong={this.updateSong} songs={this.state.songs} /> */}
