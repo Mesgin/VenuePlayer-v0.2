@@ -23,6 +23,7 @@ export default class Sidebar extends Component {
           width="100%"
           height="62.4%"
           allowTransparency="true"
+          title="player"
         ></iframe>
       </div>
     )

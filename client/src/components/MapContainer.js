@@ -12,7 +12,7 @@ export class MapContainer extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return nextProps.venues != this.props.venues || this.state.showingInfoWindow
+    return nextProps.venues !== this.props.venues || this.state.showingInfoWindow
   }
 
   onMarkerClick = (props, marker, e) => {

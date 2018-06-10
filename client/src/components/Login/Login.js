@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import axios from 'axios'
+// import axios from 'axios'
 import PropTypes from 'prop-types'
-import SpotifyWebApi from 'spotify-web-api-js'
-import { loginUser } from '../../actions/authActions'
+// import SpotifyWebApi from 'spotify-web-api-js'
 
 class Login extends Component {
   // constructor(){
@@ -64,4 +63,4 @@ Login.propTypes = {
 }
 
 
-export default connect(null,{loginUser})(Login)
+export default connect()(Login)
