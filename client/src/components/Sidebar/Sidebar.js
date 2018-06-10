@@ -31,7 +31,7 @@ const styles = {
     zIndex: 1,
     top: 0,
     left: 0,
-    backgroundColor: '#333',
+    backgroundColor: 'black',
     overflowX: 'hidden'
   },
   img: {
