@@ -11,7 +11,7 @@ export class MapContainer extends Component {
     }
   }
 
-  shouldComponentUpdate(nextProps,nextState){
+  shouldComponentUpdate(nextProps, nextState) {
     return nextProps.venues != this.props.venues || this.state.showingInfoWindow
   }
 
@@ -48,16 +48,14 @@ export class MapContainer extends Component {
       <Map
         onClick={this.onMapClicked}
         google={this.props.google}
-        initialCenter={{
-          lat: 49.2193,
-          lng: -122.5984
-        }}
+        initialCenter={{ lat: 49.2193, lng: -122.5984 }}
         zoom={2}
       >
         {venuesJSX}
         <InfoWindow
           marker={this.state.activeMarker}
-          visible={this.state.showingInfoWindow}>
+          visible={this.state.showingInfoWindow}
+        >
           <div>
             <h6>{this.state.selectedPlace.name}</h6>
           </div>

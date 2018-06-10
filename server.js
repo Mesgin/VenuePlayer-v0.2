@@ -58,6 +58,8 @@ app.use(express.static(__dirname + '/public'))
    .use(cookieParser())
 
 app.get('/login', function(req, res) {
+  console.log('login');
+  
 
   let state = generateRandomString(16)
   res.cookie(stateKey, state)
@@ -75,6 +77,7 @@ app.get('/login', function(req, res) {
 })
 
 app.get('/callback', function(req, res) {
+  console.log('callback')
 
   // your application requests refresh and access tokens
   // after checking the state parameter
@@ -117,7 +120,7 @@ app.get('/callback', function(req, res) {
 
         // use the access token to access the Spotify Web API
         request.get(options, function(error, response, body) {
-          console.log(body)
+          console.log('body')
         })
 
         // we can also pass the token to the browser to make requests from there
@@ -204,8 +207,8 @@ app.use(bodyParser.json())
 app.post('/',(req,res)=>{
     const {artist} = req.body
     request(`https://rest.bandsintown.com/artists/${artist}/events?app_id=c74a852c1481cfb7e5cda8c42adc7ff0`, (err, response, data) => {
-        console.log('res: ',response,'data: ')
         const dataObject = JSON.parse(data)
+        console.log('res: ', dataObject)
         if (err) console.log(err)
         res.json(dataObject)
     })

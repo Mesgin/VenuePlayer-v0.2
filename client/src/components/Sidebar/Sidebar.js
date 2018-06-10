@@ -1,26 +1,5 @@
 import React, { Component } from 'react'
 import logo from '../../assets/0724383923625xl.jpg'
-const styles = {
-  sidebar: {
-    height: '100%',
-    width: '260px',
-    position: 'fixed',
-    zIndex: 1,
-    top: 0,
-    left: 0,
-    backgroundColor: '#333',
-    overflowX: 'hidden'
-  },
-  img: {
-    display: 'block',
-    height: '37%',
-    textAlign: 'center',
-    width: '100%'
-  },
-  iframe: {
-    border: 0
-  }
-}
 
 export default class Sidebar extends Component {
   constructor(props) {
@@ -47,5 +26,27 @@ export default class Sidebar extends Component {
         ></iframe>
       </div>
     )
+  }
+}
+
+const styles = {
+  sidebar: {
+    height: '100%',
+    width: '260px',
+    position: 'fixed',
+    zIndex: 1,
+    top: 0,
+    left: 0,
+    backgroundColor: '#333',
+    overflowX: 'hidden'
+  },
+  img: {
+    display: 'block',
+    height: '37%',
+    textAlign: 'center',
+    width: '100%'
+  },
+  iframe: {
+    border: 0
   }
 }
