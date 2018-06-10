@@ -2,20 +2,13 @@ import React, { Component } from 'react'
 import logo from '../../assets/0724383923625xl.jpg'
 
 export default class Sidebar extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      imgUrl: logo
-    }
-  }
   render() {
     return (
       <div style={styles.sidebar}>
         <img
           style={styles.img}
           alt="cover"
-          src={this.props.imgUrl || this.state.imgUrl}
+          src={this.props.img || logo}
         />
         <iframe
           style={styles.iframe}

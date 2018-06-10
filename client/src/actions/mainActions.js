@@ -36,7 +36,7 @@ export const artistClick = (img, id, artist) => dispatch => {
     })
 
   spotifyApi.getArtistAlbums(id).then((data) => {
-    let artistAlbums = data.items.map(item => {
+    let albums = data.items.map(item => {
       if (item.images.length > 0) {
         return {
           name: item.name,
@@ -52,14 +52,8 @@ export const artistClick = (img, id, artist) => dispatch => {
     })
     dispatch({
       type: SET_ALBUMS,
-      payload: artistAlbums
+      payload: {albums,img}
     })
-    // .then(() => {
-    //   dispatch({
-    //     type: SET_IMG_URL,
-    //     payload: img
-    //   })
-    // })
   },
     (err) => { console.error(err) })
 }

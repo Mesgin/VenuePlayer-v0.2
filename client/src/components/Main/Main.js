@@ -37,12 +37,12 @@ const styles = {
 }
 
 // const spotifyApi = new SpotifyWebApi()
+const spotifyApi = new SpotifyWebApi()
 
 class Main extends Component {
   constructor() {
     super()
 
-    const spotifyApi = new SpotifyWebApi()
     const params = this.getHashParams()
     const token = params.access_token
     if (token) {
@@ -76,56 +76,6 @@ class Main extends Component {
       textInput: e.target.value
     })
   }
-
-  // artistClick = (img, id, artist) => {
-  //   axios.post('http://localhost:8888/', { artist })
-  //     .then((response) => {
-  //       let venues = response.data.map((item) => {
-  //         return item
-  //       })
-  //       this.setState({
-  //         venues,
-  //         artistClicked: artist
-  //       })
-  //       axios.get('http://localhost:8888/')
-  //         .then((response) => {
-  //           this.setState({
-  //             songs: response.data,
-  //           })
-  //         })
-  //     })
-  //   spotifyApi.getArtistAlbums(id).then((data) => {
-  //     let artistAlbums = data.items.map(item => {
-  //       if (item.images.length > 0) {
-  //         return {
-  //           name: item.name,
-  //           image: item.images[2].url,
-  //           id: item.id
-  //         }
-  //       } else {
-  //         return {
-  //           name: item.name,
-  //           id: item.id
-  //         }
-  //       }
-  //     }
-  //     )
-  //     this.setState({
-  //       albums: artistAlbums,
-  //       imgUrl: img
-  //     })
-  //   },
-  //     (err) => {
-  //       console.error(err);
-  //     }
-  //   )
-  // }
-
-  // albumPlay = (id) => {
-  //   this.setState({
-  //     nowPlaying: id
-  //   })
-  // }
 
   render() {
     let artistsContent = this.props.main.artists.length > 0 ?
@@ -166,7 +116,7 @@ class Main extends Component {
         <div >
           <Sidebar
             style={styles.sidebar}
-            imgUrl={this.props.main.imgUrl}
+            img={this.props.main.img}
             nowPlaying={this.props.main.nowPlaying}
           />
           <div style={styles.main} >
