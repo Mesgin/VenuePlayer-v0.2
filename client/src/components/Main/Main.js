@@ -56,11 +56,6 @@ class Main extends Component {
         position: {
           lat: -34.397, lng: 150.644
         }
-      },
-      {
-        position: {
-          lat: -34.317, lng: 150.644
-        }
       }]
     }
   }

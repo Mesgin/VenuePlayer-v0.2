@@ -33,6 +33,7 @@ export const artistClick = (img, id, artist) => dispatch => {
   axios.post('http://localhost:8888/', { artist })
     .then((response) => {
       let venues = response.data.map((item) => {
+        console.log(item)
         return item
       })
       dispatch({

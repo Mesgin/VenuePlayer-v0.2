@@ -4,7 +4,7 @@ import { withScriptjs, withGoogleMap, GoogleMap, Marker , InfoWindow } from "rea
 export const InitialMap = withScriptjs(withGoogleMap((props) =>
   <GoogleMap
     ref={props.onMapLoad}
-    defaultZoom={8}
+    defaultZoom={2}
     defaultCenter={{ lat: -34.397, lng: 150.644 }}
     // defaultOptions={{styles: [
     //   {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
