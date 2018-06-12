@@ -113,7 +113,7 @@ class Main extends Component {
               {!this.state.loggedIn && <a href='http://localhost:8888/login' > Login to Spotify </a>}
             </header>
             {this.props.main.showArtist && <Artist />}
-            {this.props.main.showAlbums && (<div><h4>Albums: </h4><Albums /></div>)}
+            {this.props.main.showAlbums && (<div><h2>{`${this.props.main.artist}'s Albums`}</h2><Albums /></div>)}
           </div>
           <div style={styles.map} id="map">
             <MapContainer

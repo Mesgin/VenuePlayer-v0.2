@@ -50,7 +50,8 @@ export default function (state = initialState, action) {
     case ALBUM_PLAY:
       return {
         ...state,
-        nowPlaying: action.payload,
+        nowPlaying: action.payload.id,
+        img: action.payload.imageMedium
       }
     default:
       return state

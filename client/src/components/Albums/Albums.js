@@ -6,14 +6,17 @@ class Albums extends Component {
   render() {
     let albums = this.props.main.albums ? this.props.main.albums.map(album => {
       return (
-        <div className="album" key={album.id}>
+        <div className="album"
+          key={album.id}
+          onClick={() => this.props.albumPlay(album.id, album.imageMedium)}
+        >
           <div className="album-play-icon">
             <img src={album.image} className="image" alt={album.name} />
-            <div className="middle" onClick={() => this.props.albumPlay(album.id)}>
+            <div className="middle">
               <i className="play-icon fa fa-play-circle"></i>
             </div>
           </div>
-          <h5>{album.name.length > 20 ? `${album.name.substring(0, 20).trim()}...` : album.name}</h5>
+          <h4>{album.name.length > 20 ? `${album.name.substring(0, 20).trim()}...` : album.name}</h4>
         </div>
       )
     }) : null

@@ -18,7 +18,7 @@ export const tokenToState = (token) => dispatch => {
 }
 
 export const searchArtist = (artist) => dispatch => {
-  spotifyApi.searchArtists(artist, { "limit": 4 })
+  spotifyApi.searchArtists(artist, { "limit": 8 })
     .then((data) => {
       dispatch({
         type: SEARCH_ARTIST,
@@ -39,14 +39,17 @@ export const artistClick = (img, id, artist) => dispatch => {
         type: SET_VENUES,
         payload: { venues, artist }
       })
-    }).catch(err => console.log('error : ',err))
+    }).catch(err => console.log('error : ', err))
 
   spotifyApi.getArtistAlbums(id).then((data) => {
+    console.log(data.items);
+
     let albums = data.items.map(item => {
       if (item.images.length > 0) {
         return {
           name: item.name,
           image: item.images[2].url,
+          imageMedium: item.images[1].url,
           id: item.id
         }
       } else {
@@ -58,15 +61,15 @@ export const artistClick = (img, id, artist) => dispatch => {
     })
     dispatch({
       type: SET_ALBUMS,
-      payload: {albums,img}
+      payload: { albums, img }
     })
   },
     (err) => { console.error(err) })
 }
 
-export const albumPlay = id => dispatch => {
+export const albumPlay = (id, imageMedium) => dispatch => {
   dispatch({
     type: ALBUM_PLAY,
-    payload: id
+    payload: { id, imageMedium }
   })
 }

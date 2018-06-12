@@ -1,14 +1,26 @@
 body {
     background-color: rgb(54, 54, 54);
-    color: white;
+    background-color: #424242;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg stroke='%23525252' stroke-width='66.7' stroke-opacity='0.05' %3E%3Ccircle fill='%23424242' cx='0' cy='0' r='1800'/%3E%3Ccircle fill='%23424547' cx='0' cy='0' r='1700'/%3E%3Ccircle fill='%2341484b' cx='0' cy='0' r='1600'/%3E%3Ccircle fill='%23414b50' cx='0' cy='0' r='1500'/%3E%3Ccircle fill='%23404f55' cx='0' cy='0' r='1400'/%3E%3Ccircle fill='%233f525a' cx='0' cy='0' r='1300'/%3E%3Ccircle fill='%233e555e' cx='0' cy='0' r='1200'/%3E%3Ccircle fill='%233c5863' cx='0' cy='0' r='1100'/%3E%3Ccircle fill='%233b5b68' cx='0' cy='0' r='1000'/%3E%3Ccircle fill='%23385f6d' cx='0' cy='0' r='900'/%3E%3Ccircle fill='%23366272' cx='0' cy='0' r='800'/%3E%3Ccircle fill='%23336577' cx='0' cy='0' r='700'/%3E%3Ccircle fill='%232f687c' cx='0' cy='0' r='600'/%3E%3Ccircle fill='%232b6c81' cx='0' cy='0' r='500'/%3E%3Ccircle fill='%23266f86' cx='0' cy='0' r='400'/%3E%3Ccircle fill='%231f728c' cx='0' cy='0' r='300'/%3E%3Ccircle fill='%23157691' cx='0' cy='0' r='200'/%3E%3Ccircle fill='%23037996' cx='0' cy='0' r='100'/%3E%3C/g%3E%3C/svg%3E");
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;    color: white;
     font-family: 'Source Sans Pro', sans-serif;
+}
+header h1 {
+    font-family: 'Lobster', cursive;
+    color: crimson;
+    font-size: 42px;
+    text-shadow: 0px 2px 3px black;
+    margin-top: 0;
+    margin-bottom: 10px;
 }
 .developer img{
     border-radius: 50%;
     border: 2px solid white;
     width: 54px;
     height: 54px;
-    margin-right: 10px;
+    margin-right: 5px;
 }
 .develper h4 {
     position: relative;
@@ -18,7 +30,7 @@ body {
     display: flex;
     position: fixed;
     top: 10px;
-    right: 10px;
+    right: 2px;
     width: 150px;
 }
 .album-play-icon {
@@ -82,17 +94,18 @@ body {
 }
 .artist {
     display: flex;
-    flex-basis: 48%;
+    background-color: rgba(0, 0, 0, 0.247);
+    border-radius: 3px;
+    /* border: 1px solid rgb(27, 27, 27); */
+    flex-basis: 23%;
     justify-content: flex-start;
     height: 64px;
     padding: 4px;
-    align-items: center
+    align-items: center;
+    margin-bottom: 2px;
 }
 .artist a {
     padding: 5px;
-}
-.artist i {
-    color: tomato;
 }
 .artist button {
     padding: 5px;
@@ -122,12 +135,15 @@ body {
 }
 .album {
     display: flex;
-    flex-basis: 48%;
+    flex-basis: 23%;
     justify-content: flex-start;
     height: 64px;
     padding: 4px;
     align-items: center;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
+    background-color: rgba(0, 0, 0, 0.247);
+    border-radius: 3px;
+    cursor: pointer;
 }
 .album a {
     margin-right: 15px;
@@ -140,4 +156,20 @@ body {
   font-size: 12px;
   margin: 0;
   padding: 5px;
+}
+@media screen and (max-width: 992px){
+    .album {
+        flex-basis: 48%
+    }
+    .artist {
+        flex-basis: 48%
+    }
+}
+@media screen and (max-width: 641px){
+    .album {
+        flex-basis: 100%
+    }
+    .artist {
+        flex-basis: 100%
+    }
 }
