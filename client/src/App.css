@@ -79,8 +79,8 @@ header h1 {
 .image {
     opacity: 1;
     display: block;
-    width: 100%;
-    height: auto;
+    width: 64px;
+    height: 64px;
     transition: .5s ease;
     backface-visibility: hidden;
     border-radius: 3px;
@@ -128,8 +128,9 @@ header h1 {
     flex-wrap:wrap;
     text-align: left;
     padding-bottom: 15px;
-    height: 150px;
+    height: 200px;
     overflow: auto;
+    align-items: flex-start
 }
 .artist {
     display: flex;

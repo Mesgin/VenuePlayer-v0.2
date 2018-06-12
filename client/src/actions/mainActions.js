@@ -20,7 +20,7 @@ export const tokenToState = (token) => dispatch => {
 
 export const searchArtist = (artist) => dispatch => {
   spotifyApi.searchArtists(artist, { 'limit': 8 })
-    .then((data) => {
+    .then((data) => {      
       dispatch({
         type: SEARCH_ARTIST,
         payload: data.artists.items
@@ -34,7 +34,6 @@ export const artistClick = (img, id, artist) => dispatch => {
   axios.post('http://localhost:8888/', { artist })
     .then((response) => {
       let venues = response.data.map((item) => {
-        console.log(item)
         return item
       })
       dispatch({
@@ -44,17 +43,20 @@ export const artistClick = (img, id, artist) => dispatch => {
     }).catch(err => console.log('error : ', err))
 
   spotifyApi.getArtistAlbums(id).then((data) => {
+    console.log(data)
     let albums = data.items.map(item => {
       if (item.images.length > 0) {
         return {
           name: item.name,
           image: item.images[2].url,
           imageMedium: item.images[1].url,
+          release: item.release_date,
           id: item.id
         }
       } else {
         return {
           name: item.name,
+          release: item.release_date,
           id: item.id
         }
       }

@@ -4,7 +4,7 @@ import { albumPlay } from '../../actions/mainActions'
 
 class Albums extends Component {
   render() {
-    let albums = this.props.main.albums ? this.props.main.albums.map(album => {   
+    let albums = this.props.main.albums ? this.props.main.albums.map(album => {
       return (
         <div className="album"
           key={album.id}
@@ -16,7 +16,11 @@ class Albums extends Component {
               <i className="play-icon fa fa-play-circle"></i>
             </div>
           </div>
-          <h4>{album.name.length > 20 ? `${album.name.substring(0, 20).trim()}...` : album.name}</h4>
+          <h4>{album.name.length > 20
+            ?
+            `${album.name.substring(0, 20).trim()}.. (${parseInt(album.release,10)})`
+            :
+            `${album.name} (${parseInt(album.release,10)})`}</h4>
         </div>
       )
     }) : null
