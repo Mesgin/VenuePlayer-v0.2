@@ -1,17 +1,21 @@
 import React, { Component } from 'react'
-import { Switch, Route, Link } from 'react-router-dom'
+// import { Switch, Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 // import SpotifyWebApi from 'spotify-web-api-js'
 import Sidebar from '../Sidebar/Sidebar'
 import Header from '../Header/Header'
 import Artist from '../Artist/Artist'
 import Albums from '../Albums/Albums'
-import MapContainer from '../MapContainer'
+// import MapContainer from '../MapContainer'
 // import axios from 'axios'
+import MapContainer from '../MapContainer/index'
 import SpotifyWebApi from 'spotify-web-api-js'
 import { searchArtist, artistClick, albumPlay, tokenToState } from '../../actions/mainActions'
 
 const styles = {
+  mainContainer: {
+    paddingRight: '5px'
+  },
   main: {
     marginLeft: '260px',
     textAlign: 'center',
@@ -22,10 +26,14 @@ const styles = {
   },
   map: {
     padding: 0,
-    position: 'relative',
+    position: 'absolute',
     bottom: 0,
-    height: '400px',
+    height: '40%',
+    width: '100%'
 
+  },
+  albumTitle: {
+    marginTop: 0
   }
 }
 
@@ -43,7 +51,17 @@ class Main extends Component {
     }
     this.state = {
       loggedIn: token ? true : false,
-      textInput: ''
+      textInput: '',
+      markers: [{
+        position: {
+          lat: -34.397, lng: 150.644
+        }
+      },
+      {
+        position: {
+          lat: -34.317, lng: 150.644
+        }
+      }]
     }
   }
   componentDidMount() {
@@ -71,11 +89,12 @@ class Main extends Component {
   }
 
   render() {
+    let concertInfo = this.props.main.venues.length > 0 ? `${this.props.main.venues.length} Concert(s) Found ` : 'No Concert Information'
     if (!this.state.loggedIn) {
       return <div>Redirect..</div>
     } else {
       return (
-        <div >
+        <div style={styles.mainContainer} >
           <Sidebar
             style={styles.sidebar}
             img={this.props.main.img}
@@ -90,15 +109,23 @@ class Main extends Component {
                 onChange={this.textHandler}
                 className="search-input"
               />
-            {this.props.main.showArtist && <Artist />}
-            {this.props.main.showAlbums && (<div><h2>{`${this.props.main.artist}'s Albums`}</h2><Albums /></div>)}
+              {this.props.main.showArtist && <Artist />}
+              {this.props.main.showAlbums &&
+                (<div>
+                  <h2 style={styles.albumTitle}>
+                    {`${concertInfo} - ${this.props.main.artist}'s Albums : `}
+                  </h2>
+                  <Albums />
+                </div>)
+              }
             </div>
             <div style={styles.map} id="map">
-              <MapContainer
-                venues={this.props.main.venues}
-                dateTime={this.state.dateTime}
-                artist={this.props.main.artist}
-              />
+              {/* <MapContainer
+              venues={this.props.main.venues}
+              dateTime={this.state.dateTime}
+              artist={this.props.main.artist}
+            /> */}
+              <MapContainer markers={this.state.markers} />
             </div>
           </div>
         </div>

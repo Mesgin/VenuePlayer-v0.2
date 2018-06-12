@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import logo from '../../assets/0724383923625xl.jpg'
+const logo =  'https://i.scdn.co/image/fa4a97c948289eb114f583871b3278a352b1987a'
 
 export default class Sidebar extends Component {
   render() {

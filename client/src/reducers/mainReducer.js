@@ -9,7 +9,7 @@ import {
 const initialState = {
   songs: [{}],
   venues: [],
-  nowPlaying: '1t4hf9yHMQBoTz2CxTBJKj',
+  nowPlaying: '78C6B8XlWz91aOID7H6NBX',
   artists: [],
   artist: '',
   img: null,

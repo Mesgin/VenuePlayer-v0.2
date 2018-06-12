@@ -1,20 +1,34 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { artistClick } from '../../actions/mainActions'
 
 class Artist extends Component {
   render() {
     let artistsContent = this.props.main.artists.length > 0 ?
       this.props.main.artists.map(artist => {
+        let imageSmall = 
+        artist.images.length > 0 
+        ? 
+        artist.images[2].url 
+        : 
+        'http://via.placeholder.com/64x64'
+
+        let imageMedium = 
+        artist.images.length > 0 
+        ? 
+        artist.images[1].url 
+        : 
+        'http://via.placeholder.com/260x260'
+        
         return (
           <div key={artist.id} className="artist">
             <div 
             className="artist-icon"
-            onClick={() => this.props.artistClick(artist.images[1].url, artist.id, artist.name)}
+            onClick={() => this.props.artistClick(imageMedium, artist.id, artist.name)}
             >
               <img className="image"
-                src={(artist.images.length > 0 && artist.images[2].url) || 'http://via.placeholder.com/64x64'}
+                src={imageSmall}
                 style={{ width: 64, height: 64 }}
                 alt={artist.name} />
               <div className="middle">

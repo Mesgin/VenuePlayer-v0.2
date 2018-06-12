@@ -6,10 +6,10 @@ const Header = (props) => {
     <header >
       <div className="header">
         <div className="header-icons">
-          <a href="https://www.linkedin.com/in/mo-mesgin/" target="_blank">
+          <a href="https://www.linkedin.com/in/mo-mesgin/" target="_blank" rel="noopener noreferrer">
             <i className="fa fa-linkedin-square"></i>
           </a>
-          <a href="https://www.github.com/mesgin/" target="_blank">
+          <a href="https://github.com/mesgin" target="_blank" rel="noopener noreferrer">
             <i className="fa fa-github"></i>
           </a>
           <a href="mailto:mo.mesgin@gmail.com" className="email">
@@ -21,10 +21,9 @@ const Header = (props) => {
           <h1 >VenuePlayer</h1>
         </div>
         <div className="developer">
-          <a href="https://github.com/mesgin" target="_blank" >
+          <a href="https://github.com/mesgin" target="_blank" rel="noopener noreferrer" >
             <img src={developer} alt="mo mesgin" />
           </a>
-          <h4>Mo Mesgin</h4>
         </div>
       </div>
       <div>

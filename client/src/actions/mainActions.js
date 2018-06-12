@@ -18,7 +18,7 @@ export const tokenToState = (token) => dispatch => {
 }
 
 export const searchArtist = (artist) => dispatch => {
-  spotifyApi.searchArtists(artist, { "limit": 8 })
+  spotifyApi.searchArtists(artist, { 'limit': 8 })
     .then((data) => {
       dispatch({
         type: SEARCH_ARTIST,
@@ -42,8 +42,6 @@ export const artistClick = (img, id, artist) => dispatch => {
     }).catch(err => console.log('error : ', err))
 
   spotifyApi.getArtistAlbums(id).then((data) => {
-    console.log(data.items);
-
     let albums = data.items.map(item => {
       if (item.images.length > 0) {
         return {
