@@ -4,7 +4,7 @@ import { albumPlay } from '../../actions/mainActions'
 
 class Albums extends Component {
   render() {
-    let albums = this.props.main.albums ? this.props.main.albums.map(album => {
+    let albums = this.props.main.albums ? this.props.main.albums.map(album => {   
       return (
         <div className="album"
           key={album.id}

@@ -10,7 +10,7 @@ import Albums from '../Albums/Albums'
 // import axios from 'axios'
 import MapContainer from '../MapContainer/index'
 import SpotifyWebApi from 'spotify-web-api-js'
-import { searchArtist, artistClick, albumPlay, tokenToState } from '../../actions/mainActions'
+import { searchArtist, artistClick, albumPlay, backToArtist, tokenToState } from '../../actions/mainActions'
 
 const styles = {
   mainContainer: {
@@ -33,7 +33,7 @@ const styles = {
 
   },
   albumTitle: {
-    marginTop: 0
+    margin: 0
   }
 }
 
@@ -110,6 +110,9 @@ class Main extends Component {
                   <h2 style={styles.albumTitle}>
                     {`${concertInfo} - ${this.props.main.artist}'s Albums : `}
                   </h2>
+                  <div className="back-to-artist" onClick={this.props.backToArtist}>
+                    <i className="fa fa-chevron-left"></i> back
+                  </div>
                   <Albums />
                 </div>)
               }
@@ -133,4 +136,4 @@ const mapStateToProps = state => ({
   main: state.main
 })
 
-export default connect(mapStateToProps, { tokenToState, searchArtist, artistClick, albumPlay })(Main)
+export default connect(mapStateToProps, { tokenToState, searchArtist, artistClick, albumPlay, backToArtist })(Main)

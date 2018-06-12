@@ -1,9 +1,11 @@
-import { 
+import {
   SEARCH_ARTIST,
-  TOKEN_TO_STATE, 
+  TOKEN_TO_STATE,
   SET_VENUES,
-  SET_ALBUMS, 
-  ALBUM_PLAY } from '../actions/types'
+  SET_ALBUMS,
+  ALBUM_PLAY,
+  BACK_TO_ARTIST
+} from '../actions/types'
 
 
 const initialState = {
@@ -53,6 +55,12 @@ export default function (state = initialState, action) {
         nowPlaying: action.payload.id,
         img: action.payload.imageMedium
       }
+     case BACK_TO_ARTIST:
+      return {
+        ...state,
+        showArtist: true,
+        showAlbums: false
+      } 
     default:
       return state
   }

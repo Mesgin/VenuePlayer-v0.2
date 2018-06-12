@@ -5,7 +5,8 @@ import {
   SET_VENUES,
   SET_ALBUMS,
   ALBUM_PLAY,
-  TOKEN_TO_STATE
+  TOKEN_TO_STATE,
+  BACK_TO_ARTIST
 } from '../actions/types'
 
 const spotifyApi = new SpotifyWebApi()
@@ -70,5 +71,11 @@ export const albumPlay = (id, imageMedium) => dispatch => {
   dispatch({
     type: ALBUM_PLAY,
     payload: { id, imageMedium }
+  })
+}
+
+export const backToArtist = () => dispatch => {
+  dispatch({
+    type: BACK_TO_ARTIST
   })
 }
