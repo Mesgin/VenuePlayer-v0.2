@@ -1,7 +1,6 @@
 export const AUTHENTICATE = 'AUTHENTICATE'
 export const SEARCH_ARTIST = 'SEARCH_ARTIST'
 export const SET_VENUES = 'SET_VENUES'
-export const SET_ARTIST = 'SET_ARTIST'
 export const SET_ALBUMS = 'SET_ALBUMS'
-export const SET_IMG_URL = 'SET_IMG_URL'
 export const ALBUM_PLAY = 'ALBUM_PLAY'
+export const TOKEN_TO_STATE = 'TOKEN_TO_STATE'

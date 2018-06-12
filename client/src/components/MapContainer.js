@@ -50,6 +50,7 @@ export class MapContainer extends Component {
         google={this.props.google}
         initialCenter={{ lat: 49.2193, lng: -122.5984 }}
         zoom={2}
+        style={{width: '100%',height: '100%'}}
       >
         {venuesJSX}
         <InfoWindow

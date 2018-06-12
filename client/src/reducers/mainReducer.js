@@ -1,9 +1,8 @@
 import { 
-  SEARCH_ARTIST, 
-  SET_VENUES, 
-  SET_ARTIST, 
+  SEARCH_ARTIST,
+  TOKEN_TO_STATE, 
+  SET_VENUES,
   SET_ALBUMS, 
-  SET_IMG_URL,
   ALBUM_PLAY } from '../actions/types'
 
 
@@ -14,15 +13,25 @@ const initialState = {
   artists: [],
   artist: '',
   img: null,
-  albums: null
+  albums: null,
+  token: '',
+  showAlbums: false,
+  showArtist: true
 }
 
 export default function (state = initialState, action) {
   switch (action.type) {
+    case TOKEN_TO_STATE:
+      return {
+        ...state,
+        token: action.payload,
+      }
     case SEARCH_ARTIST:
       return {
         ...state,
         artists: action.payload,
+        showAlbums: false,
+        showArtist: true
       }
     case SET_VENUES:
       return {
@@ -34,12 +43,14 @@ export default function (state = initialState, action) {
       return {
         ...state,
         albums: action.payload.albums,
-        img: action.payload.img
+        img: action.payload.img,
+        showArtist: false,
+        showAlbums: true
       }
     case ALBUM_PLAY:
       return {
         ...state,
-        nowPlaying: action.payload
+        nowPlaying: action.payload,
       }
     default:
       return state

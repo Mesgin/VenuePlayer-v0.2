@@ -1,13 +1,29 @@
 body {
     background-color: rgb(54, 54, 54);
     color: white;
-    /* background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' %3E%3Cdefs%3E%3ClinearGradient id='a' x1='0' x2='0' y1='0' y2='1' %3E%3Cstop offset='0' stop-color='%23007b9c'/%3E%3Cstop offset='1' stop-color='%2301161a'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpattern id='b' width='78' height='78' patternUnits='userSpaceOnUse'%3E%3Ccircle fill='%23fff' cx='39' cy='39' r='39'/%3E%3C/pattern%3E%3Crect width='100%25' height='100%25' fill='url(%23a)'/%3E%3Crect width='100%25' height='100%25' fill='url(%23b)' fill-opacity='0.03'/%3E%3C/svg%3E");
-    background-attachment: fixed; */
-    font-family: Lobster
+    font-family: 'Source Sans Pro', sans-serif;
 }
-.container {
+.developer img{
+    border-radius: 50%;
+    border: 2px solid white;
+    width: 54px;
+    height: 54px;
+    margin-right: 10px;
+}
+.develper h4 {
     position: relative;
-    /* width: 50%; */
+    display: inline-block;
+}
+.developer {
+    display: flex;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 150px;
+}
+.album-play-icon {
+    position: relative;
+    margin-right: 5px;
 }
 .image {
     opacity: 1;
@@ -16,6 +32,7 @@ body {
     height: auto;
     transition: .5s ease;
     backface-visibility: hidden;
+    border-radius: 3px;
 } 
 .middle {
     transition: .1s ease;
@@ -28,17 +45,30 @@ body {
     text-align: center;
     cursor: pointer;
 }
-.container:hover .image {
-    opacity: 0.3;
+.album-play-icon:hover .image {
+    opacity: 0.2;
 }
-.container:hover .middle {
+.album-play-icon:hover .middle {
     opacity: 1;
 } 
 .play-icon {
-    /* background-color: #4CAF50; */
     color: white;
-    font-size: 32px;
-    padding: 16px 32px;
+    font-size: 36px;
+}
+.artist-icon {
+    position: relative;
+    cursor: pointer;
+    margin-right: 5px;
+}
+.artist-icon:hover .image {
+    opacity: 0.2;
+}
+.artist-icon:hover .middle {
+    opacity: 1;
+} 
+.map-icon {
+    color: white;
+    font-size: 36px;
 }
 .artist-container {
     display: flex;
@@ -46,17 +76,13 @@ body {
     justify-content: space-around;
     flex-wrap:wrap;
     text-align: left;
-    /* background-color: #222; */
     padding-bottom: 15px;
-    /* align-items: center */
-    /* height: 400px; */
     overflow: auto;
     padding-left: 20px;
 }
 .artist {
     display: flex;
     flex-basis: 48%;
-    /* border-bottom:1px #ccc solid; */
     justify-content: flex-start;
     height: 64px;
     padding: 4px;
@@ -88,25 +114,20 @@ body {
     justify-content: space-around;
     flex-wrap:wrap;
     text-align: left;
-    /* background-color: #222; */
     padding-bottom: 15px;
     padding-left: 20px;
     margin-bottom: 15px;
-    /* align-items: center */
     height: 200px;
     overflow: auto;
 }
-/* .album-container div {
-    
-} */
 .album {
     display: flex;
     flex-basis: 48%;
-    /* border-bottom:1px #ccc solid; */
     justify-content: flex-start;
     height: 64px;
     padding: 4px;
     align-items: center;
+    margin-bottom: 5px;
 }
 .album a {
     margin-right: 15px;
@@ -114,93 +135,9 @@ body {
 .album h5 {
     display: inline-block;
 }
-
 #map h6 {
-    /* bottom: 0;
-  background-color: red;
-  position: fixed;
-  right: 0;bottom:0;left:0;
-  display: block; */
   color:rgb(63, 63, 63);
   font-size: 12px;
   margin: 0;
   padding: 5px;
 }
-#map div {
-  
-}
-/* #cover {
-    margin-top:3px;
-    padding: 2px;
-    box-shadow: 0px 2px 2px 0px black;
-    background-color: rgba(255, 255, 255, 0.555);
-}
-#controls button{
-    margin: 5px;
-}
-#audio-display{
-    padding: 10px 0 10px 0;
-}
-#song-list {
-    padding-left: 0px;
-    padding-right: 0;
-    height: 200px;
-    overflow: auto;
-}
-.btn {
-    border-radius: 4rem;
-    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.19);
-}
-.btn-width {
-    width:100px;
-    margin: 0;   
-}
-.btn-success{
-    background-color: cadetblue;
-    border-color: rgb(62, 115, 117)
-}
-.btn-success:hover {
-    background-color: rgb(64, 111, 112)
-}
-.jumbotron {
-    background-color: rgb(34, 37, 38);
-    color: crimson;
-    padding: 0.5rem 2rem 0.6rem 2rem;
-    font-family: 'Lobster', sans-serif;
-    margin-bottom: 0;
-    border-radius: 0;
-   text-shadow: 2px 2px 18px #000000;
-}
-.lead {
-    margin: 0;
-    padding: 10px;
-    color: rgba(255, 255, 255, 0.894);
-    font-family: 'Roboto Condensed';
-    font-size: 1.5rem;
-    border-radius: 5px;
-}
-.row {
-    margin: 0;
-    padding: 0px;
-    background-color: #4faaff;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg stroke='%23209dbf' stroke-width='64.8' stroke-opacity='0.05' %3E%3Ccircle fill='%234faaff' cx='0' cy='0' r='1800'/%3E%3Ccircle fill='%2339a3f1' cx='0' cy='0' r='1700'/%3E%3Ccircle fill='%23209ce3' cx='0' cy='0' r='1600'/%3E%3Ccircle fill='%230094d4' cx='0' cy='0' r='1500'/%3E%3Ccircle fill='%23008cc6' cx='0' cy='0' r='1400'/%3E%3Ccircle fill='%230084b7' cx='0' cy='0' r='1300'/%3E%3Ccircle fill='%23007da9' cx='0' cy='0' r='1200'/%3E%3Ccircle fill='%2300749b' cx='0' cy='0' r='1100'/%3E%3Ccircle fill='%23006c8d' cx='0' cy='0' r='1000'/%3E%3Ccircle fill='%2300647f' cx='0' cy='0' r='900'/%3E%3Ccircle fill='%23005c72' cx='0' cy='0' r='800'/%3E%3Ccircle fill='%23005465' cx='0' cy='0' r='700'/%3E%3Ccircle fill='%23004c58' cx='0' cy='0' r='600'/%3E%3Ccircle fill='%2300434d' cx='0' cy='0' r='500'/%3E%3Ccircle fill='%23003b41' cx='0' cy='0' r='400'/%3E%3Ccircle fill='%23003337' cx='0' cy='0' r='300'/%3E%3Ccircle fill='%23022c2d' cx='0' cy='0' r='200'/%3E%3Ccircle fill='%23052424' cx='0' cy='0' r='100'/%3E%3C/g%3E%3C/svg%3E");
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center;
-}
-.hp_slide{
-    width:100%;
-    background:rgba(255, 255, 255, 0.945);
-    height:25px;
-}
-.hp_range{
-    width:0;
-    background:black;
-    height:25px;
-}
- */
- /* h6 {
-    color:rgba(3, 101, 103, 0.945);
-    padding-right: 10px;
-    padding-top: 10px;
-} */

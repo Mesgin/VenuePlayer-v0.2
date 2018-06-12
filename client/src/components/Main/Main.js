@@ -1,21 +1,25 @@
 import React, { Component } from 'react'
+import { Switch, Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 // import SpotifyWebApi from 'spotify-web-api-js'
 import Sidebar from '../Sidebar/Sidebar'
+import Artist from '../Artist/Artist'
+import Albums from '../Albums/Albums'
 import MapContainer from '../MapContainer'
 // import axios from 'axios'
 import SpotifyWebApi from 'spotify-web-api-js'
-import { searchArtist, artistClick, albumPlay } from '../../actions/mainActions'
+import { searchArtist, artistClick, albumPlay, tokenToState } from '../../actions/mainActions'
+import developer from '../../assets/Mo.jpg'
 const styles = {
   main: {
     marginLeft: '260px',
     textAlign: 'center',
     height: '60%'
   },
-  sidebar: {
-    borderRightColor: 'green',
-    borderRightWidth: '2px',
-  },
+  // sidebar: {
+  //   borderRightColor: 'green',
+  //   borderRightWidth: '2px',
+  // },
   map: {
     padding: 0,
     position: 'relative',
@@ -32,7 +36,7 @@ const styles = {
     height: '20px',
     border: 0,
     fontSize: '16px',
-    margin: '5px'
+    marginBottom: '10px'
   }
 }
 
@@ -47,10 +51,11 @@ class Main extends Component {
     const token = params.access_token
     if (token) {
       spotifyApi.setAccessToken(token)
+      // this.props.tokenToState(token)
     }
     this.state = {
       loggedIn: token ? true : false,
-      textInput: '',
+      textInput: ''
     }
   }
   componentDidMount() {
@@ -78,37 +83,6 @@ class Main extends Component {
   }
 
   render() {
-    let artistsContent = this.props.main.artists.length > 0 ?
-      this.props.main.artists.map(artist => {
-        return (
-          <div key={artist.id} className="artist">
-            <a onClick={() => this.props.artistClick(artist.images[1].url, artist.id, artist.name)}
-              >
-              <img
-                src={(artist.images.length > 0 && artist.images[2].url) || 'http://via.placeholder.com/64x64'}
-                style={{ width: 64, height: 64 }}
-                alt={artist.name} />
-            </a>
-            <h5>{artist.name}</h5>
-            {/* <a><button type="button" onClick={() => this.albumClick(artist.id)} >Albums</button></a> */}
-          </div>
-        )
-      }) : null
-
-    let albums = this.props.main.albums ? this.props.main.albums.map(album => {
-      return (
-        <div className="album" key={album.id}>
-          <div className="container">
-            <img src={album.image} className="image" alt={album.name} />
-            <div className="middle" onClick={() => this.props.albumPlay(album.id)}>
-              <i className="play-icon fa fa-play-circle"></i>
-            </div>
-          </div>
-          <h5>{album.name.length > 20 ? `${album.name.substring(0, 20).trim()}...` : album.name}</h5>
-        </div>
-      )
-    }) : null
-
     if (!this.state.loggedIn) {
       return <div>Redirect..</div>
     } else {
@@ -122,6 +96,12 @@ class Main extends Component {
           <div style={styles.main} >
             <header >
               <h1 >VenuePlayer</h1>
+              <div className="developer">
+                <a href="https://github.com/mesgin" target="_blank" >
+                  <img src={developer} alt="mo mesgin" />
+                </a>
+                  <h4>Mo Mesgin</h4>
+              </div>
               <div >
                 <input
                   placeholder="Artist..."
@@ -132,13 +112,8 @@ class Main extends Component {
               </div>
               {!this.state.loggedIn && <a href='http://localhost:8888/login' > Login to Spotify </a>}
             </header>
-            <div className="artist-container">
-              {artistsContent}
-            </div>
-            <div className="album-container" >
-              {this.props.main.albums && albums}
-            </div>
-
+            {this.props.main.showArtist && <Artist />}
+            {this.props.main.showAlbums && (<div><h4>Albums: </h4><Albums /></div>)}
           </div>
           <div style={styles.map} id="map">
             <MapContainer
@@ -157,4 +132,4 @@ const mapStateToProps = state => ({
   main: state.main
 })
 
-export default connect(mapStateToProps, { searchArtist, artistClick, albumPlay })(Main)
+export default connect(mapStateToProps, { tokenToState, searchArtist, artistClick, albumPlay })(Main)

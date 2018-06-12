@@ -3,13 +3,19 @@ import axios from 'axios'
 import {
   SEARCH_ARTIST,
   SET_VENUES,
-  SET_ARTIST,
   SET_ALBUMS,
-  SET_IMG_URL,
-  ALBUM_PLAY
+  ALBUM_PLAY,
+  TOKEN_TO_STATE
 } from '../actions/types'
 
 const spotifyApi = new SpotifyWebApi()
+
+export const tokenToState = (token) => dispatch => {
+  dispatch({
+    type: TOKEN_TO_STATE,
+    payload: token
+  })
+}
 
 export const searchArtist = (artist) => dispatch => {
   spotifyApi.searchArtists(artist, { "limit": 4 })
@@ -33,7 +39,7 @@ export const artistClick = (img, id, artist) => dispatch => {
         type: SET_VENUES,
         payload: { venues, artist }
       })
-    })
+    }).catch(err => console.log('error : ',err))
 
   spotifyApi.getArtistAlbums(id).then((data) => {
     let albums = data.items.map(item => {
