@@ -7,25 +7,33 @@ body {
     background-position: center;    color: white;
     font-family: 'Source Sans Pro', sans-serif;
 }
+.header {
+    display: flex;
+    direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 50px;
+}
+/* .header-icons {
+    flex-basis: 32%
+}
+.header-head {
+    flex-basis: 32%
+} */
 header h1 {
     font-family: 'Lobster', cursive;
     color: crimson;
-    font-size: 42px;
+    font-size: 46px;
     text-shadow: 0px 2px 3px black;
-    margin-top: 0;
-    margin-bottom: 10px;
+    margin: 0;
+    margin-left: -50px;
 }
-.search-input {
-    padding: 10px;
+.fa-linkedin-square, .fa-github, .fa-envelope {
     color: white;
-    background-color: rgba(0, 0, 0, 0.347);
-    border-radius: 5px;
-    width: 250px;
-    height: 18px;
-    border: 0;
-    font-size: 16px;
-    margin-bottom: 8px;
+    font-size: 32px;
+    margin-right: 12px;
 }
+
 .developer img{
     border-radius: 50%;
     border: 2px solid white;
@@ -33,16 +41,29 @@ header h1 {
     height: 54px;
     margin-right: 5px;
 }
-.develper h4 {
+/* .develper h4 {
     position: relative;
     display: inline-block;
-}
+} */
 .developer {
     display: flex;
-    position: fixed;
+    /* position: fixed;
     top: 10px;
-    right: 2px;
+    right: 2px; */
     width: 150px;
+    /* flex-basis: 32% */
+}
+.search-input {
+    padding: 10px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.347);
+    border-radius: 5px;
+    width: 300px;
+    height: 18px;
+    border: 0;
+    font-size: 16px;
+    margin-top: 32px;
+    margin-bottom: 24px;
 }
 .album-play-icon {
     position: relative;
@@ -101,7 +122,6 @@ header h1 {
     text-align: left;
     padding-bottom: 15px;
     overflow: auto;
-    padding-left: 20px;
 }
 .artist {
     display: flex;

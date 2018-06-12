@@ -15,18 +15,17 @@ const styles = {
   main: {
     marginLeft: '260px',
     textAlign: 'center',
-    height: '60%'
+    // height: '60%'
   },
-  // sidebar: {
-  //   borderRightColor: 'green',
-  //   borderRightWidth: '2px',
-  // },
+  middle: {
+    height: '50%'
+  },
   map: {
     padding: 0,
     position: 'relative',
     bottom: 0,
     height: '400px',
-    marginLeft: '260px'
+
   }
 }
 
@@ -83,16 +82,24 @@ class Main extends Component {
             nowPlaying={this.props.main.nowPlaying}
           />
           <div style={styles.main} >
-          <Header textHandler={this.textHandler} />
+            <Header />
+            <div style={styles.middle}>
+              <input
+                placeholder="Search Artist"
+                type="text"
+                onChange={this.textHandler}
+                className="search-input"
+              />
             {this.props.main.showArtist && <Artist />}
             {this.props.main.showAlbums && (<div><h2>{`${this.props.main.artist}'s Albums`}</h2><Albums /></div>)}
-          </div>
-          <div style={styles.map} id="map">
-            <MapContainer
-              venues={this.props.main.venues}
-              dateTime={this.state.dateTime}
-              artist={this.props.main.artist}
-            />
+            </div>
+            <div style={styles.map} id="map">
+              <MapContainer
+                venues={this.props.main.venues}
+                dateTime={this.state.dateTime}
+                artist={this.props.main.artist}
+              />
+            </div>
           </div>
         </div>
       )
