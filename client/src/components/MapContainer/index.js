@@ -3,15 +3,11 @@ import { connect } from 'react-redux'
 import { InitialMap } from '../InitialMap'
 
 class MapContainer extends React.Component {
+
+  onMarkerClick = (marker) => {
+
+  }
   render() {
-    let venuesJSX = this.props.main.venues.map((venue) => {
-      return {
-        position: {
-          lat: Number(venue.venue.latitude),
-          lng: Number(venue.venue.longitude)
-        }
-      }
-    })
     return (
       <div style={{ height: "100%" }}>
         <InitialMap
@@ -21,7 +17,7 @@ class MapContainer extends React.Component {
           mapElement={
             <div style={{ height: '100vh', width: '100vw' }} />
           }
-          markers={venuesJSX}
+          markers={this.props.main.venues}
           onMapLoad={this.handleMapLoad}
           onMapClick={this.handleMapClick}
           onMarkerRightClick={this.handleMarkerRightClick}
