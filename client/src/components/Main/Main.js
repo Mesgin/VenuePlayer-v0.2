@@ -30,13 +30,13 @@ const styles = {
   searchInput: {
     padding: '10px',
     color: 'white',
-    backgroundColor: '#000',
+    backgroundColor: 'rgba(0, 0, 0, 0.347)',
     borderRadius: '5px',
     width: '250px',
-    height: '20px',
+    height: '18px',
     border: 0,
     fontSize: '16px',
-    marginBottom: '10px'
+    marginBottom: '8px'
   }
 }
 

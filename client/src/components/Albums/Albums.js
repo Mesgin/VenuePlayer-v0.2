@@ -11,7 +11,7 @@ class Albums extends Component {
           onClick={() => this.props.albumPlay(album.id, album.imageMedium)}
         >
           <div className="album-play-icon">
-            <img src={album.image} className="image" alt={album.name} />
+            <img src={album.image || 'http://via.placeholder.com/64x64'} className="image" alt={album.name} />
             <div className="middle">
               <i className="play-icon fa fa-play-circle"></i>
             </div>
