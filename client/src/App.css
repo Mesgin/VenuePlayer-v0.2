@@ -15,6 +15,17 @@ header h1 {
     margin-top: 0;
     margin-bottom: 10px;
 }
+.search-input {
+    padding: 10px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.347);
+    border-radius: 5px;
+    width: 250px;
+    height: 18px;
+    border: 0;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
 .developer img{
     border-radius: 50%;
     border: 2px solid white;
@@ -153,9 +164,11 @@ header h1 {
 }
 #map h6 {
   color:rgb(63, 63, 63);
-  font-size: 12px;
+  font-size: 18px;
   margin: 0;
   padding: 5px;
+  font-weight: 900;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 @media screen and (max-width: 992px){
     .album {
@@ -175,7 +188,7 @@ header h1 {
 }
 
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 5px;
 }
 
 /* Track */

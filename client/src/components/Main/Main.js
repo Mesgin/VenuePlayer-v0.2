@@ -3,13 +3,14 @@ import { Switch, Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 // import SpotifyWebApi from 'spotify-web-api-js'
 import Sidebar from '../Sidebar/Sidebar'
+import Header from '../Header/Header'
 import Artist from '../Artist/Artist'
 import Albums from '../Albums/Albums'
 import MapContainer from '../MapContainer'
 // import axios from 'axios'
 import SpotifyWebApi from 'spotify-web-api-js'
 import { searchArtist, artistClick, albumPlay, tokenToState } from '../../actions/mainActions'
-import developer from '../../assets/Mo.jpg'
+
 const styles = {
   main: {
     marginLeft: '260px',
@@ -26,21 +27,9 @@ const styles = {
     bottom: 0,
     height: '400px',
     marginLeft: '260px'
-  },
-  searchInput: {
-    padding: '10px',
-    color: 'white',
-    backgroundColor: 'rgba(0, 0, 0, 0.347)',
-    borderRadius: '5px',
-    width: '250px',
-    height: '18px',
-    border: 0,
-    fontSize: '16px',
-    marginBottom: '8px'
   }
 }
 
-// const spotifyApi = new SpotifyWebApi()
 const spotifyApi = new SpotifyWebApi()
 
 class Main extends Component {
@@ -94,24 +83,7 @@ class Main extends Component {
             nowPlaying={this.props.main.nowPlaying}
           />
           <div style={styles.main} >
-            <header >
-              <h1 >VenuePlayer</h1>
-              <div className="developer">
-                <a href="https://github.com/mesgin" target="_blank" >
-                  <img src={developer} alt="mo mesgin" />
-                </a>
-                  <h4>Mo Mesgin</h4>
-              </div>
-              <div >
-                <input
-                  placeholder="Artist..."
-                  type="text"
-                  onChange={this.textHandler}
-                  style={styles.searchInput}
-                />
-              </div>
-              {!this.state.loggedIn && <a href='http://localhost:8888/login' > Login to Spotify </a>}
-            </header>
+          <Header textHandler={this.textHandler} />
             {this.props.main.showArtist && <Artist />}
             {this.props.main.showAlbums && (<div><h2>{`${this.props.main.artist}'s Albums`}</h2><Albums /></div>)}
           </div>
