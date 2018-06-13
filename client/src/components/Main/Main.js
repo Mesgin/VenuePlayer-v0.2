@@ -7,7 +7,7 @@ import Header from '../Header/Header'
 import Artist from '../Artist/Artist'
 import Albums from '../Albums/Albums'
 // import MapContainer from '../MapContainer'
-// import axios from 'axios'
+import axios from 'axios'
 import MapContainer from '../MapContainer/index'
 import SpotifyWebApi from 'spotify-web-api-js'
 import { searchArtist, artistClick, albumPlay, backToArtist, tokenToState } from '../../actions/mainActions'
@@ -43,37 +43,28 @@ class Main extends Component {
   constructor() {
     super()
 
-    const params = this.getHashParams()
-    const token = params.access_token
-    if (token) {
-      spotifyApi.setAccessToken(token)
-      // this.props.tokenToState(token)
-    }
     this.state = {
-      loggedIn: token ? true : false,
-      textInput: '',
-      markers: [{
-        position: {
-          lat: -34.397, lng: 150.644
-        }
-      }]
+      tokenError: true,
+      textInput: ''
     }
   }
+
   componentDidMount() {
-    if (!this.state.loggedIn) {
-      window.history.back()
-    }
-  }
-  getHashParams() {
-    let hashParams = {}
-    let e, r = /([^&=]+)=?([^&]*)/g,
-      q = window.location.hash.substring(1)
-    e = r.exec(q)
-    while (e) {
-      hashParams[e[1]] = decodeURIComponent(e[2])
-      e = r.exec(q)
-    }
-    return hashParams
+    axios.get('http://localhost:8888/')
+      .then(res => {
+        this.props.tokenToState(res.data)
+        this.setState({
+          tokenError: false
+        })
+      })
+      .then(() => {
+        let token = this.props.main.token
+        if (token) {
+          spotifyApi.setAccessToken(token)
+        }
+      })
+      .catch(err => console.log('errrr', err)
+      )
   }
 
   textHandler = (e) => {
@@ -85,8 +76,8 @@ class Main extends Component {
 
   render() {
     let concertInfo = this.props.main.venues.length > 0 ? `${this.props.main.venues.length} Concert(s) Found ` : 'No Concert Information'
-    if (!this.state.loggedIn) {
-      return <div>Redirect..</div>
+    if (this.state.tokenError) {
+      return <div className="loading" >Loading..</div>
     } else {
       return (
         <div style={styles.mainContainer} >
@@ -132,8 +123,16 @@ class Main extends Component {
   }
 }
 
+const mapDispatchToProps = {
+  tokenToState,
+  searchArtist,
+  artistClick,
+  albumPlay,
+  backToArtist
+}
+
 const mapStateToProps = state => ({
   main: state.main
 })
 
-export default connect(mapStateToProps, { tokenToState, searchArtist, artistClick, albumPlay, backToArtist })(Main)
+export default connect(mapStateToProps, mapDispatchToProps)(Main)

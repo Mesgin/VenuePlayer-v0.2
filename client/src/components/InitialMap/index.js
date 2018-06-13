@@ -1,7 +1,7 @@
 import React from 'react'
 import { withScriptjs, withGoogleMap, GoogleMap, Marker , InfoWindow } from "react-google-maps"
-import aubergineMode from '../../assets/aubergine-theme.json'
-import darkMode from '../../assets/dark-theme.json'
+// import aubergineMode from '../../assets/aubergine-theme.json'
+// import darkMode from '../../assets/dark-theme.json'
 import nightMode from '../../assets/night-theme.json'
 
 export const InitialMap = withScriptjs(withGoogleMap((props) =>

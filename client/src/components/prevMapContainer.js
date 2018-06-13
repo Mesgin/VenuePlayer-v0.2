@@ -33,9 +33,9 @@ export class MapContainer extends Component {
   }
 
   render() {
-    let venuesJSX = this.props.venues.map((venue, i) => {
+    let venuesJSX = this.props.venues.map((venue) => {
       return <Marker
-        key={i}
+        key={venue.id}
         onClick={this.onMarkerClick}
         name={`${venue.venue.name}, ${venue.venue.city}, ${venue.venue.region} / ${venue.datetime}`}
         position={{

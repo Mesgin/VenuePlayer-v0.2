@@ -15,7 +15,6 @@ const Header = (props) => {
           <a href="mailto:mo.mesgin@gmail.com" className="email">
             <i className="fa fa-envelope"></i>
           </a>
-          778-872-7663
         </div>
         <div className="header-head">
           <h1 >VenuePlayer</h1>

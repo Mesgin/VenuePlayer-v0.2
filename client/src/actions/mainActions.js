@@ -26,7 +26,11 @@ export const searchArtist = (artist) => dispatch => {
         payload: data.artists.items
       })
     }, (err) => {
-      console.error(err)
+      let log = JSON.parse(err.response).error.message
+      console.log(log)
+      console.log(err)
+      // if()
+      // axios.get('http://localhost:8888/login')
     })
 }
 
