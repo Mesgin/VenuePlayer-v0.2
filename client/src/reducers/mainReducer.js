@@ -5,7 +5,8 @@ import {
   SET_ALBUMS,
   ALBUM_PLAY,
   BACK_TO_ARTIST,
-  SHOW_INFO
+  SHOW_INFO,
+  ALBUM_BUTTON_CLICK
 } from '../actions/types'
 
 
@@ -47,8 +48,9 @@ export default function (state = initialState, action) {
         ...state,
         albums: action.payload.albums,
         img: action.payload.img,
-        showArtist: false,
-        showAlbums: true
+        nowPlaying: action.payload.albums[0].id
+        // showArtist: false,
+        // showAlbums: true
       }
     case ALBUM_PLAY:
       return {
@@ -72,6 +74,13 @@ export default function (state = initialState, action) {
             :
             venue
         )
+      }
+    case ALBUM_BUTTON_CLICK:
+      return {
+        ...state,
+        albums: action.payload.albums,
+        showAlbums: true,
+        showArtist: false
       }
     default:
       return state

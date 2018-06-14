@@ -1,6 +1,5 @@
 import React from 'react'
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
-import { InfoBox } from "react-google-maps/lib/components/addons/InfoBox"
+import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
 import aubergineMode from '../../assets/aubergine-theme.json'
 // import darkMode from '../../assets/dark-theme.json'
 // import nightMode from '../../assets/night-theme.json'
@@ -26,20 +25,20 @@ export const InitialMap = withScriptjs(withGoogleMap((props) =>
         onClick={() => props.onMarkerClick(marker.id)}
       >
         {marker.showInfo &&
-          <InfoBox
+          <InfoWindow
             onCloseClick={() => props.onMarkerClose(marker.id)}
             options={{ closeBoxURL: ``, enableEventPropagation: true }}
 
           >
-            <div style={{ height: '100px', width: '150px', color: 'black', opacity: 0.85, padding: `12px`, backgroundColor: 'white' }}>
-              <div style={{ height: '100%', width: '100%', fontSize: `16px`, fontColor: `#08233B` }}>
-                <h2>{marker.lineup[0]}</h2>
+            <div style={{  color: 'black', opacity: 0.85, margin: '1px', backgroundColor: 'white' }}>
+              <div style={{ height: '100%', width: '100%', fontSize: `16px`, fontColor: `#08233B`}}>
+                <h3>{marker.lineup[0]}</h3>
                 <p><strong>Location:</strong> {marker.venue.country} - {marker.venue.city}</p>
                 <p><strong>Venue:</strong> {marker.venue.name}</p>
                 <p><strong>Date:</strong> {marker.datetime}</p>
               </div>
             </div>
-          </InfoBox>
+          </InfoWindow>
         }
       </Marker>
       )

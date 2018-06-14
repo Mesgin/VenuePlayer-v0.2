@@ -36,13 +36,13 @@ class MapContainer extends React.Component {
   // }
   render() {
     return (
-      <div style={{ height: "100%" }}>
+      <div style={{ height: "21rem",bottom: 0 }}>
         <InitialMap
           containerElement={
             <div style={{ height: 'auto', width: 'auto' }} />
           }
           mapElement={
-            <div style={{ height: '300px' }} />
+            <div style={{ height: '21rem' }} />
           }
           markers={this.props.main.venues}
           onMapLoad={this.handleMapLoad}

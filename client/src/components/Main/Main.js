@@ -65,8 +65,7 @@ class Main extends Component {
         ?
         `${venues.length} Concert(s) Found `
         :
-        'No Concert Information'
-
+        null
     if (this.state.tokenError) {
       return <div className="loading" >Loading..</div>
     } else {
@@ -83,12 +82,16 @@ class Main extends Component {
                 className="search-input"
               />
               {this.state.textValue === null && <h1>Simply type your favorite artist's name to know more about his/her next upcoming concert</h1>}
-              {showArtist && this.state.textValue && <Artist />}
+              {showArtist && (
+                <div>
+                  <h2 className="album-title" >
+                    {concertInfo}
+                  </h2>
+                  <Artist />
+                </div>
+              )}
               {showAlbums && this.state.textValue &&
                 (<div>
-                  <h2 className="album-title" >
-                    {`${concertInfo} - ${artist}'s Albums : `}
-                  </h2>
                   <div className="back-to-artist" onClick={this.props.backToArtist}>
                     <i className="fa fa-chevron-left"></i> back
                   </div>
