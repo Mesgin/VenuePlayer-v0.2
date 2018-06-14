@@ -7,8 +7,7 @@ import {
   ALBUM_PLAY,
   TOKEN_TO_STATE,
   BACK_TO_ARTIST,
-  SHOW_INFO,
-  SHOW_ALBUMS,
+  SHOW_INFOWINDOW,
   ALBUM_BUTTON_CLICK
 } from '../actions/types'
 
@@ -114,15 +113,9 @@ export const backToArtist = () => dispatch => {
   })
 }
 
-export const showInfo = changedVenues => dispatch => {
+export const showInfowindow = changedVenues => dispatch => {
   dispatch({
-    type: SHOW_INFO,
+    type: SHOW_INFOWINDOW,
     payload: changedVenues
-  })
-}
-
-export const showAlbums = () => dispatch => {
-  dispatch({
-    type: SHOW_ALBUMS
   })
 }

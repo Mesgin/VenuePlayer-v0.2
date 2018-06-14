@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { InitialMap } from '../InitialMap'
-import { showInfo } from '../../actions/mainActions'
+import { showInfowindow } from '../../actions/mainActions'
 
 class MapContainer extends React.Component {
   constructor(props) {
@@ -63,4 +63,4 @@ const mapStateToProps = state => ({
   main: state.main
 })
 
-export default connect(mapStateToProps, { showInfo })(MapContainer)
+export default connect(mapStateToProps, { showInfowindow })(MapContainer)

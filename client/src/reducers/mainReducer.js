@@ -5,7 +5,7 @@ import {
   SET_ALBUMS,
   ALBUM_PLAY,
   BACK_TO_ARTIST,
-  SHOW_INFO,
+  SHOW_INFOWINDOW,
   ALBUM_BUTTON_CLICK
 } from '../actions/types'
 
@@ -21,6 +21,7 @@ const initialState = {
   token: '',
   showAlbums: false,
   showArtist: true,
+  showInfo: false
 }
 
 export default function (state = initialState, action) {
@@ -41,7 +42,8 @@ export default function (state = initialState, action) {
       return {
         ...state,
         venues: action.payload.venues,
-        artist: action.payload.artist
+        artist: action.payload.artist,
+        showInfo: true
       }
     case SET_ALBUMS:
       return {
@@ -64,7 +66,7 @@ export default function (state = initialState, action) {
         showArtist: true,
         showAlbums: false
       }
-    case SHOW_INFO:
+    case SHOW_INFOWINDOW:
       return {
         ...state,
         venues: state.venues.map(venue =>
@@ -80,7 +82,8 @@ export default function (state = initialState, action) {
         ...state,
         albums: action.payload.albums,
         showAlbums: true,
-        showArtist: false
+        showArtist: false,
+        showInfo: false
       }
     default:
       return state

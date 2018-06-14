@@ -59,13 +59,14 @@ class Main extends Component {
       venues,
       img,
       nowPlaying,
-      artist
+      showInfo
     } = this.props.main,
       concertInfo = venues.length > 0
         ?
         `${venues.length} Concert(s) Found `
         :
-        null
+        'No Concert Information'
+
     if (this.state.tokenError) {
       return <div className="loading" >Loading..</div>
     } else {
@@ -84,13 +85,13 @@ class Main extends Component {
               {this.state.textValue === null && <h1>Simply type your favorite artist's name to know more about his/her next upcoming concert</h1>}
               {showArtist && (
                 <div>
-                  <h2 className="album-title" >
+                  {showInfo && <h2 className="album-title" >
                     {concertInfo}
-                  </h2>
+                  </h2>}
                   <Artist />
                 </div>
               )}
-              {showAlbums && this.state.textValue &&
+              {showAlbums &&
                 (<div>
                   <div className="back-to-artist" onClick={this.props.backToArtist}>
                     <i className="fa fa-chevron-left"></i> back
