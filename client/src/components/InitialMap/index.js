@@ -8,7 +8,7 @@ export const InitialMap = withScriptjs(withGoogleMap((props) =>
   <GoogleMap
     ref={props.onMapLoad}
     defaultZoom={2}
-    defaultCenter={{ lat: 49.246292, lng: -123.116226 }}
+    defaultCenter={{ lat: 49.2193, lng: -122.5984 }}
     onClick={props.onMapClick}
     defaultOptions={{ styles: aubergineMode }}
   >
@@ -44,8 +44,8 @@ export const InitialMap = withScriptjs(withGoogleMap((props) =>
     })}
     <InfoWindow
             options={{ closeBoxURL: ``, enableEventPropagation: true }}
-            position={{ lat: 25.03, lng: 121.6 }}
-            // defaultPosition={{props.center.lat, props.center.lng)}
+            // position={{ lat: 25.03, lng: 121.6 }}
+            defaultPosition={{lat: 49.2193, lng: -122.5984}}
 
             >
                         <div style={{  color: 'black', opacity: 0.85, margin: '1px', backgroundColor: 'white' }}>
