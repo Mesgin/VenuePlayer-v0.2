@@ -5,7 +5,7 @@ import { showInfowindow } from '../../actions/mainActions'
 
 class MapContainer extends React.Component {
   onToggleOpen = (markerId) => {
-    this.props.showInfo(markerId)
+    this.props.showInfowindow(markerId)
   }
 
   render() {
