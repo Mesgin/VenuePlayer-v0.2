@@ -10,7 +10,7 @@ class MapContainer extends React.Component {
 
   render() {
     return (
-      <div style={{ height: "21rem",bottom: 0 }}>
+      <div style={{ height: "21rem" }}>
         <InitialMap
           containerElement={
             <div style={{ height: 'auto', width: 'auto' }} />

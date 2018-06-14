@@ -10,6 +10,10 @@ body {
     /* width: 100%;
     height: 100%; */
 }
+.welcome {
+    padding: 20px 150px;
+    font-size: 2rem;
+}
 .sidebar {
     -webkit-box-shadow: 4px 0px 5px 0px rgba(0,0,0,0.57);
     -moz-box-shadow: 4px 0px 5px 0px rgba(0,0,0,0.57);
@@ -107,15 +111,16 @@ header h1 {
 .search-input {
     padding: 10px;
     color: white;
-    background-color: rgba(0, 0, 0, 0.347);
+    background-color: rgba(0, 0, 0, 0.425);
     border-radius: 5px;
     width: 300px;
-    height: 18px;
+    height: 16px;
     border: 0;
     font-size: 16px;
-    margin-top: 16px;
-    margin-bottom: 16px;
+    margin-top: 8px;
+    margin-bottom: 8px;
     outline: none;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 .album-play-icon {
     position: relative;
@@ -162,10 +167,6 @@ header h1 {
 }
 .artist-icon:hover .middle {
     opacity: 1;
-} 
-.artist-text {
-    flex-direction: column;
-    align-self: flex-start;
 }
 .map-icon {
     color: white;
@@ -175,9 +176,10 @@ header h1 {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    flex-wrap:wrap;
+    flex-wrap: wrap;
     text-align: left;
-    /* padding-bottom: 15px; */
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 16px;
     height: 222px;
     overflow: auto;
     align-items: flex-start;
@@ -240,10 +242,11 @@ header h1 {
     justify-content: space-around;
     flex-wrap:wrap;
     text-align: left;
-    padding-bottom: 15px;
     margin-bottom: 10px;
-    height: 180px;
+    height: 220px;
     overflow: auto;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 16px;
 }
 .album {
     display: flex;
@@ -264,7 +267,7 @@ header h1 {
     display: inline-block;
 }
 .back-to-artist {
-    margin: 12px;
+    margin-bottom: 8px;
     font-size: 16px;
     cursor: pointer;
 }
@@ -318,4 +321,17 @@ header h1 {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: rgb(204, 201, 201); 
+}
+
+.search-input::-webkit-input-placeholder {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.search-input:-ms-input-placeholder {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.search-input:-moz-placeholder {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.search-input::-moz-placeholder {
+    font-family: 'Source Sans Pro', sans-serif;
 }

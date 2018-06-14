@@ -82,12 +82,12 @@ class Main extends Component {
                 onChange={this.textHandler}
                 className="search-input"
               />
-              {this.state.textValue === null && <h1>Simply type your favorite artist's name to know more about his/her next upcoming concert</h1>}
+              {this.state.textValue === null && <p className="welcome">Simply type your favorite artist's name to know more about his/her next upcoming concert, and also you can preview their albums :)</p>}
               {showArtist && (
                 <div>
-                  {showInfo && <h2 className="album-title" >
+                  {showInfo && <p className="album-title" >
                     {concertInfo}
-                  </h2>}
+                  </p>}
                   <Artist />
                 </div>
               )}

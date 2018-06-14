@@ -33,7 +33,7 @@ class Artist extends Component {
             </div>
           </div>
           <div className="artist-text">
-            <h4>{artist.name}</h4>
+            <p>{artist.name}</p>
           </div>
           <div className="artist-buttons">
             <button

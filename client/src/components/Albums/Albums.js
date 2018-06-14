@@ -19,11 +19,11 @@ class Albums extends Component {
               <i className="play-icon fa fa-play-circle"></i>
             </div>
           </div>
-          <h4>{album.name.length > 20
+          <p>{album.name.length > 20
             ?
             `${album.name.substring(0, 20).trim()}.. (${parseInt(album.release, 10)})`
             :
-            `${album.name} (${parseInt(album.release, 10)})`}</h4>
+            `${album.name} (${parseInt(album.release, 10)})`}</p>
         </div>
       )
     })

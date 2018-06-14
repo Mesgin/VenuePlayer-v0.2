@@ -17,7 +17,6 @@ export const InitialMap = withScriptjs(withGoogleMap((props) =>
         lat: Number(marker.venue.latitude),
         lng: Number(marker.venue.longitude)
       }
-      console.log('ini', marker.id);
 
       return (<Marker
         key={marker.id}
@@ -43,5 +42,21 @@ export const InitialMap = withScriptjs(withGoogleMap((props) =>
       </Marker>
       )
     })}
+    <InfoWindow
+            options={{ closeBoxURL: ``, enableEventPropagation: true }}
+            position={{ lat: 25.03, lng: 121.6 }}
+            // defaultPosition={{props.center.lat, props.center.lng)}
+
+            >
+                        <div style={{  color: 'black', opacity: 0.85, margin: '1px', backgroundColor: 'white' }}>
+              <div style={{ height: '100%', width: '100%', fontSize: `16px`, fontColor: `#08233B`}}>
+                <h3>Hello</h3>
+                {/* <p><strong>Location:</strong> {marker.venue.country} - {marker.venue.city}</p>
+                <p><strong>Venue:</strong> {marker.venue.name}</p>
+                <p><strong>Date:</strong> {marker.datetime}</p> */}
+              </div>
+            </div>
+
+    </InfoWindow>
   </GoogleMap>
 ))
