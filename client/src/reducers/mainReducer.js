@@ -61,6 +61,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         showArtist: true,
+        showInfo: true,
         showAlbums: false
       }
     case SHOW_INFOWINDOW:

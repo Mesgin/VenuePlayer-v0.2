@@ -8,7 +8,7 @@ export const InitialMap = withScriptjs(withGoogleMap((props) =>
   <GoogleMap
     ref={props.onMapLoad}
     defaultZoom={2}
-    defaultCenter={{ lat: 49.2193, lng: -122.5984 }}
+    defaultCenter={{ lat: 49.246292, lng: -123.116226 }}
     onClick={props.onMapClick}
     defaultOptions={{ styles: aubergineMode }}
   >

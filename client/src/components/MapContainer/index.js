@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { InitialMap } from '../InitialMap'
 import { showInfowindow } from '../../actions/mainActions'
+const key = require('../../config/keys').googleKey
 
 class MapContainer extends React.Component {
   onToggleOpen = (markerId) => {
@@ -10,13 +11,13 @@ class MapContainer extends React.Component {
 
   render() {
     return (
-      <div style={{ height: "21rem" }}>
+      <div style={{ height: "49vmin" }}>
         <InitialMap
           containerElement={
             <div style={{ height: 'auto', width: 'auto' }} />
           }
           mapElement={
-            <div style={{ height: '21rem' }} />
+            <div style={{ height: '49vmin' }} />
           }
           markers={this.props.main.venues}
           onMapLoad={this.handleMapLoad}
@@ -25,7 +26,7 @@ class MapContainer extends React.Component {
           onMarkerClick={this.onToggleOpen}
           onMarkerClose={this.onToggleOpen}
           isMarkerShown
-          googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
+          googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${key}&v=3.exp&libraries=geometry,drawing,places`}
           loadingElement={<div style={{ height: `100%` }} />}
         />
       </div>
