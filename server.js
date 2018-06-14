@@ -15,8 +15,7 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization")
   next()
 })
-const scope = 'user-read-private user-read-email user-read-playback-state',
-  redirect_uri = 'http://localhost:8888/callback',
+const redirect_uri = 'http://localhost:8888/callback',
   client_id = 'd773cbd567e4473394863ffacc1a7409',
   state = 'some-state-of-my-choice',
   client_secret = '6fb8f632cb444cafaf1fc49ca99c6bd3'
@@ -24,7 +23,9 @@ const scope = 'user-read-private user-read-email user-read-playback-state',
 var authOptions = {
   url: 'https://accounts.spotify.com/api/token',
   headers: {
-    'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))
+    'Authorization':
+      'Basic ' +
+      (new Buffer(client_id + ':' + client_secret).toString('base64'))
   },
   form: {
     grant_type: 'client_credentials'
@@ -60,7 +61,6 @@ app.post('/', (req, res) => {
     `https://rest.bandsintown.com/artists/${artist}/events?app_id=c74a852c1481cfb7e5cda8c42adc7ff0`,
     (err, response, data) => {
       const dataObject = JSON.parse(data)
-      console.log('res: ', dataObject)
       if (err) console.log(err)
       res.json(dataObject)
     })

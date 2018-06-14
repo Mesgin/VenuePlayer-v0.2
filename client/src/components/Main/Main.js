@@ -1,41 +1,19 @@
 import React, { Component } from 'react'
-// import { Switch, Route, Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-// import SpotifyWebApi from 'spotify-web-api-js'
 import Sidebar from '../Sidebar/Sidebar'
 import Header from '../Header/Header'
 import Artist from '../Artist/Artist'
 import Albums from '../Albums/Albums'
-// import MapContainer from '../MapContainer'
 import axios from 'axios'
 import MapContainer from '../MapContainer/index'
 import SpotifyWebApi from 'spotify-web-api-js'
-import { searchArtist, artistClick, albumPlay, backToArtist, tokenToState } from '../../actions/mainActions'
-
-const styles = {
-  mainContainer: {
-    paddingRight: '5px'
-  },
-  main: {
-    marginLeft: '260px',
-    textAlign: 'center',
-    // height: '60%'
-  },
-  middle: {
-    height: '50%'
-  },
-  map: {
-    padding: 0,
-    position: 'absolute',
-    bottom: 0,
-    height: '40%',
-    width: '100%'
-
-  },
-  albumTitle: {
-    margin: 0
-  }
-}
+import {
+  searchArtist,
+  artistClick,
+  albumPlay,
+  backToArtist,
+  tokenToState
+} from '../../actions/mainActions'
 
 const spotifyApi = new SpotifyWebApi()
 
@@ -45,7 +23,7 @@ class Main extends Component {
 
     this.state = {
       tokenError: true,
-      textInput: ''
+      textValue: null
     }
   }
 
@@ -63,58 +41,62 @@ class Main extends Component {
           spotifyApi.setAccessToken(token)
         }
       })
-      .catch(err => console.log('errrr', err)
+      .catch(err => console.log(err)
       )
   }
 
   textHandler = (e) => {
     this.props.searchArtist(e.target.value)
     this.setState({
-      textInput: e.target.value
+      textValue: e.target.value
     })
   }
 
   render() {
-    let concertInfo = this.props.main.venues.length > 0 ? `${this.props.main.venues.length} Concert(s) Found ` : 'No Concert Information'
+    let {
+      showArtist,
+      showAlbums,
+      venues,
+      img,
+      nowPlaying,
+      artist
+    } = this.props.main,
+      concertInfo = venues.length > 0
+        ?
+        `${venues.length} Concert(s) Found `
+        :
+        'No Concert Information'
+
     if (this.state.tokenError) {
       return <div className="loading" >Loading..</div>
     } else {
       return (
-        <div style={styles.mainContainer} >
-          <Sidebar
-            style={styles.sidebar}
-            img={this.props.main.img}
-            nowPlaying={this.props.main.nowPlaying}
-          />
-          <div style={styles.main} >
+        <div className="main-container" >
+          <Sidebar img={img} nowPlaying={nowPlaying} />
+          <div className="main" >
             <Header />
-            <div style={styles.middle}>
+            <div className="main-middle" >
               <input
                 placeholder="Search Artist"
                 type="text"
                 onChange={this.textHandler}
                 className="search-input"
               />
-              {this.props.main.showArtist && <Artist />}
-              {this.props.main.showAlbums &&
+              {this.state.textValue === null && <h1>Simply type your favorite artist's name to know more about his/her next upcoming concert</h1>}
+              {showArtist && this.state.textValue && <Artist />}
+              {showAlbums && this.state.textValue &&
                 (<div>
-                  <h2 style={styles.albumTitle}>
-                    {`${concertInfo} - ${this.props.main.artist}'s Albums : `}
+                  <h2 className="album-title" >
+                    {`${concertInfo} - ${artist}'s Albums : `}
                   </h2>
                   <div className="back-to-artist" onClick={this.props.backToArtist}>
                     <i className="fa fa-chevron-left"></i> back
                   </div>
                   <Albums />
-                </div>)
-              }
+                </div>)}
             </div>
-            <div style={styles.map} id="map">
-              {/* <MapContainer
-              venues={this.props.main.venues}
-              dateTime={this.state.dateTime}
-              artist={this.props.main.artist}
-            /> */}
-              <MapContainer markers={this.state.markers} />
+            <div id="map">
+              <MapContainer />
             </div>
           </div>
         </div>

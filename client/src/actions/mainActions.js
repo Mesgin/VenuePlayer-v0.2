@@ -6,7 +6,8 @@ import {
   SET_ALBUMS,
   ALBUM_PLAY,
   TOKEN_TO_STATE,
-  BACK_TO_ARTIST
+  BACK_TO_ARTIST,
+  SHOW_INFO
 } from '../actions/types'
 
 const spotifyApi = new SpotifyWebApi()
@@ -19,18 +20,14 @@ export const tokenToState = (token) => dispatch => {
 }
 
 export const searchArtist = (artist) => dispatch => {
-  spotifyApi.searchArtists(artist, { 'limit': 8 })
-    .then((data) => {      
+  spotifyApi.searchArtists(artist, { 'limit': 12 })
+    .then((data) => {
       dispatch({
         type: SEARCH_ARTIST,
         payload: data.artists.items
       })
     }, (err) => {
-      let log = JSON.parse(err.response).error.message
-      console.log(log)
-      console.log(err)
-      // if()
-      // axios.get('http://localhost:8888/login')
+      console.error(err)
     })
 }
 
@@ -38,16 +35,18 @@ export const artistClick = (img, id, artist) => dispatch => {
   axios.post('http://localhost:8888/', { artist })
     .then((response) => {
       let venues = response.data.map((item) => {
+        item.showInfo = false
         return item
       })
+      console.log(venues);
+      
       dispatch({
         type: SET_VENUES,
         payload: { venues, artist }
       })
     }).catch(err => console.log('error : ', err))
 
-  spotifyApi.getArtistAlbums(id).then((data) => {
-    console.log(data)
+  spotifyApi.getArtistAlbums(id, { limit: 50, market: 'CA' }).then((data) => {
     let albums = data.items.map(item => {
       if (item.images.length > 0) {
         return {
@@ -83,5 +82,13 @@ export const albumPlay = (id, imageMedium) => dispatch => {
 export const backToArtist = () => dispatch => {
   dispatch({
     type: BACK_TO_ARTIST
+  })
+}
+
+export const showInfo = changedVenues => dispatch => {
+
+  dispatch({
+    type: SHOW_INFO,
+    payload: changedVenues
   })
 }

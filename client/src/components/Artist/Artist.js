@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-// import { Link } from 'react-router-dom'
 import { artistClick } from '../../actions/mainActions'
 
 class Artist extends Component {
   render() {
-    let artistsContent = this.props.main.artists.length > 0 ?
-      this.props.main.artists.map(artist => {
+    let artistsContent = this.props.main.artists.map(artist => {
         let imageSmall = 
         artist.images.length > 0 
         ? 
@@ -29,7 +27,6 @@ class Artist extends Component {
             >
               <img className="image"
                 src={imageSmall}
-                style={{ width: 64, height: 64 }}
                 alt={artist.name} />
               <div className="middle">
                 <i className="map-icon fa fa-map-marker"></i>
@@ -38,7 +35,7 @@ class Artist extends Component {
             <h4>{artist.name}</h4>
           </div>
         )
-      }) : null
+      })
     return (
       <div className="artist-container">
         {artistsContent}

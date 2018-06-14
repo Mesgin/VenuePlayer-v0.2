@@ -4,7 +4,8 @@ import {
   SET_VENUES,
   SET_ALBUMS,
   ALBUM_PLAY,
-  BACK_TO_ARTIST
+  BACK_TO_ARTIST,
+  SHOW_INFO
 } from '../actions/types'
 
 
@@ -18,7 +19,7 @@ const initialState = {
   albums: null,
   token: '',
   showAlbums: false,
-  showArtist: true
+  showArtist: true,
 }
 
 export default function (state = initialState, action) {
@@ -55,12 +56,23 @@ export default function (state = initialState, action) {
         nowPlaying: action.payload.id,
         img: action.payload.imageMedium
       }
-     case BACK_TO_ARTIST:
+    case BACK_TO_ARTIST:
       return {
         ...state,
         showArtist: true,
         showAlbums: false
-      } 
+      }
+    case SHOW_INFO:
+      return {
+        ...state,
+        venues: state.venues.map(venue =>
+          venue.id === action.payload
+            ?
+            { ...venue, showInfo: !venue.showInfo }
+            :
+            venue
+        )
+      }
     default:
       return state
   }

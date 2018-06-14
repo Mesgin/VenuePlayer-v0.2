@@ -6,13 +6,24 @@ const Header = (props) => {
     <header >
       <div className="header">
         <div className="header-icons">
-          <a href="https://www.linkedin.com/in/mo-mesgin/" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://www.linkedin.com/in/mo-mesgin/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <i className="fa fa-linkedin-square"></i>
           </a>
-          <a href="https://github.com/mesgin" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://github.com/mesgin"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <i className="fa fa-github"></i>
           </a>
-          <a href="mailto:mo.mesgin@gmail.com" className="email">
+          <a
+            href="mailto:mo.mesgin@gmail.com"
+            className="email"
+          >
             <i className="fa fa-envelope"></i>
           </a>
         </div>
@@ -20,14 +31,17 @@ const Header = (props) => {
           <h1 >VenuePlayer</h1>
         </div>
         <div className="developer">
-          <a href="https://github.com/mesgin" target="_blank" rel="noopener noreferrer" >
+          <a
+            href="https://github.com/mesgin"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <img src={developer} alt="mo mesgin" />
           </a>
         </div>
       </div>
       <div>
       </div>
-      {/* {!this.state.loggedIn && <a href='http://localhost:8888/login' > Login to Spotify </a>} */}
     </header>
   )
 }
