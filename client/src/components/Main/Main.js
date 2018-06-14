@@ -41,7 +41,12 @@ class Main extends Component {
           spotifyApi.setAccessToken(token)
         }
       })
-      .catch(err => console.log(err)
+      .catch(err => {
+        console.log(err)
+        setTimeout(()=>{
+          window.location.reload(true)
+        },3000)
+      }
       )
   }
 
