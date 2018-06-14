@@ -9,7 +9,6 @@ import {
   ALBUM_BUTTON_CLICK
 } from '../actions/types'
 
-
 const initialState = {
   songs: [{}],
   venues: [],
@@ -51,8 +50,6 @@ export default function (state = initialState, action) {
         albums: action.payload.albums,
         img: action.payload.img,
         nowPlaying: action.payload.albums[0].id
-        // showArtist: false,
-        // showAlbums: true
       }
     case ALBUM_PLAY:
       return {
