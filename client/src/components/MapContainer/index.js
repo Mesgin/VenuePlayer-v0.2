@@ -4,36 +4,10 @@ import { InitialMap } from '../InitialMap'
 import { showInfowindow } from '../../actions/mainActions'
 
 class MapContainer extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      isMarkerShown: false
-    }
-  }
-
   onToggleOpen = (markerId) => {
-    console.log('hio',markerId);
-    // this.setState({
-    //   isMarkerShown: !this.props.main.venues.filter(venue => venue.id === markerId)[0].showInfo
-    // })
-
-    // let shi = this.props.main.venues.filter(venue => venue.id === markerId)[0].showInfo
-    // this.props.main.venues.filter(venue => venue.id === markerId)[0].showInfo = !shi
     this.props.showInfo(markerId)
-    console.log();
-    
-    // this.setState({
-    //   isMarkerShown: !this.state.isMarkerShown
-    // })
   }
 
-  // onMarkerClick = (markerId) => {
-  //   this.setState({
-  //     markers: 
-  //   })
-  //   this.props.showInfo(markerId)
-  // }
   render() {
     return (
       <div style={{ height: "21rem",bottom: 0 }}>
