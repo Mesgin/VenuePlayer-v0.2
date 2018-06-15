@@ -19,7 +19,7 @@ const initialState = {
   albums: null,
   token: '',
   showAlbums: false,
-  showArtist: true,
+  showArtist: false,
   showInfo: false
 }
 

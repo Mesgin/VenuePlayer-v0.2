@@ -36,10 +36,7 @@ class Main extends Component {
         })
       })
       .then(() => {
-        let token = this.props.main.token
-        if (token) {
-          spotifyApi.setAccessToken(token)
-        }
+          spotifyApi.setAccessToken(this.props.main.token)
       })
       .catch(err => {
         console.log(err)
@@ -71,12 +68,13 @@ class Main extends Component {
       img,
       nowPlaying,
       showInfo
-    } = this.props.main,
-      concertInfo = venues.length > 0
-        ?
-        `${venues.length} Concert(s) Found `
-        :
-        'No Concert Information'
+    } = this.props.main
+
+    let concertInfo = venues.length > 0
+      ?
+      `Concerts Found: ${venues.length}`
+      :
+      'No Concert Information'
 
     if (this.state.tokenError) {
       return <div className="loading" >Loading..</div>
@@ -87,19 +85,24 @@ class Main extends Component {
             <span className="chevron right"></span>
           </div>
           <Sidebar img={img} nowPlaying={nowPlaying} />
+          <Header />
           <div className="main" >
-            <Header />
+            <input
+              placeholder="Search Artist"
+              type="text"
+              onChange={this.textHandler}
+              className="search-input"
+            />
             <div className="main-middle" >
-              <input
-                placeholder="Search Artist"
-                type="text"
-                onChange={this.textHandler}
-                className="search-input"
-              />
-              {this.state.textValue === null && <p className="welcome">Simply type your favorite artists name to know more about their next upcoming concert, and also you can preview their albums :)</p>}
+              {this.state.textValue === null && (
+                <div className="welcome" >
+                  Simply type your favorite artists name to know more about their next upcoming concert, and also you can preview their albums :)
+              
+                </div>
+              )}
               {showArtist && (
-                <div>
-                  {showInfo && <p className="album-title" >
+                <div >
+                  {showInfo && <p className="result" >
                     {concertInfo}
                   </p>}
                   <Artist />

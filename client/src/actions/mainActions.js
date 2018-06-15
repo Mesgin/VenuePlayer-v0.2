@@ -31,7 +31,12 @@ export const searchArtist = (artist) => dispatch => {
         payload: data.artists.items
       })
     }, (err) => {
-      console.error(err)
+      if(err.status===401){
+        axios.get('http://localhost:8888/')
+          .then(res => {
+            tokenToState(res.data)
+          }).catch(err => console.error(err))
+      }    
     })
 }
 
