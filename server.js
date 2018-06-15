@@ -8,6 +8,7 @@ const SpotifyWebApi = require('spotify-web-api-node')
 const cors = require('cors')
 const querystring = require('querystring')
 const cookieParser = require('cookie-parser')
+const key = require('./client/src/config/keys').bandKey
 
 
 app.use((req, res, next) => {
@@ -58,7 +59,7 @@ app.use(bodyParser.json())
 app.post('/', (req, res) => {
   const { artist } = req.body
   request(
-    `https://rest.bandsintown.com/artists/${artist}/events?app_id=c74a852c1481cfb7e5cda8c42adc7ff0`,
+    `https://rest.bandsintown.com/artists/${artist}/events?app_id=${key}`,
     (err, response, data) => {
       const dataObject = JSON.parse(data)
       if (err) console.log(err)
