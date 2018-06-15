@@ -21,6 +21,9 @@ export const tokenToState = (token) => dispatch => {
 }
 
 export const searchArtist = (artist) => dispatch => {
+  document.querySelector('.heading').classList.add('heading-shrink')
+  document.querySelector('.search-input').classList.add('search-input-shrink')
+  document.querySelector('.map').classList.add('map-show')
   spotifyApi.searchArtists(artist, { 'limit': 9 })
     .then((data) => {
       dispatch({

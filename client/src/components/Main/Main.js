@@ -43,9 +43,9 @@ class Main extends Component {
       })
       .catch(err => {
         console.log(err)
-        setTimeout(()=>{
+        setTimeout(() => {
           window.location.reload(true)
-        },3000)
+        }, 3000)
       }
       )
   }
@@ -55,6 +55,12 @@ class Main extends Component {
     this.setState({
       textValue: e.target.value
     })
+  }
+
+  playerToggle = () => {
+    document.querySelector('.main-container').classList.toggle('main-container-shrink')
+    document.querySelector('.chevron').classList.toggle('left')
+    document.querySelector('.sidebar').classList.toggle('sidebar-toggle')
   }
 
   render() {
@@ -77,6 +83,9 @@ class Main extends Component {
     } else {
       return (
         <div className="main-container" >
+          <div className="player-toggle" onClick={this.playerToggle}>
+            <span className="chevron right"></span>
+          </div>
           <Sidebar img={img} nowPlaying={nowPlaying} />
           <div className="main" >
             <Header />
@@ -104,7 +113,7 @@ class Main extends Component {
                   <Albums />
                 </div>)}
             </div>
-            <div id="map">
+            <div className="map">
               <MapContainer />
             </div>
           </div>

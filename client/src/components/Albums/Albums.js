@@ -27,11 +27,7 @@ class Albums extends Component {
         </div>
       )
     })
-    return (
-      <div className="album-container" >
-        {albums}
-      </div>
-    )
+    return <div className="album-container">{albums}</div>
   }
 }
 
