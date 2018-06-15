@@ -29,13 +29,29 @@ export const InitialMap = withScriptjs(withGoogleMap((props) =>
             options={{ closeBoxURL: ``, enableEventPropagation: true }}
 
           >
-            <div style={{  color: 'black', opacity: 0.85, margin: '1px', backgroundColor: 'white' }}>
-              <div style={{ height: '100%', width: '100%', fontSize: `16px`, fontColor: `#08233B`}}>
+            <div id="infowindow" style={{  color: 'black', opacity: 0.9, margin: '1px', backgroundColor: 'white'}}>
+              <div style={{ height: '100%', width: '100%', fontSize: `1.1rem`, fontColor: `#08233B`}}>
                 <h3>{marker.lineup[0]}</h3>
                 <p><strong>Location:</strong> {marker.venue.country} - {marker.venue.city}</p>
                 <p><strong>Venue:</strong> {marker.venue.name}</p>
                 <p><strong>Date:</strong> {marker.datetime}</p>
-              </div>
+                <a 
+                href={marker.url} 
+                target="_blank"
+                style={{
+                  textDecoration: 'none',
+                  padding: '5px',
+                  backgroundColor: 'rgba(50, 167, 112)',
+                  color: 'white',
+                  borderRadius: '5px',
+                  border: 0,
+                  margin:'15px auto 0 auto',
+                  fontFamily: '"Source Sans Pro", sans-serif',
+                  fontSize: '1.1rem',
+                  display: 'block',
+                  width: "10vw"
+                 }}
+                >Buy Ticket</a></div>
             </div>
           </InfoWindow>
         }
