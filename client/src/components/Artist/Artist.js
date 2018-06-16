@@ -6,16 +6,16 @@ class Artist extends Component {
   render() {
     let artistsContent = this.props.main.artists.map(artist => {
       let imageSmall =
-        artist.images.length > 0
+        artist.images.length > 1
           ?
-          artist.images[2].url
+          artist.images[artist.images.length - 1].url
           :
           'http://via.placeholder.com/64x64'
 
       let imageMedium =
-        artist.images.length > 0
+        artist.images.length > 1
           ?
-          artist.images[1].url
+          artist.images[artist.images.length - 2].url
           :
           'http://via.placeholder.com/260x260'
 
@@ -32,7 +32,10 @@ class Artist extends Component {
               <i className="map-icon fa fa-map-marker"></i>
             </div>
           </div>
-          <div className="artist-text">
+          <div
+            className="artist-text"
+            style={{ cursor: 'pointer' }}
+            onClick={() => this.props.artistClick(artist.id, imageMedium, artist.name)} >
             <p>{artist.name}</p>
           </div>
           <div className="artist-buttons">
