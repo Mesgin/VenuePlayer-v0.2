@@ -13,7 +13,9 @@ import {
 
 const spotifyApi = new SpotifyWebApi()
 
-export const tokenToState = (token) => dispatch => {
+export const tokenToState = token => dispatch => {
+  console.log('voo');
+  
   dispatch({
     type: TOKEN_TO_STATE,
     payload: token
@@ -31,12 +33,16 @@ export const searchArtist = (artist) => dispatch => {
         payload: data.artists.items
       })
     }, (err) => {
-      if(err.status===401){
+      if (err.status === 401) {
         axios.get('http://localhost:8888/')
           .then(res => {
-            tokenToState(res.data)
+            spotifyApi.setAccessToken(res.data)
+            dispatch({
+              type: TOKEN_TO_STATE,
+              payload: res.data
+            })
           }).catch(err => console.error(err))
-      }    
+      }
     })
 }
 
@@ -56,8 +62,11 @@ export const artistClick = (id, img, artist) => dispatch => {
     }).catch(err => console.log('error : ', err))
 
   spotifyApi.getArtistAlbums(id, { limit: 50, market: 'CA' }).then((data) => {
+    console.log('items',data.items);
+    
     let albums = data.items.map(item => {
-      if (item.images.length > 0) {
+      
+      if (item.images.length > 1) {
         return {
           name: item.name,
           image: item.images[2].url,
@@ -78,13 +87,24 @@ export const artistClick = (id, img, artist) => dispatch => {
       payload: { albums, img }
     })
   },
-    (err) => { console.error(err) })
+    (err) => {
+      if (err.status === 401) {
+        axios.get('http://localhost:8888/')
+          .then(res => {
+            spotifyApi.setAccessToken(res.data)
+            dispatch({
+              type: TOKEN_TO_STATE,
+              payload: res.data
+            })
+          }).catch(err => console.error(err))
+      }
+    })
 }
 
 export const albumButtonClick = id => dispatch => {
   spotifyApi.getArtistAlbums(id, { limit: 50, market: 'CA' }).then((data) => {
     let albums = data.items.map(item => {
-      if (item.images.length > 0) {
+      if (item.images.length > 1) {
         return {
           name: item.name,
           image: item.images[2].url,
@@ -105,12 +125,24 @@ export const albumButtonClick = id => dispatch => {
       payload: { albums }
     })
   },
-    (err) => { console.error(err) })
+    (err) => {
+      if (err.status === 401) {
+        axios.get('http://localhost:8888/')
+          .then(res => {
+            spotifyApi.setAccessToken(res.data)
+            dispatch({
+              type: TOKEN_TO_STATE,
+              payload: res.data
+            })
+          })
+          .catch(err => console.error(err))
+      }
+    })
 }
 
 export const albumPlay = (id, imageMedium) => dispatch => {
   let visible = document.querySelector('.sidebar').classList.contains('sidebar-toggle')
-  if(!visible){
+  if (!visible) {
     document.querySelector('.sidebar').classList.toggle('sidebar-toggle')
     document.querySelector('.main-container').classList.toggle('main-container-shrink')
     document.querySelector('.chevron').classList.toggle('left')

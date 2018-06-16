@@ -36,7 +36,10 @@ class Main extends Component {
         })
       })
       .then(() => {
-          spotifyApi.setAccessToken(this.props.main.token)
+        let token = this.props.main.token
+        if (token) {
+          spotifyApi.setAccessToken(token)
+        }
       })
       .catch(err => {
         console.log(err)
