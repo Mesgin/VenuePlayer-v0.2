@@ -8,6 +8,7 @@ import {
   TOKEN_TO_STATE,
   BACK_TO_ARTIST,
   SHOW_INFOWINDOW,
+  CLOSE_ALL_INFOWINDOW,
   ALBUM_BUTTON_CLICK
 } from '../actions/types'
 
@@ -163,5 +164,11 @@ export const showInfowindow = changedVenues => dispatch => {
   dispatch({
     type: SHOW_INFOWINDOW,
     payload: changedVenues
+  })
+}
+
+export const closeAllInfowindow = changedVenues => dispatch => {
+  dispatch({
+    type: CLOSE_ALL_INFOWINDOW
   })
 }

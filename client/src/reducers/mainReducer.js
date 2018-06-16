@@ -6,6 +6,7 @@ import {
   ALBUM_PLAY,
   BACK_TO_ARTIST,
   SHOW_INFOWINDOW,
+  CLOSE_ALL_INFOWINDOW,
   ALBUM_BUTTON_CLICK
 } from '../actions/types'
 //BQAlooE91Vetkf80FUIg9vTIylbGq_R32qkbnnS52zGbBHqiLwWKMc30WlS_PE0Aog0Z6Ej5Cn9TXflfuo8
@@ -71,6 +72,17 @@ export default function (state = initialState, action) {
           venue.id === action.payload
             ?
             { ...venue, showInfo: !venue.showInfo }
+            :
+            venue
+        )
+      }
+    case CLOSE_ALL_INFOWINDOW:
+      return {
+        ...state,
+        venues: state.venues.map(venue =>
+          venue.showInfo === true
+            ?
+            { ...venue, showInfo: false}
             :
             venue
         )

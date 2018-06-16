@@ -1,12 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { InitialMap } from '../InitialMap'
-import { showInfowindow } from '../../actions/mainActions'
+import { showInfowindow, closeAllInfowindow } from '../../actions/mainActions'
 const key = require('../../config/keys').googleKey
 
 class MapContainer extends React.Component {
   onToggleOpen = (markerId) => {
     this.props.showInfowindow(markerId)
+  }
+  handleMapClick = () => {
+    this.props.closeAllInfowindow()
   }
 
   render() {
@@ -38,4 +41,4 @@ const mapStateToProps = state => ({
   main: state.main
 })
 
-export default connect(mapStateToProps, { showInfowindow })(MapContainer)
+export default connect(mapStateToProps, { showInfowindow, closeAllInfowindow })(MapContainer)
