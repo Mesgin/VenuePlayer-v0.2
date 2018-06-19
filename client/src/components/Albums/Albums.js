@@ -1,10 +1,18 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { albumPlay } from '../../actions/mainActions'
 
 class Albums extends Component {
+  constructor(props){
+    super(props)
+  }
+  componentDidMount(){
+    document.querySelector('.album-container').classList.add('album-container-show')
+  }
   render() {
-    let albums = this.props.main.albums.map(album => {
+    
+    let albums = this.props.main.albums.length > 0 ? this.props.main.albums.map(album => {
       return (
         <div className="album"
           key={album.id}
@@ -27,7 +35,15 @@ class Albums extends Component {
         </div>
       )
     })
-    return <div className="album-container">{albums}</div>
+    :
+    null
+
+    return (
+      <div>
+        <div className="album-container">{albums}</div>
+        <Link to='/'> Back </Link>
+      </div>
+    )
   }
 }
 

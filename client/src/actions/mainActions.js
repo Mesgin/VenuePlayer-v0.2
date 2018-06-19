@@ -26,8 +26,8 @@ export const tokenToState = token => dispatch => {
 export const searchArtist = (artist) => dispatch => {
   document.querySelector('.heading').classList.add('heading-shrink')
   document.querySelector('.search-input').classList.add('search-input-shrink')
-  document.querySelector('.map').classList.add('map-show')
-  spotifyApi.searchArtists(artist, { 'limit': 9 })
+
+  spotifyApi.searchArtists(artist, { 'limit': 15 })
     .then((data) => {
       dispatch({
         type: SEARCH_ARTIST,
@@ -47,15 +47,13 @@ export const searchArtist = (artist) => dispatch => {
     })
 }
 
-export const artistClick = (id, img, artist) => dispatch => {
+export const artistClick = (id, img, artist, genres) => dispatch => {
   axios.post('http://localhost:8888/', { artist })
     .then((response) => {
       let venues = response.data.map((item) => {
         item.showInfo = false
         return item
       })
-      console.table(venues);
-
       dispatch({
         type: SET_VENUES,
         payload: { venues, artist }
@@ -63,9 +61,9 @@ export const artistClick = (id, img, artist) => dispatch => {
     }).catch(err => console.log('errror : ', err))
 
   spotifyApi.getArtistAlbums(id, { limit: 50, market: 'CA' }).then((data) => {
-    console.log('items', data.items);
+    console.log('albums', data.items)
 
-    let albums = data.items.map(item => {
+    let albums = data.items.map(item => {   
       if (item.images.length > 1) {
         return {
           name: item.name,
@@ -84,7 +82,7 @@ export const artistClick = (id, img, artist) => dispatch => {
     })
     dispatch({
       type: SET_ALBUMS,
-      payload: { albums, img }
+      payload: { albums, img, genres }
     })
   },
     (err) => {
@@ -99,6 +97,7 @@ export const artistClick = (id, img, artist) => dispatch => {
           }).catch(err => console.error(err))
       }
     })
+  // document.querySelector('.map').classList.add('map-show')
 }
 
 export const albumButtonClick = id => dispatch => {

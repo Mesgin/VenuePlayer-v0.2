@@ -57,19 +57,16 @@ export const InitialMap = withScriptjs(withGoogleMap((props) =>
       </Marker>
       )
     })}
-    <InfoWindow
+    {/* <InfoWindow
       options={{ closeBoxURL: ``, enableEventPropagation: true }}
       defaultPosition={{ lat: 49.2193, lng: -122.5984 }}
     >
       <div style={{ color: 'black', opacity: 0.85, margin: '1px', backgroundColor: 'white' }}>
         <div style={{ height: '100%', width: '100%', fontSize: `16px`, fontColor: `#08233B` }}>
           <h3>Hello</h3>
-          {/* <p><strong>Location:</strong> {marker.venue.country} - {marker.venue.city}</p>
-                <p><strong>Venue:</strong> {marker.venue.name}</p>
-                <p><strong>Date:</strong> {marker.datetime}</p> */}
         </div>
       </div>
 
-    </InfoWindow>
+    </InfoWindow> */}
   </GoogleMap>
 ))

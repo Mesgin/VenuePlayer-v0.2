@@ -16,12 +16,13 @@ const initialState = {
   nowPlaying: '78C6B8XlWz91aOID7H6NBX',
   artists: [],
   artist: '',
+  genres: [],
   img: null,
-  albums: null,
+  albums: {},
   token: '',
-  showAlbums: false,
-  showArtist: false,
-  showInfo: false
+  // showAlbums: false,
+  // showArtist: false,
+  // showInfo: false
 }
 
 export default function (state = initialState, action) {
@@ -50,6 +51,7 @@ export default function (state = initialState, action) {
         ...state,
         albums: action.payload.albums,
         img: action.payload.img,
+        genres: action.payload.genres,
         nowPlaying: action.payload.albums[0].id
       }
     case ALBUM_PLAY:
