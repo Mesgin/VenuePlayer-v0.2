@@ -7,7 +7,7 @@ import aubergineMode from '../../assets/aubergine-theme.json'
 export const InitialMap = withScriptjs(withGoogleMap((props) =>
   <GoogleMap
     ref={props.onMapLoad}
-    defaultZoom={2}
+    defaultZoom={3}
     defaultCenter={{ lat: 49.2193, lng: -122.5984 }}
     onClick={props.onMapClick}
     defaultOptions={{ styles: aubergineMode }}

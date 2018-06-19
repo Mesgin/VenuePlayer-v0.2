@@ -99,7 +99,7 @@ class Main extends Component {
             <div className="main-middle" >
               {this.state.textValue === null && (
                 <div className="welcome" >
-                  Simply type your favorite artists name to know more about their next upcoming concert, and also you can preview their albums :)
+                  Simply type your favourite artists name to know more about their next upcoming concert, and preview their albums :)
               
                 </div>
               )}

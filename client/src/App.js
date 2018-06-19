@@ -3,12 +3,9 @@ import { Provider } from 'react-redux'
 import store from './store'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './App.css'
-import Login from './components/Login/Login'
+// import Login from './components/Login/Login'
 import Main from './components/Main/Main'
-
-// import Navbar from '../Navbar/Navbar'
-
-
+import Artist from './components/Artist/Artist'
 
 class App extends Component {
 
@@ -17,7 +14,7 @@ class App extends Component {
       <Provider store={store} >
         <Router>
           <div>
-            <Route exact path='/login' component={Login} />
+            <Route exact path='/artist/:name' component={Artist} />
             <Route exact path='/' component={Main} />
           </div>
         </Router >
@@ -25,7 +22,5 @@ class App extends Component {
     )
   }
 }
-
-
 
 export default App

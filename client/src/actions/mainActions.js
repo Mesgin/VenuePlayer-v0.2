@@ -54,13 +54,13 @@ export const artistClick = (id, img, artist) => dispatch => {
         item.showInfo = false
         return item
       })
-      console.log(venues);
+      console.table(venues);
 
       dispatch({
         type: SET_VENUES,
         payload: { venues, artist }
       })
-    }).catch(err => console.log('error : ', err))
+    }).catch(err => console.log('errror : ', err))
 
   spotifyApi.getArtistAlbums(id, { limit: 50, market: 'CA' }).then((data) => {
     console.log('items', data.items);
