@@ -7,11 +7,11 @@ const key = require('./client/src/config/keys').bandKey
 const path = require('path')
 
 
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "*")
-//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization")
-//   next()
-// })
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*")
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization")
+  next()
+})
 const client_id = 'd773cbd567e4473394863ffacc1a7409',
   client_secret = '6fb8f632cb444cafaf1fc49ca99c6bd3'
 
@@ -47,8 +47,10 @@ app.get('/', (req, res) => {
         json: true
       }
       // tokenSaved = token
-      res.send(tokenSaved)
+      res.send(token)
       request.get(options, function (error, response, body) {
+        console.log(body)
+        
       })
     }
   })

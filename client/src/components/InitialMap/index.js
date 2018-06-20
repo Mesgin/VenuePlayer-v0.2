@@ -16,7 +16,6 @@ export const InitialMap = withScriptjs(withGoogleMap((props) => {
     return <div className="country"><h4>{key}: {countries[key]}</h4></div>
   })
 
-
   return (
     <GoogleMap
       ref={props.onMapLoad}
@@ -82,7 +81,6 @@ export const InitialMap = withScriptjs(withGoogleMap((props) => {
             {countriesJSX}
           </div>
         </div>
-
       </InfoWindow>
     </GoogleMap>
   )
