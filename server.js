@@ -1,13 +1,8 @@
 const express = require('express')
 const app = express()
-// const fs = require('fs')
-// const mm = require('musicmetadata')
 const request = require('request')
 const bodyParser = require('body-parser')
 const SpotifyWebApi = require('spotify-web-api-node')
-// const cors = require('cors')
-// const querystring = require('querystring')
-// const cookieParser = require('cookie-parser')
 const key = require('./client/src/config/keys').bandKey
 const path = require('path')
 
@@ -40,8 +35,6 @@ app.use(bodyParser.json())
 // let token;
 app.get('/', (req, res) => {
   request.post(authOptions, function (error, response, body) {
-    console.log('hi');
-
     if (!error && response.statusCode === 200) {
 
       // use the access token to access the Spotify Web API
@@ -55,8 +48,6 @@ app.get('/', (req, res) => {
       }
       res.send(token)
       request.get(options, function (error, response, body) {
-        // console.log(body);
-
       })
     }
   })

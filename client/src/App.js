@@ -65,6 +65,7 @@ class App extends Component {
       showArtist,
       showAlbums,
       venues,
+      artists,
       img,
       nowPlaying,
       showInfo
@@ -85,7 +86,7 @@ class App extends Component {
             <span className="chevron right"></span>
           </div>
           <Sidebar img={img} nowPlaying={nowPlaying} />
-          <Header />
+          <Header artists={artists}/>
           <div className="main" >
             <div className="main-middle" >
               <Switch>
@@ -94,16 +95,11 @@ class App extends Component {
                 <Route exact path='/albums/:name' component={Albums} />
                 <Route component={NotFound} />
               </Switch>
-              {this.state.textValue === null && (
+              {this.props.main.artists.length === 0 && (
                 <div className="welcome" >
                   Simply type your favourite artists name to know more about their next upcoming concert, and preview their albums :)
                 </div>
               )}
-              {/* {showArtist && (
-              <div >
-                <Artists />
-              </div>
-            )} */}
             </div>
           </div>
         </div>

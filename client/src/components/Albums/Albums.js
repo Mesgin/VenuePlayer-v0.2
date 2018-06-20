@@ -4,14 +4,8 @@ import { Link } from 'react-router-dom'
 import { albumPlay } from '../../actions/mainActions'
 
 class Albums extends Component {
-  constructor(props){
-    super(props)
-  }
-  componentDidMount(){
-    document.querySelector('.album-container').classList.add('album-container-show')
-  }
   render() {
-    
+
     let albums = this.props.main.albums.length > 0 ? this.props.main.albums.map(album => {
       return (
         <div className="album"
@@ -19,9 +13,9 @@ class Albums extends Component {
           onClick={() => this.props.albumPlay(album.id, album.imageMedium)}
         >
           <div className="album-play-icon">
-            <img src={album.image || 'http://via.placeholder.com/64x64'} 
-            className="image" 
-            alt={album.name} 
+            <img src={album.image || 'http://via.placeholder.com/64x64'}
+              className="image"
+              alt={album.name}
             />
             <div className="middle">
               <i className="play-icon fa fa-play-circle"></i>
@@ -35,13 +29,17 @@ class Albums extends Component {
         </div>
       )
     })
-    :
-    null
+      :
+      null
 
     return (
       <div>
-        <div className="album-container">{albums}</div>
-        <Link to='/'> Back </Link>
+        <div className="albums-back-link">
+        <Link to='/'><i className="fa fa-chevron-left"></i></Link>
+        </div>
+        <div className="album-container">
+          {albums}
+        </div>
       </div>
     )
   }

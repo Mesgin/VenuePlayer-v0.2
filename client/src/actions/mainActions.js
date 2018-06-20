@@ -15,8 +15,6 @@ import {
 const spotifyApi = new SpotifyWebApi()
 
 export const tokenToState = token => dispatch => {
-  console.log('voo');
-
   dispatch({
     type: TOKEN_TO_STATE,
     payload: token
@@ -24,9 +22,6 @@ export const tokenToState = token => dispatch => {
 }
 
 export const searchArtist = (artist) => dispatch => {
-  document.querySelector('.heading').classList.add('heading-shrink')
-  document.querySelector('.search-input').classList.add('search-input-shrink')
-
   spotifyApi.searchArtists(artist, { 'limit': 15 })
     .then((data) => {
       dispatch({
@@ -61,9 +56,8 @@ export const artistClick = (id, img, artist, genres) => dispatch => {
     }).catch(err => console.log('errror : ', err))
 
   spotifyApi.getArtistAlbums(id, { limit: 50, market: 'CA' }).then((data) => {
-    console.log('albums', data.items)
-
-    let albums = data.items.map(item => {   
+    // console.log('albums', data.items)
+    let albums = data.items.filter(item => item.name !== item.name).map(item => {
       if (item.images.length > 1) {
         return {
           name: item.name,
@@ -97,7 +91,6 @@ export const artistClick = (id, img, artist, genres) => dispatch => {
           }).catch(err => console.error(err))
       }
     })
-  // document.querySelector('.map').classList.add('map-show')
 }
 
 export const albumButtonClick = id => dispatch => {

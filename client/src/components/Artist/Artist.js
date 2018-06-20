@@ -2,47 +2,43 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import MapContainer from '../MapContainer/index'
+import { albumButtonClick } from '../../actions/mainActions'
 
 class Artist extends Component {
   render() {
-    let countries = this.props.main.venues.reduce((obj, venue) => {
-      if (!obj[venue.venue.country]) {
-        obj[venue.venue.country] = 0
-      }
-      obj[venue.venue.country]++
-      return obj
-    }, {})
-    let countriesJSX = Object.keys(countries).map((key) => {
-      return (
-        <div>
-          <p>{key}: {countries[key]}</p>
-        </div>
-      )
-    })
-    // console.log(this.props.main.artists);
-    
-    // let art = this.props.main.artists.find(artist => artist.name === this.props.main.artist)
-
-
-    // console.warn(art);
-    let genres = this.props.main.genres.map(genre => <p>{genre}</p>)
-    
+    // let genres = this.props.main.genres.slice(0, 3).map(genre => <div><h5>{genre}</h5></div>)
 
     return (
       <div>
-        <div>
-          <img src={this.props.main.img} />
-          <p>{this.props.main.artist}</p>
+        <div className="single-artist-container">
+          <div className="single-artist">
+            <div className="left">
+              <Link to='/'><i className="fa fa-chevron-left"></i></Link>
+            </div>
+            <div className="between">
+              <div >
+                <img src={this.props.main.img} className="single-artist-img" />
+              </div>
+            </div>
+            <div className="right">
+              <div>
+                <h1>{this.props.main.artist}</h1>
+              </div>
+              <Link to={`/albums/${this.props.main.artist}`}>
+                <button
+                  type="button"
+                  className="artist-buttons-albums"
+                  onClick={() => this.props.albumButtonClick(this.props.main.artistId)}>
+                  Albums
+            </button>
+              </Link>
+              {/* <div className="genres">
+                  <h4>Genres:</h4>
+                  {genres}
+                </div> */}
+            </div>
+          </div>
         </div>
-        <div><p>Genres: {genres}</p></div>
-        <div>
-          <p>Total Concerts Found: {this.props.main.venues.length}</p>
-        </div>
-        <div>
-          {countriesJSX}
-        </div>
-        <button>Albums</button>
-        <Link to='/'> Back </Link>
         <div className="map">
           <MapContainer />
         </div>
@@ -55,4 +51,4 @@ const mapStateToProps = state => ({
   main: state.main
 })
 
-export default connect(mapStateToProps)(Artist)
+export default connect(mapStateToProps,{ albumButtonClick })(Artist)

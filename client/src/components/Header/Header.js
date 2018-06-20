@@ -28,7 +28,7 @@ const Header = (props) => {
           </a>
         </div>
         <div className="header-head">
-          <h1 className="heading" >VenuePlayer</h1>
+          <h1 className={props.artists.length > 0 ? "heading-shrink" : "heading"} >VenuePlayer</h1>
         </div>
         <div className="developer">
           <a

@@ -52,7 +52,6 @@ class Artists extends Component {
           </Link>
           <Link to={`/artist/${artist.name}`}>
             <div
-              className="artist-text"
               style={{ cursor: 'pointer' }}
               onClick={() => this.props.artistClick(artist.id, imageMedium, artist.name, artist.genres)} >
               <p>{artist.name}</p>
@@ -77,7 +76,7 @@ class Artists extends Component {
           placeholder="Search Artist"
           type="text"
           onChange={this.textHandler}
-          className="search-input"
+          className={this.props.main.artists.length > 0 ? "search-input-shrink" : "search-input"}
         />
         <div className="artist-container">
           {artistsContent}
