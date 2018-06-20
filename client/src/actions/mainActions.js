@@ -58,7 +58,7 @@ export const artistClick = (id, img, artist, genres) => dispatch => {
 
   spotifyApi.getArtistAlbums(id, { limit: 50, market: 'CA' }).then((data) => {
     // console.log('albums', data.items)
-    let albums = data.items.filter(item => item.name !== item.name).map(item => {
+    let albums = data.items.map(item => {
       if (item.images.length > 1) {
         return {
           name: item.name,

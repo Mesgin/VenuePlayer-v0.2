@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Switch, withRouter } from 'react-router-dom'
+import { Route, Switch, withRouter } from 'react-router-dom'
 import './App.css'
 import { connect } from 'react-redux'
 import axios from 'axios'
@@ -62,20 +62,16 @@ class App extends Component {
 
   render() {
     let {
-      showArtist,
-      showAlbums,
-      venues,
       artists,
       img,
       nowPlaying,
-      showInfo
     } = this.props.main
 
-    let concertInfo = venues.length > 0
-      ?
-      `Concerts Found: ${venues.length}`
-      :
-      'No Concert Information'
+    // let concertInfo = venues.length > 0
+    //   ?
+    //   `Concerts Found: ${venues.length}`
+    //   :
+    //   'No Concert Information'
 
     if (this.state.tokenError) {
       return <div className="loading" >Loading..</div>

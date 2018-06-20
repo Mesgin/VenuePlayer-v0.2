@@ -17,7 +17,7 @@ class Artist extends Component {
             </div>
             <div className="between">
               <div >
-                <img src={this.props.main.img} className="single-artist-img" />
+                <img src={this.props.main.img} alt="artist" className="single-artist-img" />
               </div>
             </div>
             <div className="right">
