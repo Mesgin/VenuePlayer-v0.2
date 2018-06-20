@@ -33,7 +33,11 @@ class App extends Component {
   componentDidMount() {
     axios.get('https://venueplayer.herokuapp.com/')
       .then(res => {
+        console.log(res.data);
+        
         this.props.tokenToState(res.data)
+        console.log(this.props.main.token);
+        
         this.setState({
           tokenError: false
         })
@@ -82,7 +86,7 @@ class App extends Component {
             <span className="chevron right"></span>
           </div>
           <Sidebar img={img} nowPlaying={nowPlaying} />
-          <Header artists={artists}/>
+          <Header artists={artists} />
           <div className="main" >
             <div className="main-middle" >
               <Switch>
@@ -104,16 +108,16 @@ class App extends Component {
   }
 }
 
-  const mapDispatchToProps = {
-    tokenToState,
-    searchArtist,
-    artistClick,
-    albumPlay,
-    backToArtist
-  }
+const mapDispatchToProps = {
+  tokenToState,
+  searchArtist,
+  artistClick,
+  albumPlay,
+  backToArtist
+}
 
-  const mapStateToProps = state => ({
-    main: state.main
-  })
+const mapStateToProps = state => ({
+  main: state.main
+})
 
-  export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
