@@ -7,11 +7,11 @@ const key = require('./client/src/config/keys').bandKey
 const path = require('path')
 
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*")
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization")
-  next()
-})
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "*")
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization")
+//   next()
+// })
 const client_id = 'd773cbd567e4473394863ffacc1a7409',
   client_secret = '6fb8f632cb444cafaf1fc49ca99c6bd3'
 
@@ -30,28 +30,28 @@ var authOptions = {
 
 app.use(express.static(path.join(__dirname, 'client/build')))
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-let tokenSaved;
-request.post(authOptions, function (error, response, body) {
-  if (!error && response.statusCode === 200) {
-
-    // use the access token to access the Spotify Web API
-    let token = body.access_token
-    let options = {
-      url: 'https://api.spotify.com/v1/tracks/2TpxZ7JUBn3uw46aR7qd6V',
-      headers: {
-        'Authorization': 'Bearer ' + token
-      },
-      json: true
-    }
-    tokenSaved = token
-    request.get(options, function (error, response, body) {
-    })
-  }
-})
+// let tokenSaved;
 app.get('/', (req, res) => {
-  res.send(tokenSaved)
+  request.post(authOptions, function (error, response, body) {
+    if (!error && response.statusCode === 200) {
+
+      // use the access token to access the Spotify Web API
+      let token = body.access_token
+      let options = {
+        url: 'https://api.spotify.com/v1/tracks/2TpxZ7JUBn3uw46aR7qd6V',
+        headers: {
+          'Authorization': 'Bearer ' + token
+        },
+        json: true
+      }
+      // tokenSaved = token
+      res.send(tokenSaved)
+      request.get(options, function (error, response, body) {
+      })
+    }
+  })
 })
 
 app.post('/', (req, res) => {
