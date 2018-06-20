@@ -11,6 +11,7 @@ import {
   CLOSE_ALL_INFOWINDOW,
   ALBUM_BUTTON_CLICK
 } from '../actions/types'
+// http://localhost:8888/
 
 const spotifyApi = new SpotifyWebApi()
 
@@ -30,7 +31,7 @@ export const searchArtist = (artist) => dispatch => {
       })
     }, (err) => {
       if (err.status === 401) {
-        axios.get('http://localhost:8888/')
+        axios.get('https://venueplayer.herokuapp.com/')
           .then(res => {
             spotifyApi.setAccessToken(res.data)
             dispatch({
@@ -43,7 +44,7 @@ export const searchArtist = (artist) => dispatch => {
 }
 
 export const artistClick = (id, img, artist, genres) => dispatch => {
-  axios.post('http://localhost:8888/', { artist })
+  axios.post('https://venueplayer.herokuapp.com/', { artist })
     .then((response) => {
       let venues = response.data.map((item) => {
         item.showInfo = false
@@ -81,7 +82,7 @@ export const artistClick = (id, img, artist, genres) => dispatch => {
   },
     (err) => {
       if (err.status === 401) {
-        axios.get('http://localhost:8888/')
+        axios.get('https://venueplayer.herokuapp.com/')
           .then(res => {
             spotifyApi.setAccessToken(res.data)
             dispatch({
@@ -119,7 +120,7 @@ export const albumButtonClick = id => dispatch => {
   },
     (err) => {
       if (err.status === 401) {
-        axios.get('http://localhost:8888/')
+        axios.get('https://venueplayer.herokuapp.com/')
           .then(res => {
             spotifyApi.setAccessToken(res.data)
             dispatch({

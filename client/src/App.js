@@ -31,7 +31,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:8888/')
+    axios.get('https://venueplayer.herokuapp.com/')
       .then(res => {
         this.props.tokenToState(res.data)
         this.setState({
