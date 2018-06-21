@@ -4,6 +4,7 @@ const request = require('request')
 const bodyParser = require('body-parser')
 const SpotifyWebApi = require('spotify-web-api-node')
 const key = require('./client/src/config/keys').bandKey
+const secret = require('./client/src/config/keys').secret
 const path = require('path')
 
 
@@ -13,7 +14,7 @@ app.use((req, res, next) => {
   next()
 })
 const client_id = 'd773cbd567e4473394863ffacc1a7409',
-  client_secret = '6fb8f632cb444cafaf1fc49ca99c6bd3'
+  client_secret = secret
 
 var authOptions = {
   url: 'https://accounts.spotify.com/api/token',
@@ -28,7 +29,7 @@ var authOptions = {
   json: true
 }
 
-app.use(express.static(path.join(__dirname, 'client/build')))
+// app.use(express.static(path.join(__dirname, 'client/build')))
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -46,11 +47,8 @@ app.get('/', (req, res) => {
         },
         json: true
       }
-      // tokenSaved = token
       res.send(token)
       request.get(options, function (error, response, body) {
-        console.log(body)
-        
       })
     }
   })

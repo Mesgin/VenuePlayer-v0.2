@@ -11,6 +11,8 @@ import {
   CLOSE_ALL_INFOWINDOW,
   ALBUM_BUTTON_CLICK
 } from '../actions/types'
+const endPoint =  process.env.NODE_ENV === 'development' ? 'http://localhost:8888/' : 'https://venueplayer.herokuapp.com'
+
 // http://localhost:8888/
 
 const spotifyApi = new SpotifyWebApi()
@@ -31,7 +33,7 @@ export const searchArtist = (artist) => dispatch => {
       })
     }, (err) => {
       if (err.status === 401) {
-        axios.get('https://venueplayer.herokuapp.com/')
+        axios.get(endPoint)
           .then(res => {
             spotifyApi.setAccessToken(res.data)
             dispatch({
@@ -44,7 +46,7 @@ export const searchArtist = (artist) => dispatch => {
 }
 
 export const artistClick = (id, img, artist, genres) => dispatch => {
-  axios.post('https://venueplayer.herokuapp.com/', { artist })
+  axios.post(endPoint, { artist })
     .then((response) => {
       let venues = response.data.map((item) => {
         item.showInfo = false
@@ -82,7 +84,7 @@ export const artistClick = (id, img, artist, genres) => dispatch => {
   },
     (err) => {
       if (err.status === 401) {
-        axios.get('https://venueplayer.herokuapp.com/')
+        axios.get(endPoint)
           .then(res => {
             spotifyApi.setAccessToken(res.data)
             dispatch({
@@ -120,7 +122,7 @@ export const albumButtonClick = id => dispatch => {
   },
     (err) => {
       if (err.status === 401) {
-        axios.get('https://venueplayer.herokuapp.com/')
+        axios.get(endPoint)
           .then(res => {
             spotifyApi.setAccessToken(res.data)
             dispatch({

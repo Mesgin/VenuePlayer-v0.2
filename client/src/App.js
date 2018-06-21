@@ -18,6 +18,7 @@ import {
   backToArtist,
   tokenToState
 } from './actions/mainActions'
+const endPoint =  process.env.NODE_ENV === 'development' ? 'http://localhost:8888/' : 'https://venueplayer.herokuapp.com'
 
 const spotifyApi = new SpotifyWebApi()
 
@@ -31,7 +32,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get('https://venueplayer.herokuapp.com/')
+    console.log(process.env.NODE_ENV);
+    
+    axios.get(endPoint)
       .then(res => {
         console.log(res.data);
         
