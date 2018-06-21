@@ -5,6 +5,7 @@ import aubergineMode from '../../assets/aubergine-theme.json'
 // import nightMode from '../../assets/night-theme.json'
 
 export const InitialMap = withScriptjs(withGoogleMap((props) => {
+
   let countries = props.markers.reduce((obj, venue) => {
     if (!obj[venue.venue.country]) {
       obj[venue.venue.country] = 0
@@ -12,8 +13,9 @@ export const InitialMap = withScriptjs(withGoogleMap((props) => {
     obj[venue.venue.country]++
     return obj
   }, {})
-  let countriesJSX = Object.keys(countries).map((key) => {
-    return <div className="country"><h4>{key}: {countries[key]}</h4></div>
+  
+  let countriesJSX = Object.keys(countries).map((key,i) => {
+    return <div className="country" key={i}><h4>{key}: {countries[key]}</h4></div>
   })
 
   return (

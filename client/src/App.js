@@ -18,7 +18,7 @@ import {
   backToArtist,
   tokenToState
 } from './actions/mainActions'
-const endPoint =  process.env.NODE_ENV === 'development' ? 'http://localhost:8888/' : 'https://venueplayer.herokuapp.com'
+const endPoint = process.env.NODE_ENV === 'development' ? 'http://localhost:8888/' : 'https://venueplayer.herokuapp.com'
 
 const spotifyApi = new SpotifyWebApi()
 
@@ -33,29 +33,34 @@ class App extends Component {
 
   componentDidMount() {
     console.log(process.env.NODE_ENV);
-    
+
     axios.get(endPoint)
       .then(res => {
         console.log(res.data);
-        
-        this.props.tokenToState(res.data)
-        console.log(this.props.main.token);
-        
+        spotifyApi.setAccessToken(res.data)
         this.setState({
           tokenError: false
         })
+
+
+        // this.props.tokenToState(res.data)
+        // console.log(this.props.main.token);
+
+        // this.setState({
+        //   tokenError: false
+        // })
       })
-      .then(() => {
-        let token = this.props.main.token
-        if (token) {
-          spotifyApi.setAccessToken(token)
-        }
-      })
+      // .then(() => {
+      //   let token = this.props.main.token
+      //   if (token) {
+      //     spotifyApi.setAccessToken(token)
+      //   }
+      // })
       .catch(err => {
         console.log(err)
-        setTimeout(() => {
-          window.location.reload(true)
-        }, 3000)
+        // setTimeout(() => {
+        //   window.location.reload(true)
+        // }, 3000)
       }
       )
   }

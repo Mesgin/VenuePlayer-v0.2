@@ -23,12 +23,12 @@ class MapContainer extends React.Component {
             <div style={{ height: '50vmin' }} />
           }
           markers={this.props.main.venues}
-          onMapLoad={this.handleMapLoad}
+          // onMapLoad={this.handleMapLoad}
           onMapClick={this.handleMapClick}
-          onMarkerRightClick={this.handleMarkerRightClick}
+          // onMarkerRightClick={this.handleMarkerRightClick}
           onMarkerClick={this.onToggleOpen}
           onMarkerClose={this.onToggleOpen}
-          isMarkerShown
+          // isMarkerShown
           googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${key}&v=3.exp&libraries=geometry,drawing,places`}
           loadingElement={<div style={{ height: `100%` }} />}
         />
