@@ -40,35 +40,36 @@ var authOptions = {
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-// let tokenSaved;
+let token
+request.post(authOptions, function (error, response, body) {
+  console.log('2');
+  
+  if (!error && response.statusCode === 200) {
+    console.log('3');
+    
+    // use the access token to access the Spotify Web API
+    token = body.access_token
+    // let options = {
+    //   url: 'https://api.spotify.com/v1/tracks/2TpxZ7JUBn3uw46aR7qd6V',
+    //   headers: {
+    //     'Authorization': 'Bearer ' + token
+    //   },
+    //   json: true
+    // }
+    console.log('4');
+    
+    
+    // request.get(options, function (error, response, body) {
+    // })
+  }
+  console.log('5');
+  
+  // res.send('no token received')
+})
+
 app.get('/', (req, res) => {
   console.log('1');
-  
-  request.post(authOptions, function (error, response, body) {
-    console.log('2');
-    
-    if (!error && response.statusCode === 200) {
-      console.log('3');
-      
-      // use the access token to access the Spotify Web API
-      let token = body.access_token
-      // let options = {
-      //   url: 'https://api.spotify.com/v1/tracks/2TpxZ7JUBn3uw46aR7qd6V',
-      //   headers: {
-      //     'Authorization': 'Bearer ' + token
-      //   },
-      //   json: true
-      // }
-      console.log('4');
-      
-      res.send(token)
-      // request.get(options, function (error, response, body) {
-      // })
-    }
-    console.log('5');
-    
-    // res.send('no token received')
-  })
+  res.send(token)
 })
 
 app.post('/', (req, res) => {
