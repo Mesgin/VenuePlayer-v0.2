@@ -7,12 +7,19 @@ const key = require('./client/src/config/keys').bandKey
 const secret = require('./client/src/config/keys').secret
 const path = require('path')
 
-
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*")
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization")
   next()
 })
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'))
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+  })
+}
+
 const client_id = 'd773cbd567e4473394863ffacc1a7409',
   client_secret = secret
 
@@ -70,12 +77,7 @@ app.post('/', (req, res) => {
     })
 })
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'))
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
-  })
-}
+
 
 const port = process.env.PORT || 8888
 // var server = app.listen(8000, function () {
