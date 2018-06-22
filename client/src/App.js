@@ -36,7 +36,7 @@ class App extends Component {
 
     axios.get(endPoint)
       .then(res => {
-        console.log(res.data);
+        console.log(res);
         spotifyApi.setAccessToken(res.data)
         this.setState({
           tokenError: false
