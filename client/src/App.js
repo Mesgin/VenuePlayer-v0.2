@@ -19,7 +19,7 @@ import {
   tokenToState
 } from './actions/mainActions'
 const endPoint = process.env.NODE_ENV === 'development' ? 'http://localhost:8888/api' : 'https://venueplayer.herokuapp.com/api'
-
+console.log(process.env.NODE_ENV)
 const spotifyApi = new SpotifyWebApi()
 
 class App extends Component {
