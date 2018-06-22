@@ -13,12 +13,7 @@ app.use((req, res, next) => {
   next()
 })
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'))
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
-  })
-}
+
 
 const client_id = 'd773cbd567e4473394863ffacc1a7409',
   client_secret = secret
@@ -52,6 +47,7 @@ request.post(authOptions, function (error, response, body) {
     
     // use the access token to access the Spotify Web API
     let token = body.access_token
+    console.log(token)
     let options = {
       url: 'https://api.spotify.com/v1/tracks/2TpxZ7JUBn3uw46aR7qd6V',
       headers: {
@@ -98,6 +94,13 @@ const port = process.env.PORT || 8888
 
 //   console.log('Example app listening at http://%s:%s', host, port);
 // })
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'))
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+  })
+}
 
 app.listen(port, () => {
   console.log(port)
