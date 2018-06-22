@@ -36,7 +36,7 @@ var authOptions = {
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 // let token
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
   console.log('1');
   
 request.post(authOptions, function (error, response, body) {
@@ -69,7 +69,7 @@ request.post(authOptions, function (error, response, body) {
 })
 })
 
-app.post('/', (req, res) => {
+app.post('/api', (req, res) => {
   const { artist } = req.body
   request(
     `https://rest.bandsintown.com/artists/${artist}/events?app_id=${key}`,

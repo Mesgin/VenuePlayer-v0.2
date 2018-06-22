@@ -18,7 +18,7 @@ import {
   backToArtist,
   tokenToState
 } from './actions/mainActions'
-const endPoint = process.env.NODE_ENV === 'development' ? 'http://localhost:8888/' : 'https://venueplayer.herokuapp.com/'
+const endPoint = process.env.NODE_ENV === 'development' ? 'http://localhost:8888/api' : 'https://venueplayer.herokuapp.com/api'
 
 const spotifyApi = new SpotifyWebApi()
 

@@ -11,7 +11,7 @@ import {
   CLOSE_ALL_INFOWINDOW,
   ALBUM_BUTTON_CLICK
 } from '../actions/types'
-const endPoint =  process.env.NODE_ENV === 'development' ? 'http://localhost:8888/' : 'https://venueplayer.herokuapp.com'
+const endPoint =  process.env.NODE_ENV === 'development' ? 'http://localhost:8888/api' : 'https://venueplayer.herokuapp.com/api'
 
 // http://localhost:8888/
 
