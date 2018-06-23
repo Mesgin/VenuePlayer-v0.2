@@ -4,7 +4,6 @@ import './App.css'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import SpotifyWebApi from 'spotify-web-api-js'
-// import Login from './components/Login/Login'
 import Artist from './components/Artist/Artist'
 import Header from './components/Header/Header'
 import Sidebar from './components/Sidebar/Sidebar'
@@ -18,8 +17,9 @@ import {
   backToArtist,
   tokenToState
 } from './actions/mainActions'
-const endPoint = process.env.NODE_ENV === 'development' ? 'http://localhost:8888/api' : 'https://venueplayer.herokuapp.com/api'
-console.log(process.env.NODE_ENV)
+const endPoint = process.env.NODE_ENV === 'development' 
+? 'http://localhost:8888/api' 
+: 'https://venueplayer.herokuapp.com/api'
 const spotifyApi = new SpotifyWebApi()
 
 class App extends Component {
@@ -32,35 +32,18 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log(process.env.NODE_ENV);
-
     axios.get(endPoint)
       .then(res => {
-        console.log(res);
         spotifyApi.setAccessToken(res.data)
         this.setState({
           tokenError: false
         })
-
-
-        // this.props.tokenToState(res.data)
-        // console.log(this.props.main.token);
-
-        // this.setState({
-        //   tokenError: false
-        // })
       })
-      // .then(() => {
-      //   let token = this.props.main.token
-      //   if (token) {
-      //     spotifyApi.setAccessToken(token)
-      //   }
-      // })
       .catch(err => {
         console.log(err)
-        // setTimeout(() => {
-        //   window.location.reload(true)
-        // }, 3000)
+        setTimeout(() => {
+          window.location.reload(true)
+        }, 3000)
       }
       )
   }
@@ -79,14 +62,8 @@ class App extends Component {
       nowPlaying,
     } = this.props.main
 
-    // let concertInfo = venues.length > 0
-    //   ?
-    //   `Concerts Found: ${venues.length}`
-    //   :
-    //   'No Concert Information'
-
     if (this.state.tokenError) {
-      return <div className="loading" >Loading..</div>
+      return <div className="loading" >Loading...</div>
     } else {
       return (
         <div className="main-container" >
@@ -105,7 +82,9 @@ class App extends Component {
               </Switch>
               {this.props.main.artists.length === 0 && (
                 <div className="welcome" >
-                  Simply type your favourite artists name to know more about their next upcoming concert, and preview their albums :)
+                <p>
+                Simply search for your favourite artists to know more about their next upcoming concert, You can also preview their albums :)
+                </p>
                 </div>
               )}
             </div>

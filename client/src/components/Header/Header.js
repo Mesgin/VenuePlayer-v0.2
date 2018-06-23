@@ -1,7 +1,7 @@
 import React from 'react'
 import developer from '../../assets/Mo.jpg'
 
-const Header = (props) => {
+export default function Header(props){
   return (
     <header >
       <div className="header">
@@ -45,5 +45,3 @@ const Header = (props) => {
     </header>
   )
 }
-
-export default Header

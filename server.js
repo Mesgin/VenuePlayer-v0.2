@@ -13,8 +13,6 @@ app.use((req, res, next) => {
   next()
 })
 
-
-
 const client_id = 'd773cbd567e4473394863ffacc1a7409',
   client_secret = secret
 
@@ -31,21 +29,16 @@ var authOptions = {
   json: true
 }
 
-// app.use(express.static(path.join(__dirname, 'client/build')))
-
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-// let token
+
 app.get('/api', (req, res) => {
-  console.log('1');
-  
+  console.log('1'); 
 request.post(authOptions, function (error, response, body) {
   console.log('2');
   
   if (!error && response.statusCode === 200) {
-    console.log('3');
-    
-    // use the access token to access the Spotify Web API
+    console.log('3');    
     let token = body.access_token
     console.log(token)
     let options = {
@@ -56,16 +49,11 @@ request.post(authOptions, function (error, response, body) {
       json: true
     }
     console.log('4');
-    res.send(token)
-    
+    res.send(token)    
     request.get(options, function (error, response, body) {  
       console.log('5'); 
-
     })
   }
-
-  console.log('6');
-  // res.send('no token received')
 })
 })
 
@@ -85,22 +73,14 @@ app.post('/api', (req, res) => {
     })
 })
 
-
-
 const port = process.env.PORT || 8888
-// var server = app.listen(8000, function () {
-//   var host = server.address().address;
-//   var port = server.address().port; // put your adress here :)
 
-//   console.log('Example app listening at http://%s:%s', host, port);
-// })
-
-// if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'))
   app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
   })
-// }
+}
 
 app.listen(port, () => {
   console.log(port)
