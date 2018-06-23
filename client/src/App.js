@@ -9,6 +9,7 @@ import Header from './components/Header/Header'
 import Sidebar from './components/Sidebar/Sidebar'
 import Artists from './components/Artists/Artists'
 import Albums from './components/Albums/Albums'
+import Welcome from './components/Welcome/Welcome'
 import NotFound from './components/NotFound/NotFound'
 import {
   searchArtist,
@@ -92,13 +93,9 @@ class App extends Component {
                 <Route exact path='/albums/:name' component={Albums} />
                 <Route component={NotFound} />
               </Switch>
-              {this.props.main.artists.length === 0 && (
-                <div className="welcome" >
-                  <p>
-                    Simply search for your favourite artists to know more about their next upcoming concert, You can also preview their albums :)
-                </p>
-                </div>
-              )}
+              <div className="welcome" >
+                {artists.length === 0 && <Welcome />}
+              </div>
             </div>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import developer from '../../assets/Mo.jpg'
+import mo from '../../assets/Mo.jpg'
 
 export default function Header(props){
   return (
@@ -28,15 +28,15 @@ export default function Header(props){
           </a>
         </div>
         <div className="header-head">
-          <h1 className={props.artists.length > 0 ? "heading-shrink" : "heading"} >VenuePlayer</h1>
+          <h1 className={props.artists.length > 0 ? "heading-show" : "heading-hidden"} >VenuePlayer</h1>
         </div>
-        <div className="developer">
+        <div className="mo">
           <a
             href="https://github.com/mesgin"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src={developer} alt="mo mesgin" />
+            <img src={mo} alt="mo mesgin" />
           </a>
         </div>
       </div>
