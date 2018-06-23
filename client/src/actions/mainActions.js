@@ -13,8 +13,6 @@ import {
 } from '../actions/types'
 const endPoint =  process.env.NODE_ENV === 'development' ? 'http://localhost:8888/api' : 'https://venueplayer.herokuapp.com/api'
 
-// http://localhost:8888/
-
 const spotifyApi = new SpotifyWebApi()
 
 export const tokenToState = token => dispatch => {
@@ -45,8 +43,8 @@ export const searchArtist = (artist) => dispatch => {
     })
 }
 
-export const artistClick = (id, img, artist, genres) => dispatch => {
-  axios.post(endPoint, { artist })
+export const artistClick = (id, img, artist) => dispatch => {
+   axios.post(endPoint, { artist })
     .then((response) => {
       let venues = response.data.map((item) => {
         item.showInfo = false
@@ -79,7 +77,7 @@ export const artistClick = (id, img, artist, genres) => dispatch => {
     })
     dispatch({
       type: SET_ALBUMS,
-      payload: { albums, img, genres }
+      payload: { albums, img, id }
     })
   },
     (err) => {
@@ -96,7 +94,7 @@ export const artistClick = (id, img, artist, genres) => dispatch => {
     })
 }
 
-export const albumButtonClick = id => dispatch => {
+export const albumButtonClick = id => dispatch => { 
   spotifyApi.getArtistAlbums(id, { limit: 50, market: 'CA' }).then((data) => {
     let albums = data.items.map(item => {
       if (item.images.length > 1) {

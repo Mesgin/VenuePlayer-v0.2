@@ -4,19 +4,9 @@ import { connect } from 'react-redux'
 import { artistClick, albumButtonClick, searchArtist } from '../../actions/mainActions'
 
 class Artists extends Component {
-  constructor() {
-    super()
 
-    this.state = {
-      textValue: null
-    }
-  }
-
-  textHandler = (e) => {
+  textHandler = e => {
     this.props.searchArtist(e.target.value)
-    this.setState({
-      textValue: e.target.value
-    })
   }
 
   render() {
@@ -40,7 +30,7 @@ class Artists extends Component {
           <Link to={`/artist/${artist.name}`}>
             <div
               className="artist-icon"
-              onClick={() => this.props.artistClick(artist.id, imageMedium, artist.name, artist.genres)}
+              onClick={() => this.props.artistClick(artist.id, imageMedium, artist.name)}
             >
               <img className="image"
                 src={imageSmall}
@@ -53,7 +43,7 @@ class Artists extends Component {
           <Link to={`/artist/${artist.name}`}>
             <div
               style={{ cursor: 'pointer' }}
-              onClick={() => this.props.artistClick(artist.id, imageMedium, artist.name, artist.genres)} >
+              onClick={() => this.props.artistClick(artist.id, imageMedium, artist.name)} >
               <p>{artist.name}</p>
             </div>
           </Link>

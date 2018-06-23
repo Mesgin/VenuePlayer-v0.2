@@ -14,12 +14,13 @@ import {
   searchArtist,
   artistClick,
   albumPlay,
+  albumButtonClick,
   backToArtist,
   tokenToState
 } from './actions/mainActions'
-const endPoint = process.env.NODE_ENV === 'development' 
-? 'http://localhost:8888/api' 
-: 'https://venueplayer.herokuapp.com/api'
+const endPoint = process.env.NODE_ENV === 'development'
+  ? 'http://localhost:8888/api'
+  : 'https://venueplayer.herokuapp.com/api'
 const spotifyApi = new SpotifyWebApi()
 
 class App extends Component {
@@ -57,6 +58,8 @@ class App extends Component {
 
   render() {
     let {
+      id,
+      artist,
       artists,
       img,
       nowPlaying,
@@ -76,14 +79,23 @@ class App extends Component {
             <div className="main-middle" >
               <Switch>
                 <Route exact path='/' component={Artists} />
-                <Route exact path='/artist/:name' component={Artist} />
+                <Route
+                  exact path='/artist/:name'
+                  render={props => {
+                    return <Artist
+                      {...props}
+                      artist={artist}
+                      id={id}
+                      img={img}
+                      albumButtonClick={this.props.albumButtonClick} />
+                  }} />
                 <Route exact path='/albums/:name' component={Albums} />
                 <Route component={NotFound} />
               </Switch>
               {this.props.main.artists.length === 0 && (
                 <div className="welcome" >
-                <p>
-                Simply search for your favourite artists to know more about their next upcoming concert, You can also preview their albums :)
+                  <p>
+                    Simply search for your favourite artists to know more about their next upcoming concert, You can also preview their albums :)
                 </p>
                 </div>
               )}
@@ -100,6 +112,7 @@ const mapDispatchToProps = {
   searchArtist,
   artistClick,
   albumPlay,
+  albumButtonClick,
   backToArtist
 }
 

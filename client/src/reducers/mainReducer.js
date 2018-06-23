@@ -9,20 +9,18 @@ import {
   CLOSE_ALL_INFOWINDOW,
   ALBUM_BUTTON_CLICK
 } from '../actions/types'
-//BQAlooE91Vetkf80FUIg9vTIylbGq_R32qkbnnS52zGbBHqiLwWKMc30WlS_PE0Aog0Z6Ej5Cn9TXflfuo8
+
 const initialState = {
   songs: [{}],
   venues: [],
   nowPlaying: '78C6B8XlWz91aOID7H6NBX',
   artists: [],
   artist: '',
+  id: '',
   genres: [],
   img: null,
   albums: {},
-  token: '',
-  // showAlbums: false,
-  // showArtist: false,
-  // showInfo: false
+  token: ''
 }
 
 export default function (state = initialState, action) {
@@ -52,7 +50,8 @@ export default function (state = initialState, action) {
         albums: action.payload.albums,
         img: action.payload.img,
         genres: action.payload.genres,
-        nowPlaying: action.payload.albums[0].id
+        nowPlaying: action.payload.albums[0].id,
+        id: action.payload.id
       }
     case ALBUM_PLAY:
       return {

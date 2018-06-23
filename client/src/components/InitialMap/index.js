@@ -13,7 +13,7 @@ export const InitialMap = withScriptjs(withGoogleMap((props) => {
     obj[venue.venue.country]++
     return obj
   }, {})
-  
+
   let countriesJSX = Object.keys(countries).map((key,i) => {
     return <div className="country" key={i}><h4>{key}: {countries[key]}</h4></div>
   })
@@ -73,7 +73,7 @@ export const InitialMap = withScriptjs(withGoogleMap((props) => {
 
       <InfoWindow
         options={{ closeBoxURL: ``, enableEventPropagation: true }}
-        defaultPosition={{ lat: 25.848105, lng: -137.104127 }}
+        position={{ lat: 25.848105, lng: -137.104127 }}
       >
         <div style={{ color: 'black', opacity: 0.85, margin: '1px', backgroundColor: 'white' }}>
           <div style={{ height: '50%', width: '100%', fontSize: `16px`, fontColor: `#08233B` }}>

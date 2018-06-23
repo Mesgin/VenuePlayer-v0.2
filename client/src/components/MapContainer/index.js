@@ -6,6 +6,7 @@ const key = process.env.NODE_ENV === 'production'
 ? require('../../config/keys').googleKey
 : 'AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg'
 
+
 class MapContainer extends React.Component {
   onToggleOpen = (markerId) => {
     this.props.showInfowindow(markerId)
