@@ -8,16 +8,12 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "google-maps-react": "^1.1.4",
     "react": "^15.6.2",
-    "react-audio-spectrum": "0.0.9",
     "react-dom": "^15.3.2",
     "react-google-maps": "^9.4.5",
-    "react-progressbar.js": "^0.2.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",
     "react-router-transition": "^1.2.1",
-    "recompose": "^0.26.0",
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0",
     "spotify-web-api-js": "^0.24.0"
