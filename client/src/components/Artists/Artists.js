@@ -16,14 +16,14 @@ class Artists extends Component {
           ?
           artist.images[artist.images.length - 1].url
           :
-          'http://via.placeholder.com/64x64'
+          'https://via.placeholder.com/64x64'
 
       let imageMedium =
         artist.images.length > 1
           ?
           artist.images[artist.images.length - 2].url
           :
-          'http://via.placeholder.com/260x260'
+          'https://via.placeholder.com/260x260'
 
       return (
         <div key={artist.id} className="artist">

@@ -62,6 +62,7 @@ class App extends Component {
       id,
       artist,
       artists,
+      albums,
       img,
       nowPlaying,
     } = this.props.main
@@ -78,9 +79,9 @@ class App extends Component {
           <Sidebar img={img} nowPlaying={nowPlaying} />
           <div className="main" >
             <div className="main-middle" >
-            {artists.length === 0 && <h1 className="main-middle-title">VenuePlayer</h1> }
+              {artists.length === 0 && <h1 className="main-middle-title">VenuePlayer</h1>}
               <Switch>
-                <Route exact path='/' component={Artists}/>
+                <Route exact path='/' component={Artists} />
                 <Route
                   exact path='/artist/:name'
                   render={props => {
@@ -91,7 +92,15 @@ class App extends Component {
                       img={img}
                       albumButtonClick={this.props.albumButtonClick} />
                   }} />
-                <Route exact path='/albums/:name' component={Albums} />
+                <Route
+                  exact path='/albums/:name'
+                  render={props => {
+                    return <Albums
+                      {...props}
+                      albums={albums}
+                      albumPlay={this.props.albumPlay}
+                    />
+                  }} />
                 <Route component={NotFound} />
               </Switch>
               <div className="welcome" >

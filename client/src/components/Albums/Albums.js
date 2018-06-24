@@ -1,19 +1,15 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import { albumPlay } from '../../actions/mainActions'
 
-class Albums extends Component {
-  render() {
-
-    let albums = this.props.main.albums.length > 0 ? this.props.main.albums.map(album => {
+export default function Albums(props){
+    let albums = props.albums.length > 0 ? props.albums.map(album => {
       return (
         <div className="album"
           key={album.id}
-          onClick={() => this.props.albumPlay(album.id, album.imageMedium)}
+          onClick={() => props.albumPlay(album.id, album.imageMedium)}
         >
           <div className="album-play-icon">
-            <img src={album.image || 'http://via.placeholder.com/64x64'}
+            <img src={album.image || 'https://via.placeholder.com/64x64'}
               className="image"
               alt={album.name}
             />
@@ -42,11 +38,4 @@ class Albums extends Component {
         </div>
       </div>
     )
-  }
 }
-
-const mapStateToProps = state => ({
-  main: state.main
-})
-
-export default connect(mapStateToProps, { albumPlay })(Albums)
