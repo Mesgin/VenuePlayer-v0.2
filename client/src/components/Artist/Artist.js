@@ -31,7 +31,9 @@ export default function Artist(props) {
         </div>
       </div>
       <div className="map">
-        <MapContainer />
+        <MapContainer
+          showInfowindow={props.showInfowindow}
+          closeAllInfowindow={props.closeAllInfowindow} />
       </div>
     </div>
   )

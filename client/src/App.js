@@ -17,7 +17,7 @@ import {
   albumPlay,
   albumButtonClick,
   backToArtist,
-  tokenToState
+  tokenToState,
 } from './actions/mainActions'
 const endPoint = process.env.NODE_ENV === 'development'
   ? 'http://localhost:8888/api'
@@ -71,15 +71,16 @@ class App extends Component {
     } else {
       return (
         <div className="main-container" >
+          <Header artists={artists} />
           <div className="player-toggle" onClick={this.playerToggle}>
             <span className="chevron right"></span>
           </div>
           <Sidebar img={img} nowPlaying={nowPlaying} />
-          <Header artists={artists} />
           <div className="main" >
             <div className="main-middle" >
+            {artists.length === 0 && <h1 className="main-middle-title">VenuePlayer</h1> }
               <Switch>
-                <Route exact path='/' component={Artists} />
+                <Route exact path='/' component={Artists}/>
                 <Route
                   exact path='/artist/:name'
                   render={props => {
