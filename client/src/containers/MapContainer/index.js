@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { InitialMap } from '../InitialMap'
+import { InitialMap } from '../../components/InitialMap'
 import { showInfowindow, closeAllInfowindow } from '../../actions/mainActions'
 //'AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg'
+// AIzaSyBEqx4bSzvD2bcHquhlFAJ5c5KHIVybI9o
 
 class MapContainer extends React.Component {
   onToggleOpen = (markerId) => {
@@ -14,19 +15,19 @@ class MapContainer extends React.Component {
 
   render() {
     return (
-      <div style={{ height: "50vmin" }}>
+      <div style={{ height: "100vh" }}>
         <InitialMap
           containerElement={
             <div style={{ height: 'auto', width: 'auto' }} />
           }
           mapElement={
-            <div style={{ height: '50vmin' }} />
+            <div style={{ height: '48vh' }} />
           }
           markers={this.props.main.venues}
           onMapClick={this.handleMapClick}
           onMarkerClick={this.onToggleOpen}
           onMarkerClose={this.onToggleOpen}
-          googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyBEqx4bSzvD2bcHquhlFAJ5c5KHIVybI9o&v=3.32&libraries=geometry,drawing,places`}
+          googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.32&libraries=geometry,drawing,places`}
           loadingElement={<div style={{ height: `100%` }} />}
         />
       </div>
@@ -34,8 +35,13 @@ class MapContainer extends React.Component {
   }
 }
 
+const mapDispatchToProps = {
+  showInfowindow,
+  closeAllInfowindow
+}
+
 const mapStateToProps = state => ({
   main: state.main
 })
 
-export default connect(mapStateToProps, { showInfowindow, closeAllInfowindow })(MapContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(MapContainer)

@@ -11,7 +11,6 @@ export default function Sidebar(props) {
         <iframe
           src={`https://open.spotify.com/embed?uri=spotify:album:${props.nowPlaying}`}
           width="100%"
-          // height="65.4%"
           allowTransparency="true"
           title="player"
         ></iframe>

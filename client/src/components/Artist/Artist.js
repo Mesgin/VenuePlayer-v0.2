@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import MapContainer from '../MapContainer'
+import MapContainer from '../../containers/MapContainer'
 
 export default function Artist(props) {
   return (

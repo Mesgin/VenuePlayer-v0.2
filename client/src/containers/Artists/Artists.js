@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { artistClick, albumButtonClick, searchArtist } from '../../actions/mainActions'
+import {
+  artistClick,
+  albumButtonClick,
+  searchArtist
+} from '../../actions/mainActions'
 
 class Artists extends Component {
 
@@ -13,17 +17,13 @@ class Artists extends Component {
     let artistsContent = this.props.main.artists.map(artist => {
       let imageSmall =
         artist.images.length > 1
-          ?
-          artist.images[artist.images.length - 1].url
-          :
-          'https://via.placeholder.com/64x64'
+          ? artist.images[artist.images.length - 1].url
+          : 'https://via.placeholder.com/64x64'
 
       let imageMedium =
         artist.images.length > 1
-          ?
-          artist.images[artist.images.length - 2].url
-          :
-          'https://via.placeholder.com/260x260'
+          ? artist.images[artist.images.length - 2].url
+          : 'https://via.placeholder.com/260x260'
 
       return (
         <div key={artist.id} className="artist">
@@ -44,7 +44,10 @@ class Artists extends Component {
             <div
               style={{ cursor: 'pointer' }}
               onClick={() => this.props.artistClick(artist.id, imageMedium, artist.name)} >
-              <p>{artist.name}</p>
+              <p>{artist.name.length > 20
+                ? `${artist.name.substring(0, 20).trim()}..`
+                : `${artist.name}`}
+              </p>
             </div>
           </Link>
           <div className="artist-buttons">
@@ -66,7 +69,10 @@ class Artists extends Component {
           placeholder="Search Artist"
           type="text"
           onChange={this.textHandler}
-          className={this.props.main.artists.length > 0 ? "search-input-shrink" : "search-input"}
+          className={this.props.main.artists.length > 0
+            ? "search-input-shrink"
+            : "search-input"
+          }
         />
         <div className="artist-container">
           {artistsContent}
@@ -76,8 +82,14 @@ class Artists extends Component {
   }
 }
 
+const mapDispatchToProps = {
+  artistClick,
+  albumButtonClick,
+  searchArtist
+}
+
 const mapStateToProps = state => ({
   main: state.main
 })
 
-export default connect(mapStateToProps, { artistClick, albumButtonClick, searchArtist })(Artists)
+export default connect(mapStateToProps, mapDispatchToProps)(Artists)

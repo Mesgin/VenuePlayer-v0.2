@@ -1,5 +1,11 @@
 import React from 'react'
-import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
+import {
+  withScriptjs,
+  withGoogleMap,
+  GoogleMap,
+  Marker,
+  InfoWindow
+} from "react-google-maps"
 import aubergineMode from '../../assets/aubergine-theme.json'
 // import darkMode from '../../assets/dark-theme.json'
 // import nightMode from '../../assets/night-theme.json'
@@ -14,7 +20,7 @@ export const InitialMap = withScriptjs(withGoogleMap((props) => {
     return obj
   }, {})
 
-  let countriesJSX = Object.keys(countries).map((key,i) => {
+  let countriesJSX = Object.keys(countries).map((key, i) => {
     return <div className="country" key={i}><h4>{key}: {countries[key]}</h4></div>
   })
 
@@ -41,8 +47,15 @@ export const InitialMap = withScriptjs(withGoogleMap((props) => {
               onCloseClick={() => props.onMarkerClose(marker.id)}
               options={{ closeBoxURL: ``, enableEventPropagation: true }}
             >
-              <div id="infowindow" style={{ color: 'black', opacity: 0.9, margin: '1px', backgroundColor: 'white' }}>
-                <div style={{ height: '100%', width: '100%', fontSize: `1.1rem`, fontColor: `#08233B` }}>
+              <div
+                id="infowindow"
+                style={{
+                  color: 'black',
+                  opacity: 0.9,
+                  margin: '1px',
+                  backgroundColor: 'white'
+                }}>
+                <div style={{height: '100%',width:'100%',fontSize:`1.1rem`,fontColor:`#08233B`}}>
                   <h3>{marker.lineup[0]}</h3>
                   <p><strong>Location:</strong> {marker.venue.country} - {marker.venue.city}</p>
                   <p><strong>Venue:</strong> {marker.venue.name}</p>

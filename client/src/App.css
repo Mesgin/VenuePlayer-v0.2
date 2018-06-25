@@ -312,9 +312,10 @@ body {
 }
 /* Map */
 .map {
-    height: 50vh !important;
-    width: 75vw;
-    margin-left: 5px;
+    height: 48vh !important;
+    width: calc(100vw - 265px);
+    margin-left:10px;
+    /* margin: auto; */
     overflow: hidden;
     -webkit-box-shadow: 0px -3px 12px -1px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px -3px 12px -1px rgba(0,0,0,0.75);
@@ -498,14 +499,18 @@ body {
     .header {
         margin-top: 1rem;
     }
+    .main-middle-title {
+        font-size:4rem;
+        margin:1rem;
+    }
     .heading-show {
         font-size: 1.7rem;
     }
-    .heading {
-        font-size: 3rem;
+    .heading-hidden {
+        font-size: 0;
     }
     .search-input {
-        margin-top: 23vh;
+        margin-top: 0;
     }
     .sidebar {
         height: 100vh;
@@ -530,11 +535,21 @@ body {
     }
 }
 @media screen and (max-width: 442px){
+    .map {
+        width: 100vw
+    }
+    .single-artist-img {
+        width: 150px;
+        height: 150px;
+    }
     .artist-container {
         width: 85vw;
     }
     .heading-show {
         font-size: 1.9rem;
+    }
+    .heading-hidden {
+        font-size: 0;
     }
     .album-container {
         width: 85vw;

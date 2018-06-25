@@ -1,7 +1,7 @@
 import React from 'react'
 import mo from '../../assets/Mo.jpg'
 
-export default function Header(props){
+export default function Header(props) {
   return (
     <header >
       <div className="header">
@@ -28,7 +28,12 @@ export default function Header(props){
           </a>
         </div>
         <div className="header-head">
-          <h1 className={props.artists.length > 0 ? "heading-show" : "heading-hidden"} >VenuePlayer</h1>
+          <h1
+            className={props.artists.length > 0
+              ? "heading-show"
+              : "heading-hidden"} >
+            VenuePlayer
+          </h1>
         </div>
         <div className="mo">
           <a
