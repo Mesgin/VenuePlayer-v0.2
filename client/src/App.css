@@ -628,6 +628,28 @@ body {
         font-size: 1.5rem;
     }
 }
+@media screen and (max-width:321px) {
+    .main-middle-title {
+        font-size: 3rem;
+    }
+    .heading-show {
+        margin-top: 3vh;
+        font-size: 1.6rem;
+    }
+    .search-input {
+        margin: 0 0 1rem 0;
+    }
+    .single-artist-img {
+        width: 40vw;
+        height: 40vw;
+    }
+    .single-artist-title h1{
+        font-size: 1rem;
+    }
+    .left a {
+        font-size: 2.2rem;
+    }
+}
 /* Scrollbar */
 /* Width */
 ::-webkit-scrollbar {
