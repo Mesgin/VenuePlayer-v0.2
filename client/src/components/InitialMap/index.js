@@ -44,6 +44,7 @@ export const InitialMap = withScriptjs(withGoogleMap((props) => {
         >
           {marker.showInfo &&
             <InfoWindow
+            position={venue}
               onCloseClick={() => props.onMarkerClose(marker.id)}
               options={{ closeBoxURL: ``, enableEventPropagation: true }}
             >

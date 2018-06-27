@@ -75,12 +75,14 @@ export const artistClick = (id, img, artist) => dispatch => {
         }
       }
     })
+    console.log(albums,img,id);
+    
     dispatch({
       type: SET_ALBUMS,
       payload: { albums, img, id }
     })
   },
-    (err) => {
+    (err) => {     
       if (err.status === 401) {
         axios.get(endPoint)
           .then(res => {
