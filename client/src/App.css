@@ -325,10 +325,7 @@ body {
 .map-show {
     height: 43vh !important;
 }
-#infowindow p{
-    font-size: 1rem;
-    margin: 8px;
-}
+
 /* Sidebar */
 .player-toggle span:hover {
     color: rgb(248, 9, 9);
@@ -540,7 +537,7 @@ body {
         width: 100vw;
     }
     .single-artist-container {
-        margin: 0;
+        margin: 4vh 0 0 0;
         height: 40vh;
     }
     .single-artist-img {
@@ -638,4 +635,42 @@ body {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: rgb(204, 201, 201); 
+}
+
+#map-infowindow {
+    width: 14rem;
+    height: 10rem;
+    overflow: auto; 
+    color: black; 
+    padding: 5px;
+    opacity: 0.85; 
+    background-color: white;
+}
+#map-buy-button {
+    text-decoration: none;
+    padding: 5px;
+    background-color: rgba(50, 167, 112);
+    color: white;
+    border-radius: 5px;
+    border: 0;
+    margin: 15px auto 0 auto;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.1rem;
+    display: block;
+    width: 7rem;
+}
+#map-marker-infowindow {
+    width: 15rem;
+}
+#map-marker-infowindow h3 {
+    color: rgb(43, 92, 92);
+    font-size: 1.2rem;
+    margin: 0 0 1rem 0;
+}
+#map-marker-infowindow p{
+    font-size: 1rem;
+    color: black;
+    opacity: 0.9;
+    margin: 1px;
+    background-color: white;
 }

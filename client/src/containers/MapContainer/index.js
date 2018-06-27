@@ -27,7 +27,7 @@ class MapContainer extends React.Component {
           onMapClick={this.handleMapClick}
           onMarkerClick={this.onToggleOpen}
           onMarkerClose={this.onToggleOpen}
-          googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyBEqx4bSzvD2bcHquhlFAJ5c5KHIVybI9o&v=3.32&libraries=geometry,drawing,places`}
+          googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyACbcbCWUrYd3lW1W7cHAGGWWcyTQU39zw&v=3.32&libraries=geometry,drawing,places`}
           loadingElement={<div style={{ height: `100%` }} />}
         />
       </div>

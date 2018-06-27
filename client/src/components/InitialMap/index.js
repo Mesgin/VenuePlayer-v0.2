@@ -28,6 +28,9 @@ export const InitialMap = withScriptjs(withGoogleMap((props) => {
     <GoogleMap
       ref={props.onMapLoad}
       defaultZoom={2}
+      mapTypeControl={false}
+      streetViewControl={false}
+      fullscreenControl={false}
       defaultCenter={{ lat: 49.2193, lng: -122.5984 }}
       onClick={props.onMapClick}
       defaultOptions={{ styles: aubergineMode }}
@@ -44,19 +47,12 @@ export const InitialMap = withScriptjs(withGoogleMap((props) => {
         >
           {marker.showInfo &&
             <InfoWindow
-            position={venue}
+              position={venue}
+              maxWidth={100}
               onCloseClick={() => props.onMarkerClose(marker.id)}
               options={{ closeBoxURL: ``, enableEventPropagation: true }}
             >
-              <div
-                id="infowindow"
-                style={{
-                  color: 'black',
-                  opacity: 0.9,
-                  margin: '1px',
-                  backgroundColor: 'white'
-                }}>
-                <div style={{height: '100%',width:'100%',fontSize:`1.1rem`,fontColor:`#08233B`}}>
+              <div id="map-marker-infowindow">
                   <h3>{marker.lineup[0]}</h3>
                   <p><strong>Location:</strong> {marker.venue.country} - {marker.venue.city}</p>
                   <p><strong>Venue:</strong> {marker.venue.name}</p>
@@ -64,20 +60,10 @@ export const InitialMap = withScriptjs(withGoogleMap((props) => {
                   <a
                     href={marker.url}
                     target="_blank"
-                    style={{
-                      textDecoration: 'none',
-                      padding: '5px',
-                      backgroundColor: 'rgba(50, 167, 112)',
-                      color: 'white',
-                      borderRadius: '5px',
-                      border: 0,
-                      margin: '15px auto 0 auto',
-                      fontFamily: '"Source Sans Pro", sans-serif',
-                      fontSize: '1.1rem',
-                      display: 'block',
-                      width: "10vw"
-                    }}
-                  >Buy Ticket</a></div>
+                    id="map-buy-button"
+                  >
+                  Buy Ticket
+                  </a>
               </div>
             </InfoWindow>
           }
@@ -87,9 +73,9 @@ export const InitialMap = withScriptjs(withGoogleMap((props) => {
 
       <InfoWindow
         options={{ closeBoxURL: ``, enableEventPropagation: true }}
-        position={{ lat: 25.848105, lng: -137.104127 }}
+        position={{ lat: 25.848105, lng: -122.5984 }}
       >
-        <div style={{ color: 'black', opacity: 0.85, margin: '1px', backgroundColor: 'white' }}>
+        <div id="map-infowindow">
           <div style={{ height: '50%', width: '100%', fontSize: `16px`, fontColor: `#08233B` }}>
             <div>
               <h3 style={{ color: '#015970' }}>Concerts Found: {props.markers.length}</h3>
