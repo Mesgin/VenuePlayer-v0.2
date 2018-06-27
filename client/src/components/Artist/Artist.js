@@ -16,7 +16,7 @@ export default function Artist(props) {
             </div>
           </div>
           <div className="right">
-            <div>
+            <div className="single-artist-title">
               <h1>{props.artist}</h1>
             </div>
             <Link to={`/albums/${props.artist}`}>

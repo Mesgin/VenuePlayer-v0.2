@@ -358,7 +358,7 @@ body {
     height: calc(100% - 265px);
 }
 .player-toggle {
-    position: absolute;
+    position: fixed;
     top: 10px;
     left:10px;
     z-index: 2;
@@ -537,21 +537,35 @@ body {
         width: 100vw;
     }
     .single-artist-container {
-        margin: 4vh 0 0 0;
+        margin: 2vh 0 0 0;
         height: 40vh;
+        position: relative;
+    }
+    .single-artist {
+        margin:0;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .single-artist-title h1{
+        font-size: 1.2rem;
     }
     .single-artist-img {
         width: 45vw;
         height: 45vw;
-        margin-right: 20px;
     }
     .left a {
         font-size: 2.5rem;
+        position: absolute;
+        top:0;
+        left:15%
     }
     .artist-container {
         width: 85vw;
     }
     .heading-show {
+        margin-top: 1vh;
+        margin-left: -1rem;
         font-size: 1.9rem;
     }
     .heading-hidden {

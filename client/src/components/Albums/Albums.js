@@ -1,7 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
-export default function Albums(props) {
+export default withRouter(function Albums(props) {
   let albums = props.albums.length > 0
     ? props.albums.map(album => {
       return (
@@ -30,11 +30,11 @@ export default function Albums(props) {
   return (
     <div>
       <div className="albums-back-link">
-        <Link to='/'><i className="fa fa-chevron-left"></i></Link>
+        <a onClick={props.history.goBack} ><i className="fa fa-chevron-left"></i></a>
       </div>
       <div className="album-container">
         {albums}
       </div>
     </div>
   )
-}
+})

@@ -28,12 +28,19 @@ export const InitialMap = withScriptjs(withGoogleMap((props) => {
     <GoogleMap
       ref={props.onMapLoad}
       defaultZoom={2}
-      mapTypeControl={false}
-      streetViewControl={false}
-      fullscreenControl={false}
+      defaultOptions={{
+        styles: aubergineMode,
+       // these following 7 options turn certain controls off see link below
+        streetViewControl: false,
+        scaleControl: false,
+        mapTypeControl: false,
+        panControl: false,
+        rotateControl: false,
+        fullscreenControl: false
+      }}
       defaultCenter={{ lat: 49.2193, lng: -122.5984 }}
       onClick={props.onMapClick}
-      defaultOptions={{ styles: aubergineMode }}
+
     >
       {props.markers.map((marker) => {
         let venue = {
