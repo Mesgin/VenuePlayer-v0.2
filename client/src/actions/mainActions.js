@@ -57,7 +57,6 @@ export const artistClick = (id, img, artist) => dispatch => {
     }).catch(err => console.log('errror : ', err))
 
   spotifyApi.getArtistAlbums(id, { limit: 50, market: 'CA' }).then((data) => {
-    // console.log('albums', data.items)
     let albums = data.items.map(item => {
       if (item.images.length > 1) {
         return {
@@ -74,9 +73,7 @@ export const artistClick = (id, img, artist) => dispatch => {
           id: item.id
         }
       }
-    })
-    console.log(albums,img,id);
-    
+    })   
     dispatch({
       type: SET_ALBUMS,
       payload: { albums, img, id }
