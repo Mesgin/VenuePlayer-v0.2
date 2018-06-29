@@ -28,11 +28,12 @@ body {
     margin-top: 12px;
 }
 .heading-hidden {
-    opacity: 0;
+    display: none;
     transition: all 0.3s ease-out;
 }
 .heading-show {
     flex-basis:40%;
+    text-decoration: none;
     font-family: 'Lobster', cursive;
     color: crimson;
     font-size: 2.3rem;

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import mo from '../../assets/Mo.jpg'
 
 export default function Header(props) {
@@ -28,12 +29,12 @@ export default function Header(props) {
           </a>
         </div>
         <div className="header-head">
-          <h1
+          <Link to='/'
             className={props.artists.length > 0
               ? "heading-show"
               : "heading-hidden"} >
             VenuePlayer
-          </h1>
+          </Link>
         </div>
         <div className="mo">
           <a
