@@ -58,7 +58,7 @@ export const InitialMap = withScriptjs(withGoogleMap((props) => {
               onCloseClick={() => props.onMarkerClose(marker.id)}
               options={{ closeBoxURL: ``, enableEventPropagation: true }}
             >
-              <div id="map-marker-infowindow">
+              <div className="map-marker-infowindow">
                   <h3>{marker.lineup[0]}</h3>
                   <p><strong>Location:</strong> {marker.venue.country} - {marker.venue.city}</p>
                   <p><strong>Venue:</strong> {marker.venue.name}</p>
@@ -66,7 +66,7 @@ export const InitialMap = withScriptjs(withGoogleMap((props) => {
                   <a
                     href={marker.url}
                     target="_blank"
-                    id="map-buy-button"
+                    className="map-buy-button"
                   >
                   Buy Ticket
                   </a>
@@ -81,7 +81,7 @@ export const InitialMap = withScriptjs(withGoogleMap((props) => {
         options={{ closeBoxURL: ``, enableEventPropagation: true }}
         position={{ lat: 25.848105, lng: -122.5984 }}
       >
-        <div id="map-infowindow">
+        <div className="map-infowindow">
           <div style={{ height: '50%', width: '100%', fontSize: `16px`, fontColor: `#08233B` }}>
             <div>
               <h3 style={{ color: '#015970' }}>Concerts Found: {props.markers.length}</h3>

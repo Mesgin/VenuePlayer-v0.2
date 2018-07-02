@@ -1,6 +1,6 @@
-@import '_reset';
-@import '_variables';
-@import '_mixins';
+@import './scss/_reset';
+@import './scss/_variables';
+@import './scss/_mixins';
 
 /* Header */
 .header {
@@ -21,6 +21,7 @@
     width:90vw;
     margin-top: 2vh;
   }
+
   .header-icons {
     flex-basis:30%;
   }
@@ -35,9 +36,6 @@
   .heading-hidden {
     display: none;
     transition: all 0.3s ease-out;
-    @include media-query(641px){
-      font-size: 0;
-    }
   }
   .heading-show {
     flex-basis:40%;
@@ -69,9 +67,8 @@
     @include media-query(880px){
       font-size: 1.3rem;
       padding-right: 6px;
-      position: absolute;
     }
-    @include media-query(321px){
+    @include media-query(442px){
       top: 48px;
       font-size: 1rem;
       position: absolute;
@@ -82,9 +79,8 @@
     @include media-query(880px){
       font-size: 1.3rem;
       padding-right: 6px;
-      position: absolute;
     }
-    @include media-query(321px){
+    @include media-query(442px){
       top: 72px;
       font-size: 1rem;
       position: absolute;
@@ -95,9 +91,8 @@
     @include media-query(880px){
       font-size: 1.3rem;
       padding-right: 6px;
-      position: absolute;
     }
-    @include media-query(321px){
+    @include media-query(442px){
       top: 94px;
       font-size: 1rem;
       position: absolute;
@@ -124,13 +119,14 @@
   padding: 15px;
   caret-color: red;
   color: white;
-  background-color: rgba(0, 0, 0, 0.425);
+  background-color: $transparent-black;
   border-radius: 5px;
   width: 12rem;
   height: 16px;
   border: 0;
+  padding: 1.3rem;
   font-size: 1.5rem;
-  margin-bottom: 8px;
+  margin-bottom: 1.5rem;
   outline: none;
   transition: all 0.3s ease;
   @include media-query(641px){
@@ -138,7 +134,7 @@
   }
   @include media-query(442px){
     margin-top: 2vh;
-    padding: 0.7rem;
+    padding: 1rem;
     font-size: 1.2rem;
   }
   @include media-query(321px){
@@ -148,13 +144,13 @@
 .search-input-shrink {
   margin-top: 6vh;
   margin-bottom: 0;
-  padding: 10px;
+  padding: 1rem;
   font-size: 1rem;
   caret-color: red;
   color: white;
-  background-color: rgba(0, 0, 0, 0.425);
+  background-color: $transparent-black;
   border-radius: 5px;
-  width: 23vw;
+  width: 30vmax;
   height: 16px;
   border: 0;
   outline: none;
@@ -199,12 +195,13 @@
   font-family: $secondary-font;
   color: crimson;
   font-size: 6rem;
+  margin-top: 10vh;
+  margin-bottom:1rem;
   opacity:1;
   text-shadow: 0px 1px 1px black;
   transition: all 0.3s ease-out;
   @include media-query(641px){
     font-size:4rem;
-    margin:1rem;
   }
   @include media-query(442px){
     font-size: 3.3rem;
@@ -226,13 +223,16 @@
   align-items: flex-start;
   margin-top: 4vh;
   margin-bottom: 5vh;
+  @include media-query(880px){
+    width: 55vw;
+  }
   @include media-query(442px){
     width: 85vw;
   }
 }
 .artist {
   display: flex;
-  background-color: rgba(0, 0, 0, 0.247);
+  background-color: $transparent-black;
   flex-basis: 32%;
   justify-content: space-between;
   height: 64px;
@@ -249,43 +249,38 @@
   @include media-query(880px){
     flex-basis: 100%
   }
-}
-.artist a {
-  padding: 5px;
-  text-decoration: none;
-  color: white;
-}
-.artist img {
-  width: 64px;
-  height: 64px;
-  padding-left: 0;
-  border-radius: 50%;
+  a {
+    padding: 5px;
+    text-decoration: none;
+    color: white;
+  }
+  img {
+    width: 64px;
+    height: 64px;
+    padding-left: 0;
+    border-radius: 50%;
+  }
 }
 .artist-buttons-albums {
   padding: 5px;
-  background-color: rgba(3, 241, 129, 0.486);
+  background-color: $green;
   color: white;
   border-radius: 5px;
   border: 0;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.9rem;
+  font-weight: bold;
   margin: 0 1vw;
   outline: none;
 }
 .artist-buttons-map {
-  background-color: crimson;
+  background-color: $crimson;
   border: 0;
   border-radius: 50%;
   color:white;
   font-size:22px;
   margin-left: 5px;
   opacity: 0.8;
-}
-.artist span {
-  background-color: tomato;
-  border-radius: 50%;
-  padding: 5px;
-  font-size: 20px;
 }
 .artist-icon {
   position: relative;
@@ -315,7 +310,7 @@
 .left a{
   text-decoration: none;
   color:white;
-  font-size:3.2rem;
+  font-size:2.8rem;
   @include media-query(442px){
     font-size: 2.5rem;
     position: absolute;
@@ -410,7 +405,7 @@
   padding: 2px;
   align-items: center;
   margin-bottom: 2px;
-  background-color: rgba(0, 0, 0, 0.247);
+  background-color: $transparent-black;
   border-radius: 3px;
   cursor: pointer;
   @include media-query(992px){
@@ -419,23 +414,24 @@
   @include media-query(880px){
     flex-basis: 100%
   }
-}
-.album img {
-  margin-right: 5px;
+
+  img {
+    margin-right: 5px;
+  }
+  a {
+    margin-right: 15px;
+  }
+  h5 {
+    display: inline-block;
+  }
 }
 .albums-back-link {
-  margin-top:5vh;
-}
-.albums-back-link a{
-  text-decoration: none;
-  color: white;
-  font-size: 2.5rem;
-}
-.album a {
-  margin-right: 15px;
-}
-.album h5 {
-  display: inline-block;
+  margin-top:2vh;
+  a{
+    text-decoration: none;
+    color: white;
+    font-size: 2.5rem;
+  }
 }
 .album-play-icon:hover .image {
   opacity: 0.2;
@@ -452,7 +448,6 @@
   height: 48vh !important;
   width: calc(100vw - 265px);
   margin-left:10px;
-  /* margin: auto; */
   overflow: hidden;
   -webkit-box-shadow: 0px -3px 12px -1px rgba(0,0,0,0.75);
   -moz-box-shadow: 0px -3px 12px -1px rgba(0,0,0,0.75);
@@ -489,33 +484,30 @@
     position: fixed;
     z-index: 1;
     bottom:-100vh;
-    background-color: black;
     overflow-X: hidden;
     transition: all 0.3s ease;
+  }
+
+  img {
+    display: block;
+    height: 260px;
+    text-align: center;
+    width: 100%;
+    @include media-query(641px){
+      display: block;
+      height: 260px;
+      text-align: center;
+      width: 260px;
+      margin:0 auto;
+    }
+  }
+  iframe {
+    border: 0;
+    height: calc(100% - 265px);
   }
 }
 .sidebar-toggle {
   left: 0;
-  @include media-query(641px){
-    left: 0;
-  }
-}
-.sidebar img {
-  display: block;
-  height: 260px;
-  text-align: center;
-  width: 100%;
-  @include media-query(641px){
-    display: block;
-    height: 260px;
-    text-align: center;
-    width: 260px;
-    margin:0 auto;
-  }
-}
-.sidebar iframe {
-  border: 0;
-  height: calc(100% - 265px);
 }
 .player-toggle {
   position: fixed;
@@ -583,61 +575,39 @@
 }
 /* Chevron */
 .chevron::before {
-border-style: solid;
+  border-style: solid;
   border-width: 0.15em 0.15em 0 0;
-content: '';
-display: inline-block;
-height: 0.45em;
-left: 0.15em;
-position: relative;
-top: 0.15em;
-transform: rotate(-45deg);
-vertical-align: top;
-width: 0.45em;
+  content: '';
+  display: inline-block;
+  height: 0.45em;
+  left: 0.15em;
+  position: relative;
+  top: 0.15em;
+  transform: rotate(-45deg);
+  vertical-align: top;
+  width: 0.45em;
 }
 .chevron.right:before {
-left: 0;
+  left: 0;
   transform: rotate(45deg);
   transition: all 0.1s ease;
 }
 .chevron.left:before {
-left: 0.25em;
+  left: 0.25em;
   transform: rotate(-135deg);
   transition: all 0.1s ease;
 }
 .single-artist-title h1{
   @include media-query(442px){
     font-size: 1.2rem;
+    margin-bottom: 1rem;
   }
   @include media-query(321px){
     font-size: 1rem;
   }
 }
 
-/* Scrollbar */
-/* Width */
-::-webkit-scrollbar {
-  width: 5px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey; 
-  border-radius: 10px;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: rgb(230, 230, 230); 
-  border-radius: 10px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: rgb(204, 201, 201); 
-}
-
-#map-infowindow {
+.map-infowindow {
   width: 14rem;
   height: 10rem;
   overflow: auto; 
@@ -646,11 +616,11 @@ left: 0.25em;
   opacity: 0.85; 
   background-color: white;
 }
-#map-buy-button {
+.map-buy-button {
   text-decoration: none;
   padding: 5px;
-  // background-color: rgba(50, 167, 112);
   color: white;
+  background-color: $dark-green;
   border-radius: 5px;
   border: 0;
   margin: 15px auto 0 auto;
@@ -658,18 +628,18 @@ left: 0.25em;
   display: block;
   width: 7rem;
 }
-#map-marker-infowindow {
+.map-marker-infowindow {
   width: 15rem;
-}
-#map-marker-infowindow h3 {
-  color: rgb(43, 92, 92);
-  font-size: 1.2rem;
-  margin: 0 0 1rem 0;
-}
-#map-marker-infowindow p{
-  font-size: 1rem;
-  color: black;
-  opacity: 0.9;
-  margin: 1px;
-  background-color: white;
+  h3 {
+    color: rgb(43, 92, 92);
+    font-size: 1.2rem;
+    margin: 0 0 1rem 0;
+  }
+  p{
+    font-size: 1rem;
+    color: black;
+    opacity: 0.9;
+    margin: 1px;
+    background-color: white;
+  }
 }

@@ -6,7 +6,7 @@
 }
 
 @mixin media-query($arg){
-  @media screen and (max-width: 321px) {
+  @media screen and (max-width: $arg) {
     @content
   }
 }
