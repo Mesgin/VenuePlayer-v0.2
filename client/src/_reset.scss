@@ -1,0 +1,17 @@
+@import "_variables";
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: $primary-font;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $dark-blue;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg stroke='%2300ffea' stroke-width='66.7' stroke-opacity='0' %3E%3Ccircle fill='%23000f1d' cx='0' cy='0' r='1800'/%3E%3Ccircle fill='%23031624' cx='0' cy='0' r='1700'/%3E%3Ccircle fill='%23031c2b' cx='0' cy='0' r='1600'/%3E%3Ccircle fill='%23022232' cx='0' cy='0' r='1500'/%3E%3Ccircle fill='%23002838' cx='0' cy='0' r='1400'/%3E%3Ccircle fill='%23002e3f' cx='0' cy='0' r='1300'/%3E%3Ccircle fill='%23003446' cx='0' cy='0' r='1200'/%3E%3Ccircle fill='%23003b4c' cx='0' cy='0' r='1100'/%3E%3Ccircle fill='%23004252' cx='0' cy='0' r='1000'/%3E%3Ccircle fill='%23004957' cx='0' cy='0' r='900'/%3E%3Ccircle fill='%23004f5c' cx='0' cy='0' r='800'/%3E%3Ccircle fill='%23005661' cx='0' cy='0' r='700'/%3E%3Ccircle fill='%23005d65' cx='0' cy='0' r='600'/%3E%3Ccircle fill='%23006469' cx='0' cy='0' r='500'/%3E%3Ccircle fill='%23006c6d' cx='0' cy='0' r='400'/%3E%3Ccircle fill='%23007370' cx='0' cy='0' r='300'/%3E%3Ccircle fill='%23007a72' cx='0' cy='0' r='200'/%3E%3Ccircle fill='%23008174' cx='0' cy='0' r='100'/%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  color: white;
+}

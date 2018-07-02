@@ -30,7 +30,6 @@ export const InitialMap = withScriptjs(withGoogleMap((props) => {
       defaultZoom={2}
       defaultOptions={{
         styles: aubergineMode,
-       // these following 7 options turn certain controls off see link below
         streetViewControl: false,
         scaleControl: false,
         mapTypeControl: false,

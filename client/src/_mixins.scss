@@ -1,0 +1,12 @@
+@mixin header-icon{
+    color: white;
+    right:12px;
+    font-size: 30px;
+    padding-right: 12px;
+}
+
+@mixin media-query($arg){
+  @media screen and (max-width: 321px) {
+    @content
+  }
+}
