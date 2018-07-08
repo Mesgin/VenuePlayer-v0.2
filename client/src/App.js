@@ -53,7 +53,7 @@ class App extends Component {
   playerToggle = () => {
     document.querySelector('.main-container').classList.toggle('main-container-shrink')
     document.querySelector('.chevron').classList.toggle('left')
-    document.querySelector('.sidebar').classList.toggle('sidebar-toggle')
+    document.querySelector('.sidebar').classList.toggle('sidebar-show')
     document.querySelector('.header').classList.toggle('header-shrink')
   }
 

@@ -148,7 +148,7 @@ body {
   color: white;
   background-color: rgba(0, 0, 0, 0.425);
   border-radius: 5px;
-  width: 12rem;
+  width: 25vw;
   height: 16px;
   border: 0;
   padding: 1.3rem;
@@ -156,14 +156,18 @@ body {
   margin-bottom: 1.5rem;
   outline: none;
   transition: all 0.3s ease; }
+  @media screen and (max-width: 880px) {
+    .search-input {
+      margin-top: 0;
+      width: 35vw; } }
   @media screen and (max-width: 641px) {
     .search-input {
-      margin-top: 0; } }
+      padding: 1rem;
+      font-size: 1.2rem; } }
   @media screen and (max-width: 442px) {
     .search-input {
       margin-top: 2vh;
-      padding: 1rem;
-      font-size: 1.2rem; } }
+      width: 45vw; } }
   @media screen and (max-width: 321px) {
     .search-input {
       margin: 0 0 1rem 0; } }
@@ -259,12 +263,12 @@ body {
 
 .artist {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: rgba(0, 0, 0, 0.425);
   flex-basis: 32%;
-  justify-content: space-between;
   height: 64px;
   padding: 2px 0;
-  align-items: center;
   margin-bottom: 3px;
   border-top-left-radius: 40px;
   border-bottom-left-radius: 40px;
@@ -359,12 +363,18 @@ body {
       flex-direction: column;
       justify-content: space-between;
       align-items: center; } }
-
-.single-artist .between {
-  justify-content: center;
-  align-items: center;
-  flex-basis: 25%;
-  display: flex; }
+  .single-artist .between {
+    justify-content: center;
+    align-items: center;
+    flex-basis: 25%;
+    display: flex; }
+  .single-artist .right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow: auto;
+    margin-right: 10px; }
 
 .single-artist-img {
   width: 200px;
@@ -380,14 +390,6 @@ body {
     .single-artist-img {
       width: 40vw;
       height: 40vw; } }
-
-.single-artist .right {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  overflow: auto;
-  margin-right: 10px; }
 
 .countries {
   display: flex;
@@ -453,15 +455,13 @@ body {
     color: white;
     font-size: 2.5rem; }
 
-.album-play-icon:hover .image {
-  opacity: 0.2; }
-
-.album-play-icon:hover .middle {
-  opacity: 1; }
-
 .album-play-icon {
   position: relative;
   margin-right: 5px; }
+  .album-play-icon:hover .image {
+    opacity: 0.2; }
+  .album-play-icon:hover .middle {
+    opacity: 1; }
 
 /* Map */
 .map {
@@ -480,9 +480,6 @@ body {
   height: 43vh !important; }
 
 /* Sidebar */
-.player-toggle span:hover {
-  color: #f80909; }
-
 .sidebar {
   -webkit-box-shadow: 4px 0px 5px 0px rgba(0, 0, 0, 0.57);
   -moz-box-shadow: 4px 0px 5px 0px rgba(0, 0, 0, 0.57);
@@ -522,7 +519,7 @@ body {
     border: 0;
     height: calc(100% - 265px); }
 
-.sidebar-toggle {
+.sidebar-show {
   left: 0; }
 
 .player-toggle {
@@ -534,6 +531,8 @@ body {
   cursor: pointer;
   opacity: 0.9;
   color: crimson; }
+  .player-toggle span:hover {
+    color: red; }
 
 /* Welcome */
 .welcome {
@@ -549,6 +548,7 @@ body {
 
 /* Loading */
 .loading {
+  text-align: center;
   font-size: 45px;
   position: fixed;
   top: 45%;

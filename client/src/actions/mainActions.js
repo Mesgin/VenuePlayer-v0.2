@@ -133,9 +133,9 @@ export const albumButtonClick = id => dispatch => {
 }
 
 export const albumPlay = (id, imageMedium) => dispatch => {
-  let visible = document.querySelector('.sidebar').classList.contains('sidebar-toggle')
+  let visible = document.querySelector('.sidebar').classList.contains('sidebar-show')
   if (!visible) {
-    document.querySelector('.sidebar').classList.toggle('sidebar-toggle')
+    document.querySelector('.sidebar').classList.toggle('sidebar-show')
     document.querySelector('.main-container').classList.toggle('main-container-shrink')
     document.querySelector('.chevron').classList.toggle('left')
   }
