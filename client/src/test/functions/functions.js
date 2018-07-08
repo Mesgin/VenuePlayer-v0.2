@@ -1,7 +1,12 @@
+const axios = require('axios')
+
 const functions = {
-  add: (a,b) => {
-    return a + b
-  }
-} 
+  add: (a, b) => a + b,
+  fetchUser: () =>
+    axios
+      .get('https://jsonplaceholder.typicode.com/users/2')
+      .then(res => res.data)
+      .catch(err => 'Error')
+}
 
 module.exports = functions
