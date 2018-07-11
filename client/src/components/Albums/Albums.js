@@ -12,11 +12,11 @@ export default function Albums(props) {
         >
           <div className="album-play-icon">
             <img src={album.image || 'https://via.placeholder.com/64x64'}
-              className="image"
+              className="icons-image"
               alt={album.name}
             />
-            <div className="middle">
-              <i className="play-icon fa fa-play-circle"></i>
+            <div className="icons-middle">
+              <i className="icons-play-icon fa fa-play-circle"></i>
             </div>
           </div>
           <p>{album.name.length > 20
@@ -30,14 +30,16 @@ export default function Albums(props) {
 
   return (
     <div>
-      <div className="albums-back-link">
+      <div className="album-back-link">
         <Link to='/' onClick={props.backToArtists}><i className="fa fa-chevron-left"></i></Link>
       </div>
       <div className="album-container">
         <ReactCSSTransitionGroup
           transitionName="albums-fade"
-          transitionEnterTimeout={500}
-          transitionLeave={false}
+          transitionEnterTimeout={150}
+          transitionLeaveTimeout={1}
+          transitionAppear={true}
+          transitionAppearTimeout={300}
         >
           {albums}
         </ReactCSSTransitionGroup>

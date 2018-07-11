@@ -31,14 +31,14 @@ class Artists extends Component {
         <div key={artist.id} className="artist">
           <Link to={`/artist/${artist.name}`}>
             <div
-              className="artist-icon"
+              className="artist-map-icon"
               onClick={() => this.props.artistClick(artist.id, imageMedium, artist.name)}
             >
-              <img className="image"
+              <img className="icons-image"
                 src={imageSmall}
                 alt={artist.name} />
-              <div className="middle">
-                <i className="map-icon fa fa-map-marker"></i>
+              <div className="icons-middle">
+                <i className="icons-map-icon fa fa-map-marker"></i>
               </div>
             </div>
           </Link>

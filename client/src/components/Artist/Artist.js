@@ -11,9 +11,7 @@ export default function Artist(props) {
         <ReactCSSTransitionGroup
           transitionName="artist-fade"
           transitionAppear={true}
-          transitionAppearTimeout={500}
-          transitionLeave={false}
-          transitionEnter={false}
+          transitionAppearTimeout={1000}
         >
           <div className="single-artist">
             <div className="left">
