@@ -6,7 +6,7 @@ import {
   SET_ALBUMS,
   ALBUM_PLAY,
   TOKEN_TO_STATE,
-  BACK_TO_ARTIST,
+  BACK_TO_ARTISTS,
   SHOW_INFOWINDOW,
   CLOSE_ALL_INFOWINDOW,
   ALBUM_BUTTON_CLICK
@@ -145,9 +145,9 @@ export const albumPlay = (id, imageMedium) => dispatch => {
   })
 }
 
-export const backToArtist = () => dispatch => {
+export const backToArtists = () => dispatch => {
   dispatch({
-    type: BACK_TO_ARTIST
+    type: BACK_TO_ARTISTS
   })
 }
 

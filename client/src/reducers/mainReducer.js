@@ -4,7 +4,7 @@ import {
   SET_VENUES,
   SET_ALBUMS,
   ALBUM_PLAY,
-  BACK_TO_ARTIST,
+  BACK_TO_ARTISTS,
   SHOW_INFOWINDOW,
   CLOSE_ALL_INFOWINDOW,
   ALBUM_BUTTON_CLICK
@@ -59,12 +59,10 @@ export default function (state = initialState, action) {
         nowPlaying: action.payload.id,
         img: action.payload.imageMedium
       }
-    case BACK_TO_ARTIST:
+    case BACK_TO_ARTISTS:
       return {
         ...state,
-        showArtist: true,
-        showInfo: true,
-        showAlbums: false
+        albums: {}
       }
     case SHOW_INFOWINDOW:
       return {

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 export default function Albums(props) {
   let albums = props.albums.length > 0
@@ -30,10 +31,18 @@ export default function Albums(props) {
   return (
     <div>
       <div className="albums-back-link">
-        <Link to='/'><i className="fa fa-chevron-left"></i></Link>
+        <Link to='/' onClick={props.backToArtists}><i className="fa fa-chevron-left"></i></Link>
       </div>
       <div className="album-container">
-        {albums}
+        <ReactCSSTransitionGroup
+          transitionName="albums-fade"
+          transitionEnterTimeout={500}
+          transitionLeave={false}
+          // transitionAppear={true}
+          // transitionAppearTimeout={600}
+        >
+          {albums}
+        </ReactCSSTransitionGroup>
       </div>
     </div>
   )

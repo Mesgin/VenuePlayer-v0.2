@@ -16,8 +16,9 @@ import {
   artistClick,
   albumPlay,
   albumButtonClick,
-  backToArtist,
+  backToArtists,
   tokenToState,
+  resetAlbums
 } from './actions/mainActions'
 const endPoint = process.env.NODE_ENV === 'development'
   ? 'http://localhost:8888/api'
@@ -98,6 +99,7 @@ class App extends Component {
                     return <Albums
                       {...props}
                       albums={albums}
+                      backToArtists={this.props.backToArtists}
                       albumPlay={this.props.albumPlay}
                     />
                   }} />
@@ -120,7 +122,7 @@ const mapDispatchToProps = {
   artistClick,
   albumPlay,
   albumButtonClick,
-  backToArtist
+  backToArtists
 }
 
 const mapStateToProps = state => ({

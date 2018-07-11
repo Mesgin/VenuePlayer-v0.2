@@ -77,9 +77,11 @@ class Artists extends Component {
         />
         <div className="artist-container">
           <ReactCSSTransitionGroup
-          transitionName="fade"
+          transitionName="artists-fade"
           transitionEnterTimeout={150}
           transitionLeaveTimeout={1}
+          transitionAppear={true}
+          transitionAppearTimeout={300}
           >
             {artistsContent}
           </ReactCSSTransitionGroup>

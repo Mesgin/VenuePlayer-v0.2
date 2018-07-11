@@ -2,6 +2,36 @@
 @import './scss/_variables';
 @import './scss/_mixins';
 
+.artists-fade-enter {
+  opacity: 0
+}
+.artists-fade-enter-active {
+  opacity: 1;
+  transition: opacity 150ms ease-in;
+}
+.artists-fade-leave {
+  opacity: 1
+}
+.artists-fade-leave-active {
+  opacity: 0;
+  transition: opacity 1ms ease-in;
+}
+.artists-fade-appear {
+  opacity: 0
+}
+.artists-fade-appear-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+}
+
+.albums-fade-enter {
+  opacity: 0
+}
+.albums-fade-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease;
+}
+
 /* Header */
 .header {
   display: flex;
@@ -222,7 +252,7 @@
   width: 70vw;
   margin-top: 4vh;
   margin-bottom: 5vh;
-  overflow: hidden;
+
   @include media-query(880px){
     width: 55vw;
   }
@@ -236,6 +266,7 @@
   justify-content: space-around;
   flex-wrap: wrap;
   align-items: flex-start;
+
 }
 .artist {
   display: flex;
@@ -387,7 +418,7 @@
   margin:2px 2px 0 2px;
 }
 /* Album */
-.album-container {
+.album-container span {
   display: flex;
   justify-content: space-around;
   flex-wrap:wrap;

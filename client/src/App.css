@@ -31,6 +31,34 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #ccc9c9; }
 
+.artists-fade-enter {
+  opacity: 0; }
+
+.artists-fade-enter-active {
+  opacity: 1;
+  transition: opacity 150ms ease-in; }
+
+.artists-fade-leave {
+  opacity: 1; }
+
+.artists-fade-leave-active {
+  opacity: 0;
+  transition: opacity 1ms ease-in; }
+
+.artists-fade-appear {
+  opacity: 0; }
+
+.artists-fade-appear-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in; }
+
+.albums-fade-enter {
+  opacity: 0; }
+
+.albums-fade-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease; }
+
 /* Header */
 .header {
   display: flex;
@@ -248,8 +276,7 @@ body {
   font-size: 16px;
   width: 70vw;
   margin-top: 4vh;
-  margin-bottom: 5vh;
-  overflow: hidden; }
+  margin-bottom: 5vh; }
   @media screen and (max-width: 880px) {
     .artist-container {
       width: 55vw; } }
@@ -409,7 +436,7 @@ body {
   margin: 2px 2px 0 2px; }
 
 /* Album */
-.album-container {
+.album-container span {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
@@ -421,10 +448,10 @@ body {
   margin-top: 2vh;
   margin-bottom: 5vh; }
   @media screen and (max-width: 880px) {
-    .album-container {
+    .album-container span {
       width: 55vw; } }
   @media screen and (max-width: 442px) {
-    .album-container {
+    .album-container span {
       width: 85vw; } }
 
 .album {
