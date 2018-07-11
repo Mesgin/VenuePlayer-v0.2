@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import Welcome from '../../components/Welcome/Welcome'
 import {
   artistClick,
   albumButtonClick,
@@ -66,6 +67,7 @@ class Artists extends Component {
     })
     return (
       <div>
+        {this.props.main.artists.length === 0 && <h1 className="main-middle-title">VenuePlayer</h1>}
         <input
           placeholder="Search Artist"
           type="text"
@@ -77,14 +79,17 @@ class Artists extends Component {
         />
         <div className="artist-container">
           <ReactCSSTransitionGroup
-          transitionName="artists-fade"
-          transitionEnterTimeout={150}
-          transitionLeaveTimeout={1}
-          transitionAppear={true}
-          transitionAppearTimeout={300}
+            transitionName="artists-fade"
+            transitionEnterTimeout={150}
+            transitionLeaveTimeout={1}
+            transitionAppear={true}
+            transitionAppearTimeout={300}
           >
             {artistsContent}
           </ReactCSSTransitionGroup>
+        </div>
+        <div className="welcome" >
+          {this.props.main.artists.length === 0 && <Welcome />}
         </div>
       </div>
     )

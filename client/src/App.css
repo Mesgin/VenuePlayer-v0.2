@@ -59,6 +59,13 @@ body {
   opacity: 1;
   transition: opacity 500ms ease; }
 
+.artist-fade-appear {
+  opacity: 0; }
+
+.artist-fade-appear-active {
+  opacity: 1;
+  transition: opacity 500ms ease; }
+
 /* Header */
 .header {
   display: flex;
@@ -229,11 +236,9 @@ body {
 
 .main-container-shrink {
   margin-left: 260px; }
-  @media screen and (max-width: 880px) {
-    .main-container-shrink {
-      margin-left: 260px; } }
   @media screen and (max-width: 641px) {
     .main-container-shrink {
+      all: unset;
       height: 100vh;
       overflow: hidden; } }
 
@@ -579,10 +584,13 @@ body {
 /* Loading */
 .loading {
   text-align: center;
-  font-size: 45px;
-  position: fixed;
+  font-size: 2.5rem;
+  position: absolute;
   top: 45%;
   left: 45%; }
+  @media screen and (max-width: 641px) {
+    .loading {
+      font-size: 1.5rem; } }
 
 /* Shared */
 .image {
@@ -685,3 +693,16 @@ body {
     opacity: 0.9;
     margin: 1px;
     background-color: white; }
+
+.not-found {
+  position: absolute;
+  top: 35%;
+  left: 45%; }
+  .not-found h1 {
+    margin-bottom: 2rem;
+    color: crimson; }
+  .not-found a {
+    text-decoration: none;
+    color: white;
+    font-size: 2.5rem;
+    margin-top: 2rem; }

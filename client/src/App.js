@@ -9,7 +9,6 @@ import Header from './components/Header/Header'
 import Sidebar from './components/Sidebar/Sidebar'
 import Artists from './containers/Artists/Artists'
 import Albums from './components/Albums/Albums'
-import Welcome from './components/Welcome/Welcome'
 import NotFound from './components/NotFound/NotFound'
 import {
   searchArtist,
@@ -17,8 +16,7 @@ import {
   albumPlay,
   albumButtonClick,
   backToArtists,
-  tokenToState,
-  resetAlbums
+  tokenToState
 } from './actions/mainActions'
 const endPoint = process.env.NODE_ENV === 'development'
   ? 'http://localhost:8888/api'
@@ -73,14 +71,13 @@ class App extends Component {
     } else {
       return (
         <div className="main-container" >
-          <Header artists={artists} />
+          <Header artists={artists} backToArtists={this.props.backToArtists} />
           <div className="player-toggle" onClick={this.playerToggle}>
             <span className="chevron right"></span>
           </div>
           <Sidebar img={img} nowPlaying={nowPlaying} />
           <div className="main" >
-            <div className="main-middle" >
-              {artists.length === 0 && <h1 className="main-middle-title">VenuePlayer</h1>}
+            <div className="main-middle" >            
               <Switch>
                 <Route exact path='/' component={Artists} />
                 <Route
@@ -91,6 +88,7 @@ class App extends Component {
                       artist={artist}
                       id={id}
                       img={img}
+                      backToArtists={this.props.backToArtists}
                       albumButtonClick={this.props.albumButtonClick} />
                   }} />
                 <Route
@@ -105,9 +103,6 @@ class App extends Component {
                   }} />
                 <Route component={NotFound} />
               </Switch>
-              <div className="welcome" >
-                {artists.length === 0 && <Welcome />}
-              </div>
             </div>
           </div>
         </div>

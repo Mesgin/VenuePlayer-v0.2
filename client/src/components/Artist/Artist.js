@@ -1,34 +1,44 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import MapContainer from '../../containers/MapContainer'
 
 export default function Artist(props) {
   return (
+
     <div>
       <div className="single-artist-container">
-        <div className="single-artist">
-          <div className="left">
-            <Link to='/'><i className="fa fa-chevron-left"></i></Link>
-          </div>
-          <div className="between">
-            <div >
-              <img src={props.img} alt="artist" className="single-artist-img" />
+        <ReactCSSTransitionGroup
+          transitionName="artist-fade"
+          transitionAppear={true}
+          transitionAppearTimeout={500}
+          transitionLeave={false}
+          transitionEnter={false}
+        >
+          <div className="single-artist">
+            <div className="left">
+              <Link to='/' onClick={props.backToArtists}><i className="fa fa-chevron-left"></i></Link>
             </div>
-          </div>
-          <div className="right">
-            <div className="single-artist-title">
-              <h1>{props.artist}</h1>
+            <div className="between">
+              <div >
+                <img src={props.img || 'https://via.placeholder.com/200x200'} alt="artist" className="single-artist-img" />
+              </div>
             </div>
-            <Link to={`/albums/${props.artist}`}>
-              <button
-                type="button"
-                className="artist-buttons-albums"
-                onClick={() => props.albumButtonClick(props.id)}>
-                Albums
+            <div className="right">
+              <div className="single-artist-title">
+                <h1>{props.artist}</h1>
+              </div>
+              <Link to={`/albums/${props.artist}`}>
+                <button
+                  type="button"
+                  className="artist-buttons-albums"
+                  onClick={() => props.albumButtonClick(props.id)}>
+                  Albums
             </button>
-            </Link>
+              </Link>
+            </div>
           </div>
-        </div>
+        </ReactCSSTransitionGroup>
       </div>
       <div className="map">
         <MapContainer

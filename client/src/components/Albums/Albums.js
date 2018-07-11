@@ -38,8 +38,6 @@ export default function Albums(props) {
           transitionName="albums-fade"
           transitionEnterTimeout={500}
           transitionLeave={false}
-          // transitionAppear={true}
-          // transitionAppearTimeout={600}
         >
           {albums}
         </ReactCSSTransitionGroup>

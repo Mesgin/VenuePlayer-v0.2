@@ -33,16 +33,13 @@ export default function (state = initialState, action) {
     case SEARCH_ARTIST:
       return {
         ...state,
-        artists: action.payload,
-        showAlbums: false,
-        showArtist: true
+        artists: action.payload
       }
     case SET_VENUES:
       return {
         ...state,
         venues: action.payload.venues,
-        artist: action.payload.artist,
-        showInfo: true
+        artist: action.payload.artist
       }
     case SET_ALBUMS:
       return {
@@ -62,7 +59,8 @@ export default function (state = initialState, action) {
     case BACK_TO_ARTISTS:
       return {
         ...state,
-        albums: {}
+        albums: {},
+        artist: ''
       }
     case SHOW_INFOWINDOW:
       return {
@@ -89,10 +87,7 @@ export default function (state = initialState, action) {
     case ALBUM_BUTTON_CLICK:
       return {
         ...state,
-        albums: action.payload.albums,
-        showAlbums: true,
-        showArtist: false,
-        showInfo: false
+        albums: action.payload.albums
       }
     default:
       return state
