@@ -16,6 +16,7 @@ import {
   albumPlay,
   albumButtonClick,
   backToArtists,
+  resetHome,
   tokenToState
 } from './actions/mainActions'
 const endPoint = process.env.NODE_ENV === 'development'
@@ -71,7 +72,7 @@ class App extends Component {
     } else {
       return (
         <div className="main-container" >
-          <Header artists={artists} backToArtists={this.props.backToArtists} />
+          <Header artists={artists} resetHome={this.props.resetHome} />
           <div className="player-toggle" onClick={this.playerToggle}>
             <span className="chevron right"></span>
           </div>
@@ -117,7 +118,8 @@ const mapDispatchToProps = {
   artistClick,
   albumPlay,
   albumButtonClick,
-  backToArtists
+  backToArtists,
+  resetHome
 }
 
 const mapStateToProps = state => ({

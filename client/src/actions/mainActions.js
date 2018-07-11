@@ -7,6 +7,7 @@ import {
   ALBUM_PLAY,
   TOKEN_TO_STATE,
   BACK_TO_ARTISTS,
+  RESET_HOME,
   SHOW_INFOWINDOW,
   CLOSE_ALL_INFOWINDOW,
   ALBUM_BUTTON_CLICK
@@ -148,6 +149,12 @@ export const albumPlay = (id, imageMedium) => dispatch => {
 export const backToArtists = () => dispatch => {
   dispatch({
     type: BACK_TO_ARTISTS
+  })
+}
+
+export const resetHome = () => dispatch => {
+  dispatch({
+    type: RESET_HOME
   })
 }
 

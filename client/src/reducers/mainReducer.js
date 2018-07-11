@@ -5,6 +5,7 @@ import {
   SET_ALBUMS,
   ALBUM_PLAY,
   BACK_TO_ARTISTS,
+  RESET_HOME,
   SHOW_INFOWINDOW,
   CLOSE_ALL_INFOWINDOW,
   ALBUM_BUTTON_CLICK
@@ -61,6 +62,13 @@ export default function (state = initialState, action) {
         ...state,
         albums: {},
         artist: ''
+      }
+    case RESET_HOME:
+      return {
+        ...state,
+        albums: {},
+        artist: '',
+        artists: []
       }
     case SHOW_INFOWINDOW:
       return {

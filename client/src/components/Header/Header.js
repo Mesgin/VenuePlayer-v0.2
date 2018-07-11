@@ -30,7 +30,7 @@ export default function Header(props) {
         </div>
         <div className="header-head">
           <Link to='/'
-            onClick={props.backToArtists}
+            onClick={props.resetHome}
             className={props.artists.length > 0
               ? "heading-show"
               : "heading-hidden"} >
