@@ -244,22 +244,25 @@ body {
 
 /* Artist */
 .artist-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  flex-wrap: wrap;
   text-align: left;
   font-size: 16px;
   width: 70vw;
-  align-items: flex-start;
   margin-top: 4vh;
-  margin-bottom: 5vh; }
+  margin-bottom: 5vh;
+  overflow: hidden; }
   @media screen and (max-width: 880px) {
     .artist-container {
       width: 55vw; } }
   @media screen and (max-width: 442px) {
     .artist-container {
       width: 85vw; } }
+
+.artist-container span {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: flex-start; }
 
 .artist {
   display: flex;

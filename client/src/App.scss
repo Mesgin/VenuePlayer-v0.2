@@ -217,22 +217,25 @@
 }
 /* Artist */
 .artist-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  flex-wrap: wrap;
   text-align: left;
   font-size: 16px;
   width: 70vw;
-  align-items: flex-start;
   margin-top: 4vh;
   margin-bottom: 5vh;
+  overflow: hidden;
   @include media-query(880px){
     width: 55vw;
   }
   @include media-query(442px){
     width: 85vw;
   }
+}
+.artist-container span {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: flex-start;
 }
 .artist {
   display: flex;

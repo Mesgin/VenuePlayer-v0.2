@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import {
   artistClick,
   albumButtonClick,
@@ -75,7 +76,13 @@ class Artists extends Component {
           }
         />
         <div className="artist-container">
-          {artistsContent}
+          <ReactCSSTransitionGroup
+          transitionName="fade"
+          transitionEnterTimeout={150}
+          transitionLeaveTimeout={1}
+          >
+            {artistsContent}
+          </ReactCSSTransitionGroup>
         </div>
       </div>
     )
