@@ -1,8 +1,9 @@
 * {
   padding: 0;
   margin: 0;
-  font-family: "Source Sans Pro", sans-serif;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  font-family: "Source Sans Pro", sans-serif; }
 
 body {
   background-color: #000f1d;
@@ -61,7 +62,7 @@ body {
         flex-basis: 20%; } }
     .header .mo img {
       border-radius: 50%;
-      border: 2px solid white;
+      border: 1px solid white;
       width: 35px;
       height: 35px; }
       @media screen and (max-width: 442px) {
@@ -153,8 +154,10 @@ body {
   border: 0;
   padding: 1.3rem;
   font-size: 1.5rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2.5rem;
   outline: none;
+  -webkit-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
   transition: all 0.3s ease; }
   @media screen and (max-width: 880px) {
     .search-input {
@@ -203,7 +206,7 @@ body {
       margin-left: 260px; }
       @media screen and (max-width: 641px) {
         .main-container-shrink {
-          all: unset;
+          margin: 0;
           height: 100vh;
           overflow: hidden; } }
   .main-middle {
@@ -292,14 +295,6 @@ body {
     font-weight: bold;
     margin: 0 1vw;
     outline: none; }
-  .artist-buttons-map {
-    background-color: crimson;
-    border: 0;
-    border-radius: 50%;
-    color: white;
-    font-size: 22px;
-    margin-left: 5px;
-    opacity: 0.8; }
   .artist-map-icon {
     position: relative;
     cursor: pointer;

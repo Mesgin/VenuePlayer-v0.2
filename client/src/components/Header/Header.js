@@ -38,13 +38,7 @@ export default function Header(props) {
           </Link>
         </div>
         <div className="mo">
-          <a
-            href="https://github.com/mesgin"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img src={mo} alt="mo mesgin" />
-          </a>
+          <img src={mo} alt="mo mesgin"/>
         </div>
       </div>
       <div>

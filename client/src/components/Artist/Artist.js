@@ -12,6 +12,8 @@ export default function Artist(props) {
           transitionName="artist-fade"
           transitionAppear={true}
           transitionAppearTimeout={1000}
+          transitionEnter={false}
+          transitionLeave={false}
         >
           <div className="single-artist">
             <div className="left">
