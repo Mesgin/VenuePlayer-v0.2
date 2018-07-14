@@ -35,7 +35,8 @@ export const InitialMap = withScriptjs(withGoogleMap((props) => {
         mapTypeControl: false,
         panControl: false,
         rotateControl: false,
-        fullscreenControl: false
+        fullscreenControl: false,
+        gestureHandling: 'greedy'
       }}
       defaultCenter={{ lat: 49.2193, lng: -122.5984 }}
       onClick={props.onMapClick}

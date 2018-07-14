@@ -114,6 +114,9 @@ nav a {
   background-color: rgba(0, 0, 0, 0.5);
   height: 4em;
   z-index: 999; }
+  @media screen and (max-width: 641px) {
+    .header {
+      height: 3em; } }
   .header .mo {
     display: flex;
     align-items: center;
@@ -319,14 +322,13 @@ nav a {
   flex-direction: row;
   justify-content: center;
   flex-basis: 90%;
-  height: 38vh;
-  margin-top: 2vh; }
+  height: 40vh; }
   @media screen and (max-width: 442px) {
     .single-artist {
-      margin: 0;
       flex-direction: column;
       justify-content: space-between;
-      align-items: center; } }
+      align-items: center;
+      margin-bottom: 1em; } }
   .single-artist .left a {
     text-decoration: none;
     color: white;
@@ -443,11 +445,14 @@ nav a {
 .map {
   height: 48vh !important;
   width: calc(100vw - 265px);
-  margin-left: 10px;
+  margin-left: 5px;
   overflow: hidden;
   -webkit-box-shadow: 0px -3px 12px -1px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px -3px 12px -1px rgba(0, 0, 0, 0.75);
   box-shadow: 0px -3px 12px -1px rgba(0, 0, 0, 0.75); }
+  @media screen and (max-width: 641px) {
+    .map {
+      margin-left: 0; } }
   @media screen and (max-width: 442px) {
     .map {
       width: 100vw; } }
@@ -459,6 +464,9 @@ nav a {
     overflow: auto;
     color: black;
     padding: 5px; }
+    @media screen and (max-width: 442px) {
+      .map-infowindow {
+        width: 12em; } }
     .map-infowindow h3 {
       color: #15b477;
       margin: 0.5em; }
@@ -475,6 +483,10 @@ nav a {
     width: 7rem; }
   .map-marker-infowindow {
     width: 18em; }
+    @media screen and (max-width: 442px) {
+      .map-marker-infowindow {
+        width: 16em;
+        height: 14em; } }
     .map-marker-infowindow h3 {
       color: #15b477;
       font-size: 1.2rem;
@@ -508,6 +520,7 @@ nav a {
       left: -100vw;
       position: fixed;
       z-index: 1;
+      top: 3em;
       overflow-X: hidden;
       transition: all 0.3s ease; } }
   .sidebar img {
@@ -527,10 +540,12 @@ nav a {
     height: calc(100% - 265px);
     overflow: auto; }
   .sidebar-show {
-    left: 0; }
+    left: 0;
+    top: 4em; }
     @media screen and (max-width: 641px) {
       .sidebar-show {
-        position: absolute; } }
+        position: absolute;
+        top: 3em; } }
 
 .player-toggle {
   position: fixed;
@@ -541,6 +556,10 @@ nav a {
   font-size: 2.5rem;
   cursor: pointer;
   color: crimson; }
+  @media screen and (max-width: 641px) {
+    .player-toggle {
+      top: 0.2em;
+      left: 0.2em; } }
   .player-toggle span:hover {
     color: red; }
   @media screen and (max-width: 442px) {
