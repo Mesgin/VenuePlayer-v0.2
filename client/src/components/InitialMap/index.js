@@ -80,12 +80,12 @@ export const InitialMap = withScriptjs(withGoogleMap((props) => {
 
       <InfoWindow
         options={{ closeBoxURL: ``, enableEventPropagation: true }}
-        position={{ lat: 25.848105, lng: -122.5984 }}
+        position={{ lat: 35.848105, lng: -122.5984 }}
       >
         <div className="map-infowindow">
           <div style={{ height: '50%', width: '100%', fontSize: `16px`, fontColor: `#08233B` }}>
             <div>
-              <h3>Concerts Found: {props.markers.length}</h3>
+              <h3>{props.markers.length} Concerts Found</h3>
             </div>
             {countriesJSX}
           </div>

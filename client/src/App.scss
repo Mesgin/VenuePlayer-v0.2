@@ -2,6 +2,67 @@
 @import './scss/_variables';
 @import './scss/_mixins';
 
+/* Header */
+.header {
+  display: grid;
+  grid-template-columns: 1fr auto minmax(100px,3fr) 1fr;
+  width: 100%;
+  text-align: center;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 4em;
+  z-index: 999;
+  @include media-query(641px){
+    height: 3em
+  }
+  .mo {
+    display: flex;
+    align-items: center;
+    margin-left: 4em;
+    @include media-query(880px){
+      display: none;
+    }
+    img{
+      border-radius: 50%;
+      border: 1px solid white;
+      width: 35px;
+      height: 35px;
+      @include media-query(442px){
+        width:25px;
+        height:25px;
+        position: absolute;
+        top:10px;
+        right:10px;
+      }
+    }
+  }
+  .heading {
+    &-hidden {
+      display: none;
+      transition: all 0.3s ease;
+    }
+    &-show {
+      text-decoration: none;
+      font-family: $secondary-font;
+      color: $crimson;
+      font-size: 2rem;
+      opacity:1;
+      transition: all 0.3s ease;
+      @include media-query(880px){
+        font-size: 1.8rem;
+      }
+      @include media-query(641px){
+        font-size: 1.7rem;
+      }
+      @include media-query(442px){
+        font-size: 1.9rem;
+      }
+      @include media-query(321px){
+        font-size: 1.6rem;
+      }
+    }
+  }
+}
 .logo {
   grid-column: 2 / 4;
   display: flex;
@@ -69,6 +130,7 @@ nav a {
   display: none;
 }
 .nav-toggle-label {
+
   position: absolute;
   top: 0;
   right: 0;
@@ -77,6 +139,7 @@ nav a {
   display: none;
   align-items: center;
   span,span::before,span::after {
+    transition: transform 300ms ease;
     display: block;
     background: crimson;
     height: 2px;
@@ -97,65 +160,23 @@ nav a {
   @include media-query(880px){
     display: flex
   }
-}
-/* Header */
-.header {
-  display: grid;
-  grid-template-columns: 1fr auto minmax(100px,3fr) 1fr;
-  width: 100%;
-  text-align: center;
-  position: fixed;
-  background-color: rgba(0, 0, 0, 0.5);
-  height: 4em;
-  z-index: 999;
-  @include media-query(641px){
-    height: 3em
-  }
-  .mo {
-    display: flex;
-    align-items: center;
-    margin-left: 4em;
-    @include media-query(880px){
-      display: none;
+  &.open {
+    span::before {
+      top: 0;
+      -webkit-transform: rotate(135deg);
+      -moz-transform: rotate(135deg);
+      -o-transform: rotate(135deg);
+      transform: rotate(135deg);
     }
-    img{
-      border-radius: 50%;
-      border: 1px solid white;
-      width: 35px;
-      height: 35px;
-      @include media-query(442px){
-        width:25px;
-        height:25px;
-        position: absolute;
-        top:10px;
-        right:10px;
-      }
+    span {
+      height: 0
     }
-  }
-  .heading {
-    &-hidden {
-      display: none;
-      transition: all 0.3s ease;
-    }
-    &-show {
-      text-decoration: none;
-      font-family: $secondary-font;
-      color: $crimson;
-      font-size: 2rem;
-      opacity:1;
-      transition: all 0.3s ease;
-      @include media-query(880px){
-        font-size: 1.8rem;
-      }
-      @include media-query(641px){
-        font-size: 1.7rem;
-      }
-      @include media-query(442px){
-        font-size: 1.9rem;
-      }
-      @include media-query(321px){
-        font-size: 1.6rem;
-      }
+    span::after {
+      top: 0;
+      -webkit-transform: rotate(-135deg);
+      -moz-transform: rotate(-135deg);
+      -o-transform: rotate(-135deg);
+      transform: rotate(-135deg);
     }
   }
 }
@@ -338,7 +359,6 @@ nav a {
   justify-content: center;
   flex-basis: 90%;
   height: 40vh;
-  // margin-top: 2vh;
   @include media-query(442px){
     flex-direction: column;
     justify-content: space-between;
@@ -348,8 +368,11 @@ nav a {
   .left {
     a {
       text-decoration: none;
-      color: white;
+      color: rgb(196, 196, 196);
       font-size: 2.2rem;
+      &:hover {
+        color: white;
+      }
       @include media-query(442px){
         font-size: 2.5rem;
         position: absolute;
@@ -471,20 +494,22 @@ nav a {
     margin-top: 5em;
     a{
       text-decoration: none;
-      color: white;
+      color: rgb(206, 206, 206);
       font-size: 2.2rem;
+      &:hover {
+        color: white;
+      }
     }
   }
 }
 /* Map */
 .map {
-  height: 48vh !important;
-  width: calc(100vw - 265px);
-  margin-left: 5px;
+  height: 60vh;
+  width: 100vw;
   overflow: hidden;
   -webkit-box-shadow: 0px -3px 12px -1px rgba(0,0,0,0.75);
   -moz-box-shadow: 0px -3px 12px -1px rgba(0,0,0,0.75);
-  box-shadow: 0px -3px 12px -1px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.75);
   @include media-query(641px){
     margin-left: 0;
   }
@@ -674,16 +699,21 @@ nav a {
 .chevron {
   &::before {
     border-style: solid;
-    border-width: 0.11em 0.11em 0 0;
+    border-width: 5px 5px 0 0;
     content: '';
     display: inline-block;
-    height: 0.45em;
+    height: 18px;
     left: 0.15em;
     position: relative;
     top: 0.15em;
     transform: rotate(-45deg);
     vertical-align: top;
-    width: 0.45em;
+    width: 18px;
+    @include media-query(641px){
+      border-width: 3px 3px 0 0;
+      width: 16px;
+      height: 16px;
+    }
   }
   &.right:before {
     left: 0;

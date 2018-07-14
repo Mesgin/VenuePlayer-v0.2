@@ -21,7 +21,7 @@ class MapContainer extends React.Component {
             <div style={{ height: 'auto', width: 'auto' }} />
           }
           mapElement={
-            <div style={{ height: '48vh' }} />
+            <div style={{ height: '60vh' }} />
           }
           markers={this.props.main.venues}
           onMapClick={this.handleMapClick}

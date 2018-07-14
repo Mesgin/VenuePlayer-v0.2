@@ -36,7 +36,7 @@ export default function Header(props) {
           </li>
         </ul>
       </nav>
-      <label htmlFor="nav-toggle" className="nav-toggle-label">
+      <label htmlFor="nav-toggle" className="nav-toggle-label" onClick={props.menuClick}>
         <span></span>
       </label>
       <div className="logo">

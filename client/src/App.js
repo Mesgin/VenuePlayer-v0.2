@@ -54,7 +54,10 @@ class App extends Component {
     document.querySelector('.main-middle').classList.toggle('main-middle-shrink')
     document.querySelector('.chevron').classList.toggle('left')
     document.querySelector('.sidebar').classList.toggle('sidebar-show')
-    // document.querySelector('.header').classList.toggle('header-shrink')
+  }
+
+  menuClick = () => {
+    document.querySelector('.nav-toggle-label').classList.toggle('open')
   }
 
   render() {
@@ -72,7 +75,7 @@ class App extends Component {
     } else {
       return (
         <div >
-          <Header artists={artists} resetHome={this.props.resetHome} />
+          <Header artists={artists} resetHome={this.props.resetHome} menuClick={this.menuClick} />
           <div className="main-container" >
           <div className="player-toggle" onClick={this.playerToggle}>
             <span className="chevron right"></span>
