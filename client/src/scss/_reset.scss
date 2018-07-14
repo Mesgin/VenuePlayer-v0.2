@@ -17,25 +17,6 @@ body {
   color: white;
 }
 
-/* Scrollbar */
-/* Width */
 ::-webkit-scrollbar {
   width: 0;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey; 
-  border-radius: 10px;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: rgb(230, 230, 230); 
-  border-radius: 10px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: rgb(204, 201, 201); 
 }

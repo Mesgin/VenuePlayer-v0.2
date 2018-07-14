@@ -166,8 +166,7 @@ nav a {
   height: 16px;
   border: 0;
   padding: 1.3rem;
-  font-size: 1.5rem;
-  font-weight: 900;
+  font-size: 1.4rem;
   margin-bottom: 2.5rem;
   outline: none;
   -webkit-transition: all 0.3s ease;
@@ -311,7 +310,6 @@ nav a {
       border: 0;
       cursor: pointer;
       font-size: 0.9rem;
-      font-weight: bold;
       margin: 0 1vw;
       outline: none;
   }
@@ -509,8 +507,7 @@ nav a {
     border-radius: 5px;
     border: 0;
     margin: 15px auto 0 auto;
-    font-size: 1.2rem;
-    font-weight: 900;
+    font-size: 1.1rem;
     display: block;
     width: 7rem;
   }
@@ -523,7 +520,6 @@ nav a {
     }
     p{
       font-size: 1rem;
-      font-weight: 900;
       color: black;
       opacity: 0.9;
       margin: 1px;
@@ -546,12 +542,13 @@ nav a {
   overflow-X: hidden;
   transition: all 0.3s ease;
   @include media-query(641px){
+    box-shadow: unset;
     height: 100vh;
     width: 100vw;
     left:-100vw;
     position: fixed;
     z-index: 1;
-    bottom:-100vh;
+    // bottom:-100vh;
     overflow-X: hidden;
     transition: all 0.3s ease;
   }
@@ -571,9 +568,13 @@ nav a {
   iframe {
     border: 0;
     height: calc(100% - 265px);
+    overflow: auto;
   }
   &-show {
     left: 0;
+    @include media-query(641px){
+      position: absolute;
+    }
   }
 }
 .player-toggle {
@@ -596,11 +597,12 @@ nav a {
 }
 /* Welcome */
 .welcome {
-  font-size: 2rem;
+  font-size: 1.6rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.918);
   margin: -10vh 10vw 10vh 10vw;
   @include media-query(442px){
     font-size: 1.5rem;
-    font-weight: 900;
   }
 }
 /* Result */
