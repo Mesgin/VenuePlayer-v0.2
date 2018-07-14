@@ -84,7 +84,7 @@ export const InitialMap = withScriptjs(withGoogleMap((props) => {
         <div className="map-infowindow">
           <div style={{ height: '50%', width: '100%', fontSize: `16px`, fontColor: `#08233B` }}>
             <div>
-              <h3 style={{ color: '#015970' }}>Concerts Found: {props.markers.length}</h3>
+              <h3>Concerts Found: {props.markers.length}</h3>
             </div>
             {countriesJSX}
           </div>

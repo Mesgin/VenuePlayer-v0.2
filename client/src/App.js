@@ -51,10 +51,10 @@ class App extends Component {
   }
 
   playerToggle = () => {
-    document.querySelector('.main-container').classList.toggle('main-container-shrink')
+    document.querySelector('.main-middle').classList.toggle('main-middle-shrink')
     document.querySelector('.chevron').classList.toggle('left')
     document.querySelector('.sidebar').classList.toggle('sidebar-show')
-    document.querySelector('.header').classList.toggle('header-shrink')
+    // document.querySelector('.header').classList.toggle('header-shrink')
   }
 
   render() {
@@ -71,8 +71,9 @@ class App extends Component {
       return <div className="loading" >Loading...</div>
     } else {
       return (
-        <div className="main-container" >
+        <div >
           <Header artists={artists} resetHome={this.props.resetHome} />
+          <div className="main-container" >
           <div className="player-toggle" onClick={this.playerToggle}>
             <span className="chevron right"></span>
           </div>
@@ -105,6 +106,7 @@ class App extends Component {
                 <Route component={NotFound} />
               </Switch>
             </div>
+          </div>
           </div>
         </div>
       )

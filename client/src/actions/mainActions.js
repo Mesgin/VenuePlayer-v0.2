@@ -137,7 +137,7 @@ export const albumPlay = (id, imageMedium) => dispatch => {
   let visible = document.querySelector('.sidebar').classList.contains('sidebar-show')
   if (!visible) {
     document.querySelector('.sidebar').classList.toggle('sidebar-show')
-    document.querySelector('.main-container').classList.toggle('main-container-shrink')
+    document.querySelector('.main-middle').classList.toggle('main-middle-shrink')
     document.querySelector('.chevron').classList.toggle('left')
   }
   dispatch({
