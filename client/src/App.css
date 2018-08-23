@@ -388,7 +388,8 @@ nav a {
     @media screen and (max-width: 442px) {
       .single-artist-img {
         width: 13em;
-        height: 13em; } }
+        height: 13em;
+        margin-bottom: 1em; } }
     @media screen and (max-width: 321px) {
       .single-artist-img {
         width: 10em;

@@ -191,7 +191,7 @@ nav a {
   border: 0;
   padding: 1.3rem;
   font-size: 1.4rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 3.5rem;
   outline: none;
   -webkit-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
@@ -416,6 +416,7 @@ nav a {
     @include media-query(442px){
       width: 13em;
       height: 13em;
+      margin-bottom: 1em;
     }
     @include media-query(321px){
       width: 10em;
