@@ -74,7 +74,7 @@ class Artists extends Component {
         <input
           placeholder="Search Artist"
           type="text"
-          tabindex="-1"
+          tabIndex="-1"
           autoCorrect="off"
           autoComplete="off"
           onChange={this.textHandler}
