@@ -12,6 +12,9 @@ import {
 class Artists extends Component {
 
   textHandler = e => {
+    e.preventDefault()
+    window.scrollTo(0, 0)
+    document.body.scrollTop = 0
     this.props.searchArtist(e.target.value)
   }
 
@@ -71,6 +74,9 @@ class Artists extends Component {
         <input
           placeholder="Search Artist"
           type="text"
+          tabindex="-1"
+          autoCorrect="off"
+          autoComplete="off"
           onChange={this.textHandler}
           className={this.props.main.artists.length > 0
             ? "search-input-shrink"
