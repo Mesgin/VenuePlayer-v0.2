@@ -7,6 +7,8 @@ const key = require('./client/src/config/keys').bandKey
 const secret = require('./client/src/config/keys').secret
 const path = require('path')
 
+app.use(express.static('client/build'))
+
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*")
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization")
@@ -76,7 +78,6 @@ app.post('/api', (req, res) => {
 const port = process.env.PORT || 8888
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'))
   app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
   })
