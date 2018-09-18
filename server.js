@@ -76,15 +76,15 @@ app.post('/api', (req, res) => {
 const port = process.env.PORT || 8888
 
 if (process.env.NODE_ENV === 'production') {
-  app.use('/static', express.static('/client/build'));
+  app.use('/static', express.static('/client/build/static'));
   app.use('/', express.static(path.join(__dirname, 'client', 'build')))
   app.use('/static/js/main.f5d0c7ca.js', express.static(path.join(__dirname, 'client', 'build', 'static', 'js', 'main.f5d0c7ca.js')))
   // app.get('/', (req, res) => {
   //   res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
   // })
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build'))
-  })
+  // app.get('*', (req, res) => {
+  //   res.sendFile(path.resolve(__dirname, 'client', 'build'))
+  // })
 }
 
 app.listen(port, () => {
