@@ -53,6 +53,9 @@ request.post(authOptions, function (error, response, body) {
     request.get(options, function (error, response, body) {  
       console.log('5'); 
     })
+  } else {
+    console.log('error');
+    console.log(error);
   }
 })
 })
