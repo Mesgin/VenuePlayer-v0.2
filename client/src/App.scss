@@ -214,7 +214,7 @@ nav a {
     margin: 0 0 2.5em 0;
   }
   &-shrink {
-    margin-top: 4rem;
+    margin-top: 6rem;
     margin-bottom: 0;
     padding: 1rem;
     font-size: 1rem;
@@ -223,12 +223,14 @@ nav a {
     background-color: $transparent-black;
     border-radius: 5px;
     width: 30vmax;
-    height: 36px;
+    height: 16px;
     border: 0;
     outline: none;
     transition: all 0.3s ease;
     @include media-query(442px){
       width: 60vw;
+      margin-top: 4rem;
+      height: 35px;
     }
   }
 }

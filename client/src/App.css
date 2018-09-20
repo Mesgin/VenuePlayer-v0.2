@@ -208,7 +208,7 @@ nav a {
       padding: 1.1rem;
       margin: 0 0 2.5em 0; } }
   .search-input-shrink {
-    margin-top: 4rem;
+    margin-top: 6rem;
     margin-bottom: 0;
     padding: 1rem;
     font-size: 1rem;
@@ -217,13 +217,15 @@ nav a {
     background-color: rgba(0, 0, 0, 0.425);
     border-radius: 5px;
     width: 30vmax;
-    height: 36px;
+    height: 16px;
     border: 0;
     outline: none;
     transition: all 0.3s ease; }
     @media screen and (max-width: 442px) {
       .search-input-shrink {
-        width: 60vw; } }
+        width: 60vw;
+        margin-top: 4rem;
+        height: 35px; } }
 
 /* Main */
 .main-container {
