@@ -56,6 +56,8 @@ request.post(authOptions, function (error, response, body) {
   } else {
     console.log('error');
     console.log(error);
+    console.log(response);
+    console.log(body);
   }
 })
 })
