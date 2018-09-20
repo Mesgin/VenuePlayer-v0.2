@@ -16,6 +16,9 @@ body {
 ::-webkit-scrollbar {
   width: 0; }
 
+.hidden-overflow {
+  overflow: hidden; }
+
 /* Header */
 .header {
   display: grid;

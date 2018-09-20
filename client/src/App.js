@@ -54,6 +54,7 @@ class App extends Component {
     document.querySelector('.main-middle').classList.toggle('main-middle-shrink')
     document.querySelector('.chevron').classList.toggle('left')
     document.querySelector('.sidebar').classList.toggle('sidebar-show')
+    document.body.classList.toggle('hidden-overflow')
   }
 
   menuClick = () => {

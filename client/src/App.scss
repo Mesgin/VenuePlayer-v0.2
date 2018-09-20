@@ -2,6 +2,11 @@
 @import './scss/_variables';
 @import './scss/_mixins';
 
+// body
+.hidden-overflow {
+  overflow: hidden;
+}
+
 /* Header */
 .header {
   display: grid;
